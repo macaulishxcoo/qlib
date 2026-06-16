@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: qlib_library/contrib_extensions/data_processing
+title: 量化特征工程与数据处理
+scope:
+    - qlib/contrib/data/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/core_models
+    - path: qlib_library/contrib_extensions/model_implementations
+    - path: qlib_library/contrib_extensions/contrib_utils
+    - path: qlib_library/contrib_extensions/model_implementations/tree_based_models
+    - path: qlib_library/shared_utils

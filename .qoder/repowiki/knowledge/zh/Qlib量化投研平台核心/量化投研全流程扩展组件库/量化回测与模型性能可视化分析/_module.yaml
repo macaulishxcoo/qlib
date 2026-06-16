@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: qlib_library/contrib_extensions/reporting_analysis
+title: 量化回测与模型性能可视化分析
+scope:
+    - qlib/contrib/report/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/backtest_engine
+    - path: qlib_library/contrib_extensions/contrib_utils
+    - path: qlib_library/core_models
+    - path: qlib_library/contrib_extensions/online_management
+    - path: qlib_library/contrib_extensions/rolling_evaluation
+    - path: qlib_library/contrib_extensions/model_implementations/pytorch_neural_networks
+    - path: qlib_library/contrib_extensions/strategy_optimization

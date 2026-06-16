@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: qlib_library/shared_utils
+title: Qlib通用工具与基础设施
+scope:
+    - qlib/utils/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/contrib_extensions
+    - path: qlib_library/data_pipeline
+    - path: qlib_library/workflow_mgmt
+    - path: qlib_library/contrib_extensions/model_implementations
+    - path: qlib_library/contrib_extensions/hyperparameter_tuning
+    - path: qlib_library/contrib_extensions/data_processing

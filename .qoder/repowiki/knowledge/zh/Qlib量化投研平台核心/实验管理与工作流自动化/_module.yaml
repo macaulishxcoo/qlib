@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: qlib_library/workflow_mgmt
+title: 实验管理与工作流自动化
+scope:
+    - qlib/workflow/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/contrib_extensions/rolling_evaluation
+    - path: qlib_library/contrib_extensions/online_management
+    - path: qlib_library/contrib_extensions
+    - path: qlib_library/contrib_extensions/hyperparameter_tuning
+    - path: qlib_library/contrib_extensions/contrib_utils
+    - path: qlib_library/shared_utils
+    - path: qlib_library/data_pipeline

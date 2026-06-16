@@ -1,0 +1,15 @@
+schema_version: 1
+module_path: qlib_library/contrib_extensions/hyperparameter_tuning
+title: 超参数自动调优引擎
+scope:
+    - qlib/contrib/tuner/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/contrib_extensions/model_implementations
+    - path: qlib_library/backtest_engine
+    - path: qlib_library/contrib_extensions/rolling_evaluation
+    - path: qlib_library/workflow_mgmt
+    - path: qlib_library/contrib_extensions/model_implementations/tree_based_models
+    - path: qlib_library/shared_utils
+    - path: qlib_library/contrib_extensions/contrib_utils

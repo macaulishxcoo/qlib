@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: qlib_library/rl_trading/contrib
+title: 强化学习交易训练与回测工具集
+scope:
+    - qlib/rl/contrib/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/rl_trading/trainer
+    - path: qlib_library/rl_trading/data_adapters
+    - path: qlib_library/rl_trading/order_execution

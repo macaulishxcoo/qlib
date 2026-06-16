@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: qlib_library/data_pipeline
+title: 量化数据引擎与特征表达式系统
+scope:
+    - qlib/data/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/rl_trading/data_adapters
+    - path: qlib_library/shared_utils
+    - path: qlib_library/contrib_extensions/contrib_utils
+    - path: qlib_library/workflow_mgmt
+    - path: qlib_library/contrib_extensions/strategy_optimization
+    - path: qlib_library/contrib_extensions/model_implementations

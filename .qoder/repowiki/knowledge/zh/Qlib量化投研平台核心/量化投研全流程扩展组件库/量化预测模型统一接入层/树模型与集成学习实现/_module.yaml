@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: qlib_library/contrib_extensions/model_implementations/tree_based_models
+title: 树模型与集成学习实现
+scope:
+    - qlib/contrib/model/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/contrib_extensions/model_implementations/pytorch_neural_networks
+    - path: qlib_library/contrib_extensions/data_processing
+    - path: qlib_library/contrib_extensions/hyperparameter_tuning
+    - path: qlib_library/contrib_extensions/rolling_evaluation

@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: qlib_library/rl_trading/data_adapters
+title: 强化学习日内交易数据适配器
+scope:
+    - qlib/rl/data/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/rl_trading/core
+    - path: qlib_library/data_pipeline
+    - path: qlib_library/rl_trading/contrib
+    - path: qlib_library/rl_trading/utils

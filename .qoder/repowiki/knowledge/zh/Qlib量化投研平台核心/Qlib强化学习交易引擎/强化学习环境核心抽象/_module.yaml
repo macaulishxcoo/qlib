@@ -1,0 +1,16 @@
+schema_version: 1
+module_path: qlib_library/rl_trading/core
+title: 强化学习环境核心抽象
+scope:
+    - qlib/rl/__init__.py
+    - qlib/rl/interpreter.py
+    - qlib/rl/reward.py
+    - qlib/rl/simulator.py
+    - qlib/rl/seed.py
+    - qlib/rl/aux_info.py
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/rl_trading/data_adapters
+    - path: qlib_library/rl_trading/trainer
+    - path: qlib_library/rl_trading/order_execution

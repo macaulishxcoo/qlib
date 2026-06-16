@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: qlib_library/rl_trading/trainer
+title: 强化学习训练与回测框架
+scope:
+    - qlib/rl/trainer/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/rl_trading/core
+    - path: qlib_library/rl_trading/contrib
+    - path: qlib_library/rl_trading/utils
+    - path: qlib_library/rl_trading/order_execution
+    - path: qlib_library/contrib_extensions/model_implementations/pytorch_neural_networks

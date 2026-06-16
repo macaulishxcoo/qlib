@@ -1,0 +1,28 @@
+schema_version: 1
+module_path: ""
+title: Qlib量化投研平台根模块
+scope:
+    - README.md
+    - pyproject.toml
+    - .commitlintrc.js
+    - .deepsource.toml
+    - .dockerignore
+    - .gitignore
+    - .mypy.ini
+    - .pre-commit-config.yaml
+    - .pylintrc
+    - .readthedocs.yaml
+    - CHANGELOG.md
+    - CHANGES.rst
+    - CODE_OF_CONDUCT.md
+    - Dockerfile
+    - LICENSE
+    - MANIFEST.in
+    - Makefile
+    - SECURITY.md
+    - alpha158_factor_guide.md
+    - build_docker_image.sh
+    - setup.py
+source_files: []
+depends_on: []
+related_to: []

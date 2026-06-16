@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: qlib_library/contrib_extensions
+title: 量化投研全流程扩展组件库
+scope:
+    - qlib/contrib/
+source_files: []
+depends_on: []
+related_to:
+    - path: qlib_library/workflow_mgmt
+    - path: qlib_library/shared_utils
