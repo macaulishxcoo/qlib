@@ -1,0 +1,8 @@
+artifact_location: file:///home/xiaocong/worksapces/qlib/examples/benchmarks/LightGBM/mlruns/340812401966016047
+creation_time: 1781745820023
+experiment_id: '340812401966016047'
+last_update_time: 1781745820023
+lifecycle_stage: active
+name: workflow
+trace_location: null
+workspace: default

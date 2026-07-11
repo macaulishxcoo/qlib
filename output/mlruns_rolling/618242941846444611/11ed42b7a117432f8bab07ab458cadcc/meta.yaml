@@ -1,0 +1,14 @@
+artifact_uri: file:///home/xiaocong/worksapces/qlib/output/mlruns/618242941846444611/11ed42b7a117432f8bab07ab458cadcc/artifacts
+end_time: 1783503454406
+entry_point_name: ''
+experiment_id: '618242941846444611'
+lifecycle_stage: active
+run_id: 11ed42b7a117432f8bab07ab458cadcc
+run_name: mlflow_recorder
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783503449518
+status: 3
+tags: []
+user_id: root
