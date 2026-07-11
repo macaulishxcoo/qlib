@@ -1,0 +1,15 @@
+{
+    "pythonVersion": "3.12",
+    "pythonPlatform": "Linux",
+    "venvPath": "/home/xiaocong/anaconda3/envs",
+    "venv": "qlib",
+    "executionEnvironments": [
+        {
+            "root": ".",
+            "extraPaths": [
+                "."
+            ]
+        }
+    ],
+    "typeCheckingMode": "basic"
+}

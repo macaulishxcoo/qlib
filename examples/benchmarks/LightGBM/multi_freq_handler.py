@@ -34,6 +34,7 @@ class Avg15minHandler(DataHandlerLP):
     ):
         infer_processors = check_transform_proc(infer_processors, fit_start_time, fit_end_time)
         learn_processors = check_transform_proc(learn_processors, fit_start_time, fit_end_time)
+        
         data_loader = Avg15minLoader(
             config=self.loader_config(), filter_pipe=filter_pipe, freq=freq, inst_processors=inst_processors
         )
