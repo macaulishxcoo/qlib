@@ -1,1 +1,0 @@
-/home/xiaocong/anaconda3/envs/qlib/lib/python3.12/site-packages/qlib/contrib/rolling/base.py --conf_path /home/xiaocong/worksapces/qlib/examples/benchmarks_dynamic/baseline/workflow_config_lightgbm_Alpha158.yaml --step 60 run

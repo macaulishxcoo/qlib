@@ -39,6 +39,11 @@ test-output.xml
 
 # special software
 mlruns/
+output/
+.qoder/
+debug_pipeline.py
+run_rolling_check.py
+*.log
 
 tags
 

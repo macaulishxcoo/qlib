@@ -1,9 +1,0 @@
-artifact_location: file:///home/xiaocong/worksapces/qlib/output/mlruns/877162943938155757
-creation_time: 1783503458624
-experiment_id: '877162943938155757'
-last_update_time: 1783503574184
-lifecycle_stage: active
-name: rolling_20260708
-tags: {}
-trace_location: null
-workspace: default
