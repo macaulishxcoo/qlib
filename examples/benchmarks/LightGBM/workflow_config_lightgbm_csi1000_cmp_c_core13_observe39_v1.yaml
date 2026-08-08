@@ -1,0 +1,91 @@
+# Fixed comparison v1, Version C: core 13 plus 39 observation features.
+# Run only after protocol review:
+# qrun examples/benchmarks/LightGBM/workflow_config_lightgbm_csi1000_cmp_c_core13_observe39_v1.yaml --uri_folder output/mlruns_static
+experiment_name: static_csi1000_cmp_c_core13_observe39_v1
+qlib_init:
+    provider_uri: "~/.qlib/qlib_data/cn_data_2026"
+    region: cn
+market: &market csi1000
+benchmark: &benchmark SH000852
+data_handler_config: &data_handler_config
+    start_time: 2020-01-01
+    end_time: 2026-07-23
+    instruments: *market
+    data_loader:
+        class: QlibDataLoader
+        kwargs:
+            config:
+                feature:
+                    - ["Std($close, 5)/$close", "($high-$low)/$open", "Std($close, 10)/$close", "Std($close, 60)/$close", "Std($close, 20)/$close", "Min($low, 60)/$close", "$high/$close", "Corr($close/Ref($close,1), Log($volume/Ref($volume, 1)+1), 20)", "Corr($close, Log($volume+1), 10)", "Max($high, 5)/$close", "($high-Greater($open, $close))/$open", "Corr($close, Log($volume+1), 20)", "Corr($close/Ref($close,1), Log($volume/Ref($volume, 1)+1), 10)", "(Sum(Greater($volume-Ref($volume, 1), 0), 20)-Sum(Greater(Ref($volume, 1)-$volume, 0), 20))/(Sum(Abs($volume-Ref($volume, 1)), 20)+1e-12)", "Corr($close, Log($volume+1), 30)", "Std(Abs($close/Ref($close, 1)-1)*$volume, 20)/(Mean(Abs($close/Ref($close, 1)-1)*$volume, 20)+1e-12)", "Max($high, 10)/$close", "Resi($close, 60)/$close", "Corr($close/Ref($close,1), Log($volume/Ref($volume, 1)+1), 5)", "Slope($close, 10)/$close", "Ref($close, 20)/$close", "(Less($open, $close)-$low)/$open", "Mean($close, 60)/$close", "Mean($volume, 30)/($volume+1e-12)", "Std(Abs($close/Ref($close, 1)-1)*$volume, 10)/(Mean(Abs($close/Ref($close, 1)-1)*$volume, 10)+1e-12)", "Slope($close, 30)/$close", "Std(Abs($close/Ref($close, 1)-1)*$volume, 30)/(Mean(Abs($close/Ref($close, 1)-1)*$volume, 30)+1e-12)", "Ref($close, 30)/$close", "(Sum(Greater($volume-Ref($volume, 1), 0), 10)-Sum(Greater(Ref($volume, 1)-$volume, 0), 10))/(Sum(Abs($volume-Ref($volume, 1)), 10)+1e-12)", "Mean($close, 20)/$close", "(IdxMax($high, 20)-IdxMin($low, 20))/20", "IdxMax($high, 20)/20", "Quantile($close, 60, 0.2)/$close", "Min($low, 5)/$close", "Corr($close/Ref($close,1), Log($volume/Ref($volume, 1)+1), 60)", "(Sum(Greater($volume-Ref($volume, 1), 0), 30)-Sum(Greater(Ref($volume, 1)-$volume, 0), 30))/(Sum(Abs($volume-Ref($volume, 1)), 30)+1e-12)", "Mean($volume, 60)/($volume+1e-12)", "(Sum(Greater($volume-Ref($volume, 1), 0), 60)-Sum(Greater(Ref($volume, 1)-$volume, 0), 60))/(Sum(Abs($volume-Ref($volume, 1)), 60)+1e-12)", "Corr($close, Log($volume+1), 5)", "Quantile($close, 30, 0.2)/$close", "Quantile($close, 10, 0.2)/$close", "(Sum(Greater($close-Ref($close, 1), 0), 20)-Sum(Greater(Ref($close, 1)-$close, 0), 20))/(Sum(Abs($close-Ref($close, 1)), 20)+1e-12)", "Quantile($close, 20, 0.2)/$close", "Rank($close, 30)", "(Sum(Greater($close-Ref($close, 1), 0), 30)-Sum(Greater(Ref($close, 1)-$close, 0), 30))/(Sum(Abs($close-Ref($close, 1)), 30)+1e-12)", "Mean($close, 30)/$close", "Rank($close, 20)", "Rank($close, 60)", "(IdxMax($high, 30)-IdxMin($low, 30))/30", "(IdxMax($high, 10)-IdxMin($low, 10))/10", "(Sum(Greater($close-Ref($close, 1), 0), 10)-Sum(Greater(Ref($close, 1)-$close, 0), 10))/(Sum(Abs($close-Ref($close, 1)), 10)+1e-12)", "$low/$close"]
+                    - ["STD5", "KLEN", "STD10", "STD60", "STD20", "MIN60", "HIGH0", "CORD20", "CORR10", "MAX5", "KUP", "CORR20", "CORD10", "VSUMD20", "CORR30", "WVMA20", "MAX10", "RESI60", "CORD5", "BETA10", "ROC20", "KLOW", "MA60", "VMA30", "WVMA10", "BETA30", "WVMA30", "ROC30", "VSUMD10", "MA20", "IMXD20", "IMAX20", "QTLD60", "MIN5", "CORD60", "VSUMD30", "VMA60", "VSUMD60", "CORR5", "QTLD30", "QTLD10", "SUMD20", "QTLD20", "RANK30", "SUMD30", "MA30", "RANK20", "RANK60", "IMXD30", "IMXD10", "SUMD10", "LOW0"]
+                label:
+                    - ["Ref($close, -2)/Ref($close, -1) - 1"]
+                    - ["LABEL0"]
+            freq: day
+    # Keep feature preprocessing identical to Qlib's raw Alpha158 handler.
+    infer_processors: []
+    learn_processors:
+        - class: DropnaLabel
+        - class: CSZScoreNorm
+          kwargs:
+            fields_group: label
+port_analysis_config: &port_analysis_config
+    strategy:
+        class: TopkDropoutStrategy
+        module_path: qlib.contrib.strategy
+        kwargs:
+            signal: <PRED>
+            topk: 50
+            n_drop: 5
+    backtest:
+        start_time: 2025-01-01
+        end_time: 2026-07-23
+        account: 100000000
+        benchmark: *benchmark
+        exchange_kwargs:
+            limit_threshold: 0.095
+            deal_price: close
+            open_cost: 0.0005
+            close_cost: 0.0015
+            min_cost: 5
+task:
+    model:
+        class: LGBModel
+        module_path: qlib.contrib.model.gbdt
+        kwargs:
+            loss: mse
+            colsample_bytree: 0.9
+            learning_rate: 0.1
+            subsample: 0.9
+            lambda_l1: 205.6999
+            lambda_l2: 580.9768
+            max_depth: 8
+            num_leaves: 250
+            num_threads: 20
+    dataset:
+        class: DatasetH
+        module_path: qlib.data.dataset
+        kwargs:
+            handler:
+                class: DataHandlerLP
+                module_path: qlib.data.dataset.handler
+                kwargs: *data_handler_config
+            segments:
+                train: [2020-01-01, 2022-12-31]
+                valid: [2023-01-01, 2024-12-31]
+                test: [2025-01-01, 2026-07-23]
+    record:
+        - class: SignalRecord
+          module_path: qlib.workflow.record_temp
+          kwargs:
+            model: <MODEL>
+            dataset: <DATASET>
+        - class: SigAnaRecord
+          module_path: qlib.workflow.record_temp
+          kwargs:
+            ana_long_short: False
+            ann_scaler: 252
+        - class: PortAnaRecord
+          module_path: qlib.workflow.record_temp
+          kwargs:
+            config: *port_analysis_config

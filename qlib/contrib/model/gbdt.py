@@ -47,7 +47,7 @@ class LGBModel(ModelFT, LightGBMFInt):
 
                 if reweighter is None:
                     w = None
-                elif isinstance(reweighter, Reweighter):
+                elif isinstance(reweighter, Reweighter): 
                     w = reweighter.reweight(df)
                 else:
                     raise ValueError("Unsupported reweighter type.")
