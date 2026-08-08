@@ -1,0 +1,7 @@
+{
+  "stock_basic_snapshot": "data/external/tushare/a_share_financial_pit_v1/full/raw/batch_0001/stock_basic_snapshot.csv.gz",
+  "stock_basic_snapshot_sha256": "2f1dcb3501760b99038631fc2e36a758ba84630c11467bb93a164db9ce11a3a2",
+  "frozen_universe_index": "output/data_audits/a_share_financial_pit_v1/full/full_audit_v1/frozen_universe_index.csv.gz",
+  "frozen_universe_index_sha256": "3a0aaeabbc158443d8bb2f44e79c15b31c47300e55072b5468d2eb7a220bb6ee",
+  "universe_companies": 5385
+}

@@ -1,0 +1,59 @@
+{
+  "purpose": "Point-in-time industry and size neutralization of Alpha158 factors",
+  "source": "Tushare Pro",
+  "universe_source": "/root/.qlib/qlib_data/cn_data_2026/instruments/csi1000.txt",
+  "start_date": "2025-01-01",
+  "end_date": "2026-07-23",
+  "trading_days": 376,
+  "daily_basic": {
+    "path": "daily_basic_csi1000.csv.gz",
+    "rows": 375462,
+    "fields": [
+      "ts_code",
+      "trade_date",
+      "close",
+      "turnover_rate",
+      "turnover_rate_f",
+      "volume_ratio",
+      "pe",
+      "pe_ttm",
+      "pb",
+      "ps",
+      "ps_ttm",
+      "dv_ratio",
+      "dv_ttm",
+      "total_share",
+      "float_share",
+      "free_share",
+      "total_mv",
+      "circ_mv"
+    ],
+    "universe_rule": "CSI1000 constituent on each trade_date"
+  },
+  "industry_history": {
+    "path": "industry_member_history_csi1000.csv.gz",
+    "rows": 1798,
+    "fields": [
+      "l1_code",
+      "l1_name",
+      "l2_code",
+      "l2_name",
+      "l3_code",
+      "l3_name",
+      "ts_code",
+      "name",
+      "in_date",
+      "out_date",
+      "is_new"
+    ],
+    "records": "Paginated Tushare index_member_all is_new=Y and is_new=N",
+    "single_stock_repairs": 269,
+    "repaired_at_utc": "2026-08-03T02:33:02.664724+00:00",
+    "pagination": {
+      "is_new_Y_pages": 2,
+      "is_new_N_pages": 1
+    },
+    "refreshed_at_utc": "2026-08-03T02:37:13.524556+00:00"
+  },
+  "downloaded_at_utc": "2026-08-03T02:27:56.810109+00:00"
+}

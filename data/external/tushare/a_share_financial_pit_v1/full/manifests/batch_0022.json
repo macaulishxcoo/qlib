@@ -1,0 +1,1228 @@
+{
+  "batch_id": "batch_0022",
+  "scope": {
+    "announcement_start": "2010-01-01",
+    "announcement_end": "2025-06-30",
+    "report_start": "2009-12-31",
+    "report_end": "2024-12-31"
+  },
+  "companies": 100,
+  "files": {
+    "raw/batch_0022/cashflow/002478.SZ.csv.gz": {
+      "bytes": 18146,
+      "sha256": "2f2d73633d936c032b81038d8a767efbfcb637a954b5bdc4bf8c80f6b96838cd"
+    },
+    "raw/batch_0022/cashflow/002479.SZ.csv.gz": {
+      "bytes": 17176,
+      "sha256": "b8e2cc8cd685676f56361e0f22034b21fc25ef27f6ac749f1af07bfa673a0deb"
+    },
+    "raw/batch_0022/cashflow/002480.SZ.csv.gz": {
+      "bytes": 18429,
+      "sha256": "d4a5e65ba05ea453150d72a5b19a6dfb86484f2602dbdd84305cde7b3dc278b7"
+    },
+    "raw/batch_0022/cashflow/002481.SZ.csv.gz": {
+      "bytes": 17025,
+      "sha256": "bae30ed2ecdd43c1182031811a8b54a5b74a9a778bd4e56cb4bd75bad12f4f43"
+    },
+    "raw/batch_0022/cashflow/002482.SZ.csv.gz": {
+      "bytes": 17834,
+      "sha256": "46d82a7ba9977e877c7d510b9c11523ee09f628d1fa4df1f8716c6263083c13a"
+    },
+    "raw/batch_0022/cashflow/002483.SZ.csv.gz": {
+      "bytes": 19396,
+      "sha256": "59ad9b3665ed21104dc911b8afe052dfb3221a39aac2b8b5ce8c23eada21a373"
+    },
+    "raw/batch_0022/cashflow/002484.SZ.csv.gz": {
+      "bytes": 17990,
+      "sha256": "aa6e74339133e136eeac27d16e2afb5665f6103fa1154ee68a259c74ccbf5c5e"
+    },
+    "raw/batch_0022/cashflow/002485.SZ.csv.gz": {
+      "bytes": 16600,
+      "sha256": "4e7cb2aa79208ef02233095ce5b037a1c910376fa1037dcf2b69511c66827294"
+    },
+    "raw/batch_0022/cashflow/002486.SZ.csv.gz": {
+      "bytes": 16597,
+      "sha256": "65822d7c81ddbb2b67dff32d9d6595172045956f7ea37fa122379fa5f949d227"
+    },
+    "raw/batch_0022/cashflow/002487.SZ.csv.gz": {
+      "bytes": 15657,
+      "sha256": "a29053050ccba9f94b9430c742cc206cf6cdb18b53349e6e5a15e61d00e6463d"
+    },
+    "raw/batch_0022/cashflow/002488.SZ.csv.gz": {
+      "bytes": 19101,
+      "sha256": "6d78afe2c7a22ac77ab5e0395769dd4dc429700f26a87964a0e4f75dbc1fbeba"
+    },
+    "raw/batch_0022/cashflow/002489.SZ.csv.gz": {
+      "bytes": 20348,
+      "sha256": "9fa52178c4ce151259ec4e94600798144526f1db0c666bff6479447767bea8cb"
+    },
+    "raw/batch_0022/cashflow/002490.SZ.csv.gz": {
+      "bytes": 18031,
+      "sha256": "3d652b5ebca2c6de152da54330ab20c15e30cf41e387d02bd8327b459a585370"
+    },
+    "raw/batch_0022/cashflow/002491.SZ.csv.gz": {
+      "bytes": 19003,
+      "sha256": "f70b8c66985db88465d91aefbfadd308d5c970839b88fec5fb5c4e8b46fc56ae"
+    },
+    "raw/batch_0022/cashflow/002492.SZ.csv.gz": {
+      "bytes": 17668,
+      "sha256": "31558723c0e624f26ac370fafc98dc46f07bee1c03325712e808c25413a40b99"
+    },
+    "raw/batch_0022/cashflow/002493.SZ.csv.gz": {
+      "bytes": 22409,
+      "sha256": "45b0f3deeeb4609786d795f8e3202c17a12624d9cb36269a644d3780b25b54c8"
+    },
+    "raw/batch_0022/cashflow/002494.SZ.csv.gz": {
+      "bytes": 16370,
+      "sha256": "75e863c4b42f388a382ce751a8d50cc76a6f5039ab1bef3721ad0025292dbb50"
+    },
+    "raw/batch_0022/cashflow/002495.SZ.csv.gz": {
+      "bytes": 13198,
+      "sha256": "72d87e7168f396537b82125cf609d6b524e5aafe46cfe38e9a6e7c1b951ea1e8"
+    },
+    "raw/batch_0022/cashflow/002496.SZ.csv.gz": {
+      "bytes": 19209,
+      "sha256": "2c48ececaeffd8aa2aaa3adedf0d09ecff9f6631d36602713248faee370f3560"
+    },
+    "raw/batch_0022/cashflow/002497.SZ.csv.gz": {
+      "bytes": 19408,
+      "sha256": "ab0b2eee298fa1a197bac96176ec58cc6b306aa5508621bdb18c549c895cd1ba"
+    },
+    "raw/batch_0022/cashflow/002498.SZ.csv.gz": {
+      "bytes": 17724,
+      "sha256": "dfb38112d62703071c8c79629c1a8d4d7001b2470ae6caef4d6ac892f38dc864"
+    },
+    "raw/batch_0022/cashflow/002499.SZ.csv.gz": {
+      "bytes": 12013,
+      "sha256": "4585b679fd465acd047c47cab2c5685d6999164a7e2b53cab5fc50c784289c4c"
+    },
+    "raw/batch_0022/cashflow/002500.SZ.csv.gz": {
+      "bytes": 15686,
+      "sha256": "9f076d12176d2cc79462b2472e4dc0daee1e4daa304b4b907e7aea4d9f090131"
+    },
+    "raw/batch_0022/cashflow/002501.SZ.csv.gz": {
+      "bytes": 14868,
+      "sha256": "65b19efb178134d9de124ee045cf1e095cc4fc7302360aa7711a31bdd1d50eda"
+    },
+    "raw/batch_0022/cashflow/002502.SZ.csv.gz": {
+      "bytes": 15236,
+      "sha256": "09e0dcae7fa48b278395213a79628ba3d5a6fd812bdd99edde6c8d662c029c70"
+    },
+    "raw/batch_0022/cashflow/002503.SZ.csv.gz": {
+      "bytes": 15222,
+      "sha256": "6160e0fedaa3caf83e1b070cfc5faad683e382db2f81861f4b9cf1cd9d5c035f"
+    },
+    "raw/batch_0022/cashflow/002504.SZ.csv.gz": {
+      "bytes": 13054,
+      "sha256": "fa22c7bb297a85223553bf195bf1245dc8a8dd6e84a106632803368e781bddfe"
+    },
+    "raw/batch_0022/cashflow/002505.SZ.csv.gz": {
+      "bytes": 18045,
+      "sha256": "bc45fb76da02162d865cb9c35c156a278d0ab17973d0d5157e6fc2fa9662b151"
+    },
+    "raw/batch_0022/cashflow/002506.SZ.csv.gz": {
+      "bytes": 19271,
+      "sha256": "a2afe1fb3c315391c64687893a0c5a3a78809f0af09bd511b2a9164ce71e83a4"
+    },
+    "raw/batch_0022/cashflow/002507.SZ.csv.gz": {
+      "bytes": 15285,
+      "sha256": "a8ebc51063339ac4fa5a33c1d6d9771fd9bcedafd949b0e3e4a29867451725a4"
+    },
+    "raw/batch_0022/cashflow/002508.SZ.csv.gz": {
+      "bytes": 16504,
+      "sha256": "3d8655cb98428961acc53fc487f0711d0ab48a497a51d285eed06207f2e16008"
+    },
+    "raw/batch_0022/cashflow/002509.SZ.csv.gz": {
+      "bytes": 10345,
+      "sha256": "550f85fe10dae993d0fc68aed8a176dd82d58520bb401b319ebc612ab5c151c1"
+    },
+    "raw/batch_0022/cashflow/002510.SZ.csv.gz": {
+      "bytes": 17984,
+      "sha256": "23ad6e0dc5172a9a1df817fd31d4d10d451dfdd5765203210fe060b763530de9"
+    },
+    "raw/batch_0022/cashflow/002511.SZ.csv.gz": {
+      "bytes": 18608,
+      "sha256": "719548c1f04ad9416d042519fffd38f6c1960e01eea00d657b072d4bd7addf5e"
+    },
+    "raw/batch_0022/cashflow/002512.SZ.csv.gz": {
+      "bytes": 19145,
+      "sha256": "bb176cf99330a3979879c48aa992fe50a1b13ec9a7e4e56f487be5bd6338360f"
+    },
+    "raw/batch_0022/cashflow/002513.SZ.csv.gz": {
+      "bytes": 16985,
+      "sha256": "da7419a9dbfa9743b9fb5114fc4cdb27e2e1d1ac4df8c01e82144647308d8031"
+    },
+    "raw/batch_0022/cashflow/002514.SZ.csv.gz": {
+      "bytes": 17107,
+      "sha256": "5be90b36ccfb3f8d8c8b97aa493a4a93a9c6b7e691f114592a9444be934cd4b8"
+    },
+    "raw/batch_0022/cashflow/002515.SZ.csv.gz": {
+      "bytes": 15950,
+      "sha256": "b20f4e6a0b1f5faca26fa5e2428d7e756777933b9808b263bda379e7ea5d4580"
+    },
+    "raw/batch_0022/cashflow/002516.SZ.csv.gz": {
+      "bytes": 17329,
+      "sha256": "438aad3ede3fa88423cc0b8555dd667ebc05a97faadea2e43d39641e48eef8a1"
+    },
+    "raw/batch_0022/cashflow/002517.SZ.csv.gz": {
+      "bytes": 16898,
+      "sha256": "cf919564a472fb6552adf1cab9e0eda2d42af0d4c81aba8b58486b7f990c5d61"
+    },
+    "raw/batch_0022/cashflow/002518.SZ.csv.gz": {
+      "bytes": 17805,
+      "sha256": "27e3be3fec9eaac2971a80be50561bcc24dd3e7ca724689bab2db704c123ee08"
+    },
+    "raw/batch_0022/cashflow/002519.SZ.csv.gz": {
+      "bytes": 16777,
+      "sha256": "1106462bcca497396abb110ac3da8d65fe288958feed038c9eb9f5afc4660aff"
+    },
+    "raw/batch_0022/cashflow/002520.SZ.csv.gz": {
+      "bytes": 16906,
+      "sha256": "679a0a1be2b52677cc513fb9d9a295f5a27eb7bc805ca0bfffef6615369479af"
+    },
+    "raw/batch_0022/cashflow/002521.SZ.csv.gz": {
+      "bytes": 17069,
+      "sha256": "f386aad368f6d640e77af841fa6b998963ceb7fb05c498c827f5f3e1c26b2ce5"
+    },
+    "raw/batch_0022/cashflow/002522.SZ.csv.gz": {
+      "bytes": 17969,
+      "sha256": "e1930f9cccf20183193dc65da6060a2f72c0e05da4ef5858dee2f490612ff856"
+    },
+    "raw/batch_0022/cashflow/002523.SZ.csv.gz": {
+      "bytes": 17572,
+      "sha256": "91d97b50fb88fd892dfa51942c02c48310f1983a725a3d9437f03a1997a5b51d"
+    },
+    "raw/batch_0022/cashflow/002524.SZ.csv.gz": {
+      "bytes": 16769,
+      "sha256": "7a1c80eaecd293fce510ac59e0c45fb998671bb9f262a1dcc9a0db4025564ee9"
+    },
+    "raw/batch_0022/cashflow/002526.SZ.csv.gz": {
+      "bytes": 17417,
+      "sha256": "2da9ae52f7dc3e2056e3e64d1f5582d39a874d5c6f6a0521a9e185ebbe4559cb"
+    },
+    "raw/batch_0022/cashflow/002527.SZ.csv.gz": {
+      "bytes": 17310,
+      "sha256": "bbb9e5a480023a1f38b148eeb1e0b3fd07c486b52d8b9e85463f71f56568d4a6"
+    },
+    "raw/batch_0022/cashflow/002528.SZ.csv.gz": {
+      "bytes": 18394,
+      "sha256": "009e8294fc6b4106ac9804ea924dfbb53096f0189eb6ab28a6c1f259c9ee96b1"
+    },
+    "raw/batch_0022/cashflow/601949.SH.csv.gz": {
+      "bytes": 13148,
+      "sha256": "dff833ee0407217c78b7d872e36ca6fdac89c513e0c3eb5ea921ab8f82c57973"
+    },
+    "raw/batch_0022/cashflow/601952.SH.csv.gz": {
+      "bytes": 12776,
+      "sha256": "a18535350657e9c4733e359d00e22b27740d3d57018234724fcfded6840b38b9"
+    },
+    "raw/batch_0022/cashflow/601956.SH.csv.gz": {
+      "bytes": 7193,
+      "sha256": "963fde392b2074cd66f66dfc400848f9b0593c510f63fe88db745ab6bf27d857"
+    },
+    "raw/batch_0022/cashflow/601958.SH.csv.gz": {
+      "bytes": 18949,
+      "sha256": "faf0f1026bdc2c6291c59ef60c6de1f141892b37eabe826e04eff8ea4c657f37"
+    },
+    "raw/batch_0022/cashflow/601963.SH.csv.gz": {
+      "bytes": 11399,
+      "sha256": "cd78091a9cce69e729f2421d53cba96ce2271f9033f1d497299210ff010d2a38"
+    },
+    "raw/batch_0022/cashflow/601965.SH.csv.gz": {
+      "bytes": 16319,
+      "sha256": "a0590f433012345ff337d294d647ae2f076b582b85ec41082509cd26d0adce67"
+    },
+    "raw/batch_0022/cashflow/601966.SH.csv.gz": {
+      "bytes": 13986,
+      "sha256": "8fb9846c621d80285dcc8968dd7e3849c1522e4c405bb3cf14bb36324c2d28bc"
+    },
+    "raw/batch_0022/cashflow/601968.SH.csv.gz": {
+      "bytes": 17522,
+      "sha256": "b7b69cb0ac210d381ffcbcabd5565ba6a292b07c3b093e4043f4829635d461ea"
+    },
+    "raw/batch_0022/cashflow/601969.SH.csv.gz": {
+      "bytes": 14396,
+      "sha256": "cab2b2aabf33d49479e5a1b7461304214b017e2fd02214cb726c506c1668f897"
+    },
+    "raw/batch_0022/cashflow/601975.SH.csv.gz": {
+      "bytes": 20169,
+      "sha256": "6163718583a68745f21a58b6c62aa813aa282ab1a6b7de738a49902f2783b77f"
+    },
+    "raw/batch_0022/cashflow/601985.SH.csv.gz": {
+      "bytes": 22174,
+      "sha256": "966e7f47f3ef873088a93e72f0ab070488983eaf7343dd650d75d3e55763d5bd"
+    },
+    "raw/batch_0022/cashflow/601988.SH.csv.gz": {
+      "bytes": 15305,
+      "sha256": "6e82a1d59fbcbfa6782b4ac9293a6a7fb162982c935315b37e21a6f7777f7112"
+    },
+    "raw/batch_0022/cashflow/601989.SH.csv.gz": {
+      "bytes": 21792,
+      "sha256": "bdfe730936e13aab4f17606b4cc9b6bac1ea477adb5503bb33d6ea6508034cbb"
+    },
+    "raw/batch_0022/cashflow/601990.SH.csv.gz": {
+      "bytes": 14234,
+      "sha256": "bae87569fd6b4688153bfadba45173b5aa51e35b0ad5e277098134e6d13e8f9e"
+    },
+    "raw/batch_0022/cashflow/601991.SH.csv.gz": {
+      "bytes": 19159,
+      "sha256": "1f137ba61f961f3cc80063116c94a87bf5fb1aaf02a2e7069433d47aa8875037"
+    },
+    "raw/batch_0022/cashflow/601992.SH.csv.gz": {
+      "bytes": 24580,
+      "sha256": "e778246b2c8e4fb23dfc4490a2d849297d53a8e92c3d84f66176be14200d6245"
+    },
+    "raw/batch_0022/cashflow/601995.SH.csv.gz": {
+      "bytes": 13639,
+      "sha256": "cb1fc3f9e28a52689562dace793c6b34fbc2697813b999662763fa2ef183a909"
+    },
+    "raw/batch_0022/cashflow/601996.SH.csv.gz": {
+      "bytes": 16499,
+      "sha256": "b7d9d3f63046d48f0bab7287f18e094585a45646dcbb44ff205f353f2c3d900e"
+    },
+    "raw/batch_0022/cashflow/601997.SH.csv.gz": {
+      "bytes": 12585,
+      "sha256": "416c4cbf52c35bc2683bd43007846e18aa1eb7610d351794adbef207fdcd2934"
+    },
+    "raw/batch_0022/cashflow/601998.SH.csv.gz": {
+      "bytes": 13511,
+      "sha256": "8c93d61d2d4e6eb2e326447cf546eb1ac25df29aa18d1394d451443c505a0bae"
+    },
+    "raw/batch_0022/cashflow/601999.SH.csv.gz": {
+      "bytes": 18291,
+      "sha256": "be3f987ed7ada7999aeff6cc561d3ce82c3c2c97c7a37ed4a4f6157887a02ca8"
+    },
+    "raw/batch_0022/cashflow/603000.SH.csv.gz": {
+      "bytes": 15905,
+      "sha256": "96c8cec1d86695c22bf2de0a745986fd465b194d8faee183a18ede93f058c9f5"
+    },
+    "raw/batch_0022/cashflow/603001.SH.csv.gz": {
+      "bytes": 16544,
+      "sha256": "74275c89cc799c8dd261225df79b0eb776abd102595e2f7a3e240ab24965fa7f"
+    },
+    "raw/batch_0022/cashflow/603002.SH.csv.gz": {
+      "bytes": 15806,
+      "sha256": "79d06edebf922340b956256f5df9058c849307b88e6f28b4c406f1ec74443fa5"
+    },
+    "raw/batch_0022/cashflow/603003.SH.csv.gz": {
+      "bytes": 17131,
+      "sha256": "dbd2aa4bde7e2633d16b231cb64b2e6a506dc60ba09ac0444bc968725e000a6c"
+    },
+    "raw/batch_0022/cashflow/603004.SH.csv.gz": {
+      "bytes": 4324,
+      "sha256": "16578b5e1d573e302abca5dfbac93a6b72840ac03c797a133b45d83cad468072"
+    },
+    "raw/batch_0022/cashflow/603005.SH.csv.gz": {
+      "bytes": 14350,
+      "sha256": "189f919a751adaad5495e2f9eb2cde58a3068f8513e7ee3945dea1ac2e5b5069"
+    },
+    "raw/batch_0022/cashflow/603006.SH.csv.gz": {
+      "bytes": 13336,
+      "sha256": "04ef194127c320e676ca41821424de99a64c7090a8f513eb616661ca680b79ae"
+    },
+    "raw/batch_0022/cashflow/603007.SH.csv.gz": {
+      "bytes": 11784,
+      "sha256": "cb2fc1ed7b1707b07471ef5e1931fd86adeef3608d640cc2d11ddd3a771ece81"
+    },
+    "raw/batch_0022/cashflow/603008.SH.csv.gz": {
+      "bytes": 16525,
+      "sha256": "e740130c510fdf0bd25f16b36b2b2094ea00071c21cfafd3b13fae16ff811629"
+    },
+    "raw/batch_0022/cashflow/603009.SH.csv.gz": {
+      "bytes": 15540,
+      "sha256": "c69dd45986b1dfdab789cdad7fbb57c88b772adf6f942064a719a498e33957e8"
+    },
+    "raw/batch_0022/cashflow/603010.SH.csv.gz": {
+      "bytes": 14886,
+      "sha256": "c7c79b1a05340b78bcaad93a5d144137b5f1874d985e02bf17f4729c432ce30b"
+    },
+    "raw/batch_0022/cashflow/603011.SH.csv.gz": {
+      "bytes": 14308,
+      "sha256": "92450247b4a8f8afbe1224220c6c8e100bc84a87617027dafd9b931f9d605a03"
+    },
+    "raw/batch_0022/cashflow/603012.SH.csv.gz": {
+      "bytes": 14974,
+      "sha256": "5686414cddd98adc72c1c56738b52391b59877a27c19b9cdfa42e841e41e403c"
+    },
+    "raw/batch_0022/cashflow/603013.SH.csv.gz": {
+      "bytes": 11955,
+      "sha256": "f9d8309d7dfdcb6ec7751c183a94d4739929d85432f4ee7a1e6d7f5edfe39a74"
+    },
+    "raw/batch_0022/cashflow/603014.SH.csv.gz": {
+      "bytes": 3533,
+      "sha256": "0cbd69e5e485a7be6f3e82acca89ba1f0a673836ff479936fa971d7dcb0a432e"
+    },
+    "raw/batch_0022/cashflow/603015.SH.csv.gz": {
+      "bytes": 15154,
+      "sha256": "2c898473671a6b946c944433b0cfbb9046e0fb26aecaf2c948addac9f8122ec9"
+    },
+    "raw/batch_0022/cashflow/603016.SH.csv.gz": {
+      "bytes": 11302,
+      "sha256": "f45a3afea3037bdfb3956abbe7be83c521563e6e55dcf2562f5fa42d4e1d6f89"
+    },
+    "raw/batch_0022/cashflow/603017.SH.csv.gz": {
+      "bytes": 14204,
+      "sha256": "8e4c4e4ff676a5020659c88374da7ac91b0b1059d8b4fd8319a92aedfc06f9fe"
+    },
+    "raw/batch_0022/cashflow/603018.SH.csv.gz": {
+      "bytes": 14714,
+      "sha256": "27684729b0947a9698b2a81352b5114bbcc545b8ff17b7fdf15d5e9d98b23a39"
+    },
+    "raw/batch_0022/cashflow/603019.SH.csv.gz": {
+      "bytes": 15814,
+      "sha256": "f06a41c5b3face7c91e9e06b4879857c56e898c1d78c8bac7fbd9d57f8406b3e"
+    },
+    "raw/batch_0022/cashflow/603020.SH.csv.gz": {
+      "bytes": 14339,
+      "sha256": "402925bcd1713a6e824a13795be48be19a9b0c5cf290a44126407013a1f6d14b"
+    },
+    "raw/batch_0022/cashflow/603021.SH.csv.gz": {
+      "bytes": 13304,
+      "sha256": "55601f74ae5fda594ca7094c95773b374b4121091cf72cc13084bf03390ba053"
+    },
+    "raw/batch_0022/cashflow/603022.SH.csv.gz": {
+      "bytes": 12059,
+      "sha256": "81abd052d1a88c10fda90b85185c5b34618c4d38058ce163d7ac9f93134e9b6a"
+    },
+    "raw/batch_0022/cashflow/603023.SH.csv.gz": {
+      "bytes": 10978,
+      "sha256": "fcd0c868b6e932c462d585dcb237dcf5e15a70b7ecc80d9004577d6be15c9494"
+    },
+    "raw/batch_0022/cashflow/603025.SH.csv.gz": {
+      "bytes": 13312,
+      "sha256": "7050a37a9c51c7f48a874825230c0987feac8ddf83046ffadcceafa41591b85c"
+    },
+    "raw/batch_0022/cashflow/603026.SH.csv.gz": {
+      "bytes": 15106,
+      "sha256": "103e1a0dd3881b025f533d3d35743439a776b1b19cbba99b171d63fff682fa28"
+    },
+    "raw/batch_0022/cashflow/603027.SH.csv.gz": {
+      "bytes": 12157,
+      "sha256": "b9c890620428dd16c54ada4ff85fd40785882d20b28706bd4b03a4384470fce9"
+    },
+    "raw/batch_0022/cashflow/603028.SH.csv.gz": {
+      "bytes": 12834,
+      "sha256": "64bdce7683247c9e08bdde0b4ecd1e4a818d5b1bc14e8c6e115391b7ad26bf0f"
+    },
+    "raw/batch_0022/cashflow/603029.SH.csv.gz": {
+      "bytes": 11158,
+      "sha256": "c572343f693ca00d497501a4b3a2c18d3c248dad7f5103aed729661a183fbfc3"
+    },
+    "raw/batch_0022/excluded_securities.csv.gz": {
+      "bytes": 11192,
+      "sha256": "0ca0f8c11547a2066942cd7344246fa715cad63dfbc6fb42d69745c1da97d176"
+    },
+    "raw/batch_0022/fina_indicator/002478.SZ.csv.gz": {
+      "bytes": 24712,
+      "sha256": "2486663d651acb646a3dc376108e471f8ba1c2dc79c08e3aa509ac4757d61bfe"
+    },
+    "raw/batch_0022/fina_indicator/002479.SZ.csv.gz": {
+      "bytes": 25065,
+      "sha256": "8d3f0002c41cf28b10c840504be85bc5b66944187b93cc2a1a8076969e812b27"
+    },
+    "raw/batch_0022/fina_indicator/002480.SZ.csv.gz": {
+      "bytes": 25274,
+      "sha256": "ee49845ace72bd9caa2c7bdb45b23413b0141653813bdd0e0e38d084e300c7be"
+    },
+    "raw/batch_0022/fina_indicator/002481.SZ.csv.gz": {
+      "bytes": 25053,
+      "sha256": "1688191b5044084c1a7ed1cb5220ed7188a669085064075cae7d27b3ce5787ab"
+    },
+    "raw/batch_0022/fina_indicator/002482.SZ.csv.gz": {
+      "bytes": 25195,
+      "sha256": "f6284fb27543dec323af2ade79bb289bc3c20683ba7a38e1fde5f4b348dc0a29"
+    },
+    "raw/batch_0022/fina_indicator/002483.SZ.csv.gz": {
+      "bytes": 25152,
+      "sha256": "3062e825f051d58407ed9ed2abf8193f840c4cb7b72b10f7496bdac5b2ab3917"
+    },
+    "raw/batch_0022/fina_indicator/002484.SZ.csv.gz": {
+      "bytes": 24945,
+      "sha256": "02562c26884c3ea4e97773a411b038bf404bc689d44a0ac2414469ed4396a89b"
+    },
+    "raw/batch_0022/fina_indicator/002485.SZ.csv.gz": {
+      "bytes": 24487,
+      "sha256": "75cb2abb7230515ae092a4eeaf9271a89e3c0d634f24c885a67172b647d05076"
+    },
+    "raw/batch_0022/fina_indicator/002486.SZ.csv.gz": {
+      "bytes": 26414,
+      "sha256": "9ed2fb7845c53c628119b7b862a124174c9fdf47b91ed9c44ca50ba36b3dece3"
+    },
+    "raw/batch_0022/fina_indicator/002487.SZ.csv.gz": {
+      "bytes": 24298,
+      "sha256": "6f39d2470658730ec8e028f070b07d4ed4b48ee160a7a929b04862292ed87651"
+    },
+    "raw/batch_0022/fina_indicator/002488.SZ.csv.gz": {
+      "bytes": 25631,
+      "sha256": "2a25ad59fa7483f506f6dfbad9138ebcf3fd4c4627cbc0378f3f0cd732613029"
+    },
+    "raw/batch_0022/fina_indicator/002489.SZ.csv.gz": {
+      "bytes": 25376,
+      "sha256": "d322ea647793da38724a917ad29665f3f692ae590f6eccd6df9f497b80d1e1e6"
+    },
+    "raw/batch_0022/fina_indicator/002490.SZ.csv.gz": {
+      "bytes": 25351,
+      "sha256": "9c6969599a8f8e274b8398002991c5e00d4bcaaf2080adecb54d8a4823946931"
+    },
+    "raw/batch_0022/fina_indicator/002491.SZ.csv.gz": {
+      "bytes": 25931,
+      "sha256": "a0b2f969cc4e11a65d75c7e91ccfb0869724a738b2c52e18ae3ecd8cf401055d"
+    },
+    "raw/batch_0022/fina_indicator/002492.SZ.csv.gz": {
+      "bytes": 24470,
+      "sha256": "95185f2d5bc28e5570d9f83ff9f24e7220da64bfce5f603914c23d05ad03e4b3"
+    },
+    "raw/batch_0022/fina_indicator/002493.SZ.csv.gz": {
+      "bytes": 25935,
+      "sha256": "d59d20617e8c395eb1a34802c88b96192a727447205a81736829c84afe22973a"
+    },
+    "raw/batch_0022/fina_indicator/002494.SZ.csv.gz": {
+      "bytes": 24752,
+      "sha256": "c2918c5f369b05f9d4d0dbdc47f8d03d06e45aa461f947887857b0c7caf763ea"
+    },
+    "raw/batch_0022/fina_indicator/002495.SZ.csv.gz": {
+      "bytes": 23318,
+      "sha256": "2ff0ed5ca82afa9de3babffd904c54810fa0f6d91fab02b2564dba087cc37892"
+    },
+    "raw/batch_0022/fina_indicator/002496.SZ.csv.gz": {
+      "bytes": 25892,
+      "sha256": "2a38b68d2baa710d0aaf561e8c0e8c7eb3e7efaa4382cf1f78cf8afe429be274"
+    },
+    "raw/batch_0022/fina_indicator/002497.SZ.csv.gz": {
+      "bytes": 25770,
+      "sha256": "9f51fba5f054f41a61e48a8021a99fa629d88ab05f949255b474b5483af449e0"
+    },
+    "raw/batch_0022/fina_indicator/002498.SZ.csv.gz": {
+      "bytes": 24756,
+      "sha256": "954ada4e0fc214964a880e9bbc6062dd98d3645e8b5301225808351d7595a4b5"
+    },
+    "raw/batch_0022/fina_indicator/002499.SZ.csv.gz": {
+      "bytes": 22520,
+      "sha256": "d87249a726ee1eaa2162cac4df3f2a0b2e547d1de80084da76068fd17b31dd08"
+    },
+    "raw/batch_0022/fina_indicator/002500.SZ.csv.gz": {
+      "bytes": 13560,
+      "sha256": "2c930ef43469751f7babeb0b9eba67f30380cf66ed59bb392e3e0248624e91e0"
+    },
+    "raw/batch_0022/fina_indicator/002501.SZ.csv.gz": {
+      "bytes": 25782,
+      "sha256": "3c16c585c682131c81ee2dfd66384904da02418387efc699db82ebb6108f805c"
+    },
+    "raw/batch_0022/fina_indicator/002502.SZ.csv.gz": {
+      "bytes": 23636,
+      "sha256": "f5d9ebc02f4bae21a8198484dbc49b9949b19fe875c52558b9f5eeb80c1bdef1"
+    },
+    "raw/batch_0022/fina_indicator/002503.SZ.csv.gz": {
+      "bytes": 24052,
+      "sha256": "0de0994ec0e5ce565338b56d31cf8a5432e820444d5921010570e4ef87a73e49"
+    },
+    "raw/batch_0022/fina_indicator/002504.SZ.csv.gz": {
+      "bytes": 22474,
+      "sha256": "4f05fa6e831ffff31bcb1c647a42bce33604cc9e6bb4be1fff2cdb51b34760ac"
+    },
+    "raw/batch_0022/fina_indicator/002505.SZ.csv.gz": {
+      "bytes": 24489,
+      "sha256": "696431c623718aa7d054701ad87c89042dbcfbe4b7e97cb0ca403043d3538096"
+    },
+    "raw/batch_0022/fina_indicator/002506.SZ.csv.gz": {
+      "bytes": 26120,
+      "sha256": "8b724dd44ae690a541d8e8f6451b0c78afa715b3c7352e03b62b1db6d8b3d8b7"
+    },
+    "raw/batch_0022/fina_indicator/002507.SZ.csv.gz": {
+      "bytes": 24085,
+      "sha256": "589eee7ab9dd7d5caf00d8072cf4408b87fc0ba695ce5dd3e03e7a88364b4973"
+    },
+    "raw/batch_0022/fina_indicator/002508.SZ.csv.gz": {
+      "bytes": 25031,
+      "sha256": "3b0ba380098c87603ebce5f6da3ca0a214a08be26578990208fdc303d5754b56"
+    },
+    "raw/batch_0022/fina_indicator/002509.SZ.csv.gz": {
+      "bytes": 19623,
+      "sha256": "4586016762fc01e0bbb9e1fa197cb7922e74120ae62be6351c28ff582828b950"
+    },
+    "raw/batch_0022/fina_indicator/002510.SZ.csv.gz": {
+      "bytes": 25448,
+      "sha256": "ef0e1281dfe75aa2a0f02ecee1f53aad7020ee172bec567fbd7d2e76ab89f9bb"
+    },
+    "raw/batch_0022/fina_indicator/002511.SZ.csv.gz": {
+      "bytes": 25389,
+      "sha256": "a3451fa6b75e4b1e49612e94dab2e39db8ce22fd1683451acd875d2865934ee4"
+    },
+    "raw/batch_0022/fina_indicator/002512.SZ.csv.gz": {
+      "bytes": 28452,
+      "sha256": "9b19bc17be8affc530b7615c9782785ec121b870f500197741b05846c95ee777"
+    },
+    "raw/batch_0022/fina_indicator/002513.SZ.csv.gz": {
+      "bytes": 25267,
+      "sha256": "47746c0defedd8150d3ac59a9365b67062d45ebaf9b3695583b4ea72afed241f"
+    },
+    "raw/batch_0022/fina_indicator/002514.SZ.csv.gz": {
+      "bytes": 25648,
+      "sha256": "6ad7ff165345c0f17a4832a7e06a1d5c7f2fbd456ff8dfa7b11ef0cb94dd3bf8"
+    },
+    "raw/batch_0022/fina_indicator/002515.SZ.csv.gz": {
+      "bytes": 23722,
+      "sha256": "abe01358fb3fbccbc3977b0aa979d25e33ffae0f1f16a38d85c1984832e2bd10"
+    },
+    "raw/batch_0022/fina_indicator/002516.SZ.csv.gz": {
+      "bytes": 24767,
+      "sha256": "da4fa462b86bb3aa093460515e6f4bbfec8c5e8c58cc064f6393bd4e7ba3c122"
+    },
+    "raw/batch_0022/fina_indicator/002517.SZ.csv.gz": {
+      "bytes": 25148,
+      "sha256": "9c384dac160eaf9faef58e2b4eb3db1a58b9d071459c69f0463d3fbbc3d3e2b4"
+    },
+    "raw/batch_0022/fina_indicator/002518.SZ.csv.gz": {
+      "bytes": 25109,
+      "sha256": "309c68343068d2be1b78e0236e20430d6dc5c18e6289ee8db382845e0d53791f"
+    },
+    "raw/batch_0022/fina_indicator/002519.SZ.csv.gz": {
+      "bytes": 24855,
+      "sha256": "29a35262e058686273f474b8c1639014066c04d65a32c0b627f282fee63c921b"
+    },
+    "raw/batch_0022/fina_indicator/002520.SZ.csv.gz": {
+      "bytes": 25558,
+      "sha256": "030fb93732c6a01210c088097b65d6a053d6b518782eedb741bf65c744364822"
+    },
+    "raw/batch_0022/fina_indicator/002521.SZ.csv.gz": {
+      "bytes": 24723,
+      "sha256": "874334eed1592169e5b9808dd58fdfc0cc4febc17416e0c5ee4661061b25b8b0"
+    },
+    "raw/batch_0022/fina_indicator/002522.SZ.csv.gz": {
+      "bytes": 24743,
+      "sha256": "e18f8b2564b959396ae4df4ca08cb817a74ce6c256ae8fc1725a02d1870ee5af"
+    },
+    "raw/batch_0022/fina_indicator/002523.SZ.csv.gz": {
+      "bytes": 24849,
+      "sha256": "056a368bf88dcc5e20ce18dce25cabe2c97fc95cf634b110f71de4613af0a243"
+    },
+    "raw/batch_0022/fina_indicator/002524.SZ.csv.gz": {
+      "bytes": 25440,
+      "sha256": "ae254c9ed8d918187c7b072d92c636fa3bf9b995b394e8edee7f653e12ffc85d"
+    },
+    "raw/batch_0022/fina_indicator/002526.SZ.csv.gz": {
+      "bytes": 24134,
+      "sha256": "1550a58e276f6a362ec4ed67a7755f434d16ee0be7e7fed75de11606e3dd2985"
+    },
+    "raw/batch_0022/fina_indicator/002527.SZ.csv.gz": {
+      "bytes": 25028,
+      "sha256": "393726b364aefc7ebfc7eab7f0de3a364747b18278e604c3761a5df7dc60ee72"
+    },
+    "raw/batch_0022/fina_indicator/002528.SZ.csv.gz": {
+      "bytes": 27955,
+      "sha256": "b8b6a18c47f32f3c1d481c71f3cfb4941f98f3de5393ce890500011226f35bd5"
+    },
+    "raw/batch_0022/fina_indicator/601949.SH.csv.gz": {
+      "bytes": 20167,
+      "sha256": "be0a019f245a527317ed52a1b050dd3374d58e51a36ac137523a915d63282ba6"
+    },
+    "raw/batch_0022/fina_indicator/601952.SH.csv.gz": {
+      "bytes": 20063,
+      "sha256": "e572816aecf677551b6e3bed6013a5dc8d746297689b3f247b0062b60817bf0e"
+    },
+    "raw/batch_0022/fina_indicator/601956.SH.csv.gz": {
+      "bytes": 11556,
+      "sha256": "f6543f78a6f4518bf432df75805666d9caf33ba9fad6a2b73febad3c5b97bf45"
+    },
+    "raw/batch_0022/fina_indicator/601958.SH.csv.gz": {
+      "bytes": 24407,
+      "sha256": "21d7c98389c22bd2c9ffe01396174d88264ed919e862edd61fef59da680bc2cd"
+    },
+    "raw/batch_0022/fina_indicator/601963.SH.csv.gz": {
+      "bytes": 12420,
+      "sha256": "4b41ed5a4c9eff3447db245d375058b9ae41eae9a36efc62c3929deb1c40f644"
+    },
+    "raw/batch_0022/fina_indicator/601965.SH.csv.gz": {
+      "bytes": 24976,
+      "sha256": "a32e646c1a957396a7f247d349bac047e7acd1a8873deccffada862063724814"
+    },
+    "raw/batch_0022/fina_indicator/601966.SH.csv.gz": {
+      "bytes": 21002,
+      "sha256": "3781eab5aedd33af494888b3b47c6f55afb5e07983dbf6b26ee05e4597ab49a5"
+    },
+    "raw/batch_0022/fina_indicator/601968.SH.csv.gz": {
+      "bytes": 24122,
+      "sha256": "11834452ba197005da6129ab800782f89cea3cbf73b4c91d2b754f1dd5810a89"
+    },
+    "raw/batch_0022/fina_indicator/601969.SH.csv.gz": {
+      "bytes": 23623,
+      "sha256": "657525cc61e62cff0caa1c86cdd67745a2fbc59d6f25e2e6a60ece0570721d40"
+    },
+    "raw/batch_0022/fina_indicator/601975.SH.csv.gz": {
+      "bytes": 25250,
+      "sha256": "c0206a62d5a11981dc414fa4c0c639e93a280dc5fad803d1a90a12aa80c9e274"
+    },
+    "raw/batch_0022/fina_indicator/601985.SH.csv.gz": {
+      "bytes": 26210,
+      "sha256": "461a4673a4339408c2cc3c65e40b64514c824b0b37c5df2feecd9cfa489d4330"
+    },
+    "raw/batch_0022/fina_indicator/601988.SH.csv.gz": {
+      "bytes": 12783,
+      "sha256": "aefcb7d61ee7fff9f7b76e4551df3457844045c0e553fd51d1a78267bae1a06d"
+    },
+    "raw/batch_0022/fina_indicator/601989.SH.csv.gz": {
+      "bytes": 25541,
+      "sha256": "db1e8657fbc2363f500ccfeea7c528d27c78e4cbe271186c2396825fefa5ff66"
+    },
+    "raw/batch_0022/fina_indicator/601990.SH.csv.gz": {
+      "bytes": 12379,
+      "sha256": "b750ecde8b23fdfaf21040add173d6283d8b0cdada1ee42eedf0cde9a467eb0e"
+    },
+    "raw/batch_0022/fina_indicator/601991.SH.csv.gz": {
+      "bytes": 23795,
+      "sha256": "82b9f41e62b63506be65e38d0c034a792f452bc0285392e0bfa1ed0cd653b0f4"
+    },
+    "raw/batch_0022/fina_indicator/601992.SH.csv.gz": {
+      "bytes": 26687,
+      "sha256": "52e9f03771971cd652534607c771919cc2fc109feedb484cf3802635b27535a4"
+    },
+    "raw/batch_0022/fina_indicator/601995.SH.csv.gz": {
+      "bytes": 12589,
+      "sha256": "ca1eaf9da397ddf1c83533000c928ef49b0ec690e5ede63bbb00e79eae90bf7f"
+    },
+    "raw/batch_0022/fina_indicator/601996.SH.csv.gz": {
+      "bytes": 24107,
+      "sha256": "cbe0b7cad14809c417e4486f3cf9f6e6dda92bc1fd5ed0596429e5340d7409e0"
+    },
+    "raw/batch_0022/fina_indicator/601997.SH.csv.gz": {
+      "bytes": 12401,
+      "sha256": "4cb08fa29c776e451039495bfb8c12f8c87138403625bd0b7e3c34ddb4001aa9"
+    },
+    "raw/batch_0022/fina_indicator/601998.SH.csv.gz": {
+      "bytes": 12872,
+      "sha256": "f45abe89bd8b09f89cbdf526f348ac4a414a114fae4efb74bf6b7f8bafb50c0f"
+    },
+    "raw/batch_0022/fina_indicator/601999.SH.csv.gz": {
+      "bytes": 24166,
+      "sha256": "fbdfe29917c1f9ef7fba6452cc9b85a61300c4dbd46ba30bc9dda3d7e4dba61a"
+    },
+    "raw/batch_0022/fina_indicator/603000.SH.csv.gz": {
+      "bytes": 24332,
+      "sha256": "e7cf3bf3863702fde700992c68834c7854783b2e86c5f24ad50f558ec426b45b"
+    },
+    "raw/batch_0022/fina_indicator/603001.SH.csv.gz": {
+      "bytes": 24949,
+      "sha256": "7ae1208da2aec680d985de40265f18e5c2e3fac106ec2271ec50d2e8542fd237"
+    },
+    "raw/batch_0022/fina_indicator/603002.SH.csv.gz": {
+      "bytes": 24019,
+      "sha256": "ee5de57e882359d160298b34906abd550ef3bb07e1a158d1bf638b8b85263f35"
+    },
+    "raw/batch_0022/fina_indicator/603003.SH.csv.gz": {
+      "bytes": 27732,
+      "sha256": "f457ac064cd847bee5a3d1b0a12c8626897bcfc521896f587ef6ad106430ac64"
+    },
+    "raw/batch_0022/fina_indicator/603004.SH.csv.gz": {
+      "bytes": 8496,
+      "sha256": "229c769524c5d603095cbe83f72a491570a7657b34094a9de3a5ab7c05873dea"
+    },
+    "raw/batch_0022/fina_indicator/603005.SH.csv.gz": {
+      "bytes": 24225,
+      "sha256": "ba35b8f5f9232beb910817e3954df959e267c7deb3ddc949c479166948b34ffb"
+    },
+    "raw/batch_0022/fina_indicator/603006.SH.csv.gz": {
+      "bytes": 23915,
+      "sha256": "2d3ea1121c941a7e95921f1474188fd4d4eb5258559104d1b630bd0b1abdb48f"
+    },
+    "raw/batch_0022/fina_indicator/603007.SH.csv.gz": {
+      "bytes": 21178,
+      "sha256": "e94877cca01e3b0e035e044e23f6f1ecd7af81ac3b704d066e40e8952b312c3b"
+    },
+    "raw/batch_0022/fina_indicator/603008.SH.csv.gz": {
+      "bytes": 24837,
+      "sha256": "1f21cff9a66b78a053d97f6dd938dc5ec0bfc796f069a4b4d02a4fb00946ecf9"
+    },
+    "raw/batch_0022/fina_indicator/603009.SH.csv.gz": {
+      "bytes": 24935,
+      "sha256": "d6ff55674c20c2283c282eed9700aa63c9de2d77cf0c5d9c789d4d9fbd57543a"
+    },
+    "raw/batch_0022/fina_indicator/603010.SH.csv.gz": {
+      "bytes": 23146,
+      "sha256": "95f16cea1426ff70122f08ad720ce8e5e9c87158d476b1f3a5594bd7d483b036"
+    },
+    "raw/batch_0022/fina_indicator/603011.SH.csv.gz": {
+      "bytes": 23249,
+      "sha256": "2a491825ed2bc7211ae9b9c5e9454ffcc3aeaa263b222912970fd82e40ca9922"
+    },
+    "raw/batch_0022/fina_indicator/603012.SH.csv.gz": {
+      "bytes": 23115,
+      "sha256": "5e00af648452c2c4d0edb158d1bcd2ae91538de530e2b6ee9c3c2653e1766057"
+    },
+    "raw/batch_0022/fina_indicator/603013.SH.csv.gz": {
+      "bytes": 18421,
+      "sha256": "92d7b7890f0743cbc9b0994eaa5e98cfd019a029835f02babc39ea170f203100"
+    },
+    "raw/batch_0022/fina_indicator/603014.SH.csv.gz": {
+      "bytes": 6089,
+      "sha256": "2e0ca052dbd497813cc1ac7413ff0131c95aaeecf5fe011a285b968046b151f2"
+    },
+    "raw/batch_0022/fina_indicator/603015.SH.csv.gz": {
+      "bytes": 22924,
+      "sha256": "a20509c11a7288fc1f0fca6795ac5bc49bced02ff5ce2c39fc913f6c239b00b1"
+    },
+    "raw/batch_0022/fina_indicator/603016.SH.csv.gz": {
+      "bytes": 19801,
+      "sha256": "56ba406e7e79ecce6b1314e3d749de08ef8dfc5b33a860b00a2a7d4b24e7543f"
+    },
+    "raw/batch_0022/fina_indicator/603017.SH.csv.gz": {
+      "bytes": 22234,
+      "sha256": "c1b8c9056dc52e922831f298b639be413a86b1e10c8028c8be3789209a1d8588"
+    },
+    "raw/batch_0022/fina_indicator/603018.SH.csv.gz": {
+      "bytes": 23744,
+      "sha256": "fa72f2f56a00993f11b03cac2c9e0ab3c60f6622e1082845fd6d0dc1e781408a"
+    },
+    "raw/batch_0022/fina_indicator/603019.SH.csv.gz": {
+      "bytes": 23761,
+      "sha256": "dbeb2ff50b31fea4064bb13085c0897a3dbe8aff0aa992065a4b2993e59c9022"
+    },
+    "raw/batch_0022/fina_indicator/603020.SH.csv.gz": {
+      "bytes": 23382,
+      "sha256": "628a5119e29761a4993f671f299b10f41f9305735530c6779ca9868681d76fe1"
+    },
+    "raw/batch_0022/fina_indicator/603021.SH.csv.gz": {
+      "bytes": 24544,
+      "sha256": "1dfce19c78fef13510189199c3b2ca45130497078444bf47979dcb416eea7004"
+    },
+    "raw/batch_0022/fina_indicator/603022.SH.csv.gz": {
+      "bytes": 21378,
+      "sha256": "17f80e471d7cf93d7270ca48e525c381ad71acb221667e38a5ae868fcc534588"
+    },
+    "raw/batch_0022/fina_indicator/603023.SH.csv.gz": {
+      "bytes": 21542,
+      "sha256": "195f5a22a1ce938b5519378f277feaa68c51b77e3810f9803907c81e9db86371"
+    },
+    "raw/batch_0022/fina_indicator/603025.SH.csv.gz": {
+      "bytes": 22205,
+      "sha256": "c3ad001a9bfae338a83ba028050406d4bad0dea43acf6393d53e58bec4d96321"
+    },
+    "raw/batch_0022/fina_indicator/603026.SH.csv.gz": {
+      "bytes": 24354,
+      "sha256": "a44651e531073ea7f178b9281237997ef0969bd59567035ad2e02cd44121f841"
+    },
+    "raw/batch_0022/fina_indicator/603027.SH.csv.gz": {
+      "bytes": 20670,
+      "sha256": "e06a1bcfd44c93df4dee6348bf3eba8e8f6cdabc39063ddb5f37f4fa7214fc0f"
+    },
+    "raw/batch_0022/fina_indicator/603028.SH.csv.gz": {
+      "bytes": 20839,
+      "sha256": "193b4ea8b0868b4649be363a87d2e3f88190bd0a648ad4b28f92ccd8d627a48b"
+    },
+    "raw/batch_0022/fina_indicator/603029.SH.csv.gz": {
+      "bytes": 20207,
+      "sha256": "ddd152d5799e8cc858114ebc40854e03512e3b60f5632651c1c77508f71d4388"
+    },
+    "raw/batch_0022/income/002478.SZ.csv.gz": {
+      "bytes": 13245,
+      "sha256": "a3c04773a6d73430b5d7371ef6f5ba9f9873d25d4942a8aac628331b90ee450f"
+    },
+    "raw/batch_0022/income/002479.SZ.csv.gz": {
+      "bytes": 11817,
+      "sha256": "714cedfd05d8767759ea23195e038812fddc70f2e7c8290f429b22e1509ba728"
+    },
+    "raw/batch_0022/income/002480.SZ.csv.gz": {
+      "bytes": 12842,
+      "sha256": "bf0eae4ebfbf97c0fe124301127f7d6c89873c72d78a8d561e6da67f364b3373"
+    },
+    "raw/batch_0022/income/002481.SZ.csv.gz": {
+      "bytes": 11261,
+      "sha256": "d9a9eff974c1a124d0642c744e4d0c8cf03e1997400a703341d0cafd7f2ffd4b"
+    },
+    "raw/batch_0022/income/002482.SZ.csv.gz": {
+      "bytes": 12476,
+      "sha256": "2f5a99e3063a0dfce5c81e5983b319c78458eb8adb8bc19cc30616dcc80e8eea"
+    },
+    "raw/batch_0022/income/002483.SZ.csv.gz": {
+      "bytes": 13145,
+      "sha256": "5dba2e54a80d5f1b6510a7cef5c1c1e32024699f4dcd81c6df825775067af54c"
+    },
+    "raw/batch_0022/income/002484.SZ.csv.gz": {
+      "bytes": 13070,
+      "sha256": "bb50ae91a3a6c283690ed3cc67b9299c818fe536c44ad2a7fd511c9f4352db85"
+    },
+    "raw/batch_0022/income/002485.SZ.csv.gz": {
+      "bytes": 11197,
+      "sha256": "b929ea7b1c992203e19145fa5cfd6d90e1f65ccaa37cfce58a705aa87d4619e9"
+    },
+    "raw/batch_0022/income/002486.SZ.csv.gz": {
+      "bytes": 12770,
+      "sha256": "5fc8a4031e2000ef7c7e8fabc001c3980b8cc422ea4c48eb168aef5b936ce526"
+    },
+    "raw/batch_0022/income/002487.SZ.csv.gz": {
+      "bytes": 10805,
+      "sha256": "ff5c809ffafffe164e6f77dfda7b5285b82dd54338fca8ea6868f5c934677371"
+    },
+    "raw/batch_0022/income/002488.SZ.csv.gz": {
+      "bytes": 13402,
+      "sha256": "3a2a2958a5ea01b702e2ab8d4c827109a60ffd6ab336c17769f9531e86ad61ed"
+    },
+    "raw/batch_0022/income/002489.SZ.csv.gz": {
+      "bytes": 13980,
+      "sha256": "7a98370f8d10977252db926352c3df9617dfb952520eca95da510131760f5621"
+    },
+    "raw/batch_0022/income/002490.SZ.csv.gz": {
+      "bytes": 13267,
+      "sha256": "2d2748d75803bbe5fb35722bae0d6fa8c1cb3e419d1a5a360605227cd9046d05"
+    },
+    "raw/batch_0022/income/002491.SZ.csv.gz": {
+      "bytes": 13122,
+      "sha256": "4691b12b217f09754493c8523e830ad75721e7754094be42b2ffd40948415f33"
+    },
+    "raw/batch_0022/income/002492.SZ.csv.gz": {
+      "bytes": 11710,
+      "sha256": "a2e6047516f69266547eb320bbf66f28658689523d37bd99dd0a41b9273d5b88"
+    },
+    "raw/batch_0022/income/002493.SZ.csv.gz": {
+      "bytes": 14969,
+      "sha256": "ef78e7cd18fa487ab4aa1fffbb0968cd094bb9b15f0188a61986a7a1baf3cb35"
+    },
+    "raw/batch_0022/income/002494.SZ.csv.gz": {
+      "bytes": 12178,
+      "sha256": "6c9e1c9a1e338dc8c1fc58bae7378f2645137eee9d8c8e84e3aa3b5e8f79a850"
+    },
+    "raw/batch_0022/income/002495.SZ.csv.gz": {
+      "bytes": 10124,
+      "sha256": "80a787160b48a6e3df2eb6df4cffe6c5bfcd37c1f56ecadfc579ee4bd7ab3356"
+    },
+    "raw/batch_0022/income/002496.SZ.csv.gz": {
+      "bytes": 13040,
+      "sha256": "6c1fd421c8b617b819bfca2e5b1dd5aca545998c4f726b62de5f9b8babb607ec"
+    },
+    "raw/batch_0022/income/002497.SZ.csv.gz": {
+      "bytes": 13750,
+      "sha256": "988af47420a54a97b5937f9d4a0742a70ba9fdae4f1cd286cad15163fad08436"
+    },
+    "raw/batch_0022/income/002498.SZ.csv.gz": {
+      "bytes": 13208,
+      "sha256": "e6320dac349f1b1cfbd5f9b1ccebac5a1326ff3326bbfe0d0117d87bc57b3e40"
+    },
+    "raw/batch_0022/income/002499.SZ.csv.gz": {
+      "bytes": 8805,
+      "sha256": "39063ffd0a6b982fed8c92f6d04d29351f917b08555006e9533cb2f2525b6d55"
+    },
+    "raw/batch_0022/income/002500.SZ.csv.gz": {
+      "bytes": 13596,
+      "sha256": "8d5046dce60d7f3fa0f5bab9e65d1c99e29e3a1367681bce0b42b8e07ec633a0"
+    },
+    "raw/batch_0022/income/002501.SZ.csv.gz": {
+      "bytes": 10495,
+      "sha256": "8ff3f82fb98e49f3002757a79ae10e1cd3b100b793db6eef3c14ed16675f5e3a"
+    },
+    "raw/batch_0022/income/002502.SZ.csv.gz": {
+      "bytes": 11559,
+      "sha256": "eca31142b1ad7b45cad5424cf8163a7f80199f240f747aa2bb39a6a6102abe43"
+    },
+    "raw/batch_0022/income/002503.SZ.csv.gz": {
+      "bytes": 10608,
+      "sha256": "b1fa33454b6064080a4cedbc495d7496941b121b44afdd1193f41a4d277b767a"
+    },
+    "raw/batch_0022/income/002504.SZ.csv.gz": {
+      "bytes": 9741,
+      "sha256": "c0559ee987af04a2fb18269954042b339edff9372ba1ba223a66c16ad8079ad4"
+    },
+    "raw/batch_0022/income/002505.SZ.csv.gz": {
+      "bytes": 12149,
+      "sha256": "6baa8f2cf395d181050a3b0689ad64cff3d2faaec3a5376ad2f2b9fe5bbc26de"
+    },
+    "raw/batch_0022/income/002506.SZ.csv.gz": {
+      "bytes": 13482,
+      "sha256": "52084a6bef38801417ffacef45469fe60abf877dde4566eb6fd08833dae6457c"
+    },
+    "raw/batch_0022/income/002507.SZ.csv.gz": {
+      "bytes": 10842,
+      "sha256": "4b6a00cff93e6bdfc0c0027702130a6cd321ca706186f8fdaac0abbb9388316b"
+    },
+    "raw/batch_0022/income/002508.SZ.csv.gz": {
+      "bytes": 12121,
+      "sha256": "543cfdf66f1f68796a4a23df3709e4964a0a7e2f3f362bd2adbf665a6a608629"
+    },
+    "raw/batch_0022/income/002509.SZ.csv.gz": {
+      "bytes": 7250,
+      "sha256": "6ef69f7e2116c4974c80d26938a130ea84b13fecef511fc178f90c9334f49da4"
+    },
+    "raw/batch_0022/income/002510.SZ.csv.gz": {
+      "bytes": 13003,
+      "sha256": "7f81dae7d108665ad175e8a26994bef3b464df2c701ad2d749eb48c4a2acf40f"
+    },
+    "raw/batch_0022/income/002511.SZ.csv.gz": {
+      "bytes": 11713,
+      "sha256": "dcd464d083e46e79b54b67d9959a7312c4fed47e8db4956dc57d81ba6f29c724"
+    },
+    "raw/batch_0022/income/002512.SZ.csv.gz": {
+      "bytes": 12898,
+      "sha256": "9a719768c839d9e3e5927c6e6e940b36afd58afda3028f64adeb665dc27bdf4c"
+    },
+    "raw/batch_0022/income/002513.SZ.csv.gz": {
+      "bytes": 11096,
+      "sha256": "7a274e69fb31b32b27f168743dcbe2ec8d152b2d61a18f9b4a78df000b4e58ed"
+    },
+    "raw/batch_0022/income/002514.SZ.csv.gz": {
+      "bytes": 12581,
+      "sha256": "0f3270dcf9db1e90217e6e569ddd023a8f0d81c28459a8b76b6215aa92e135c8"
+    },
+    "raw/batch_0022/income/002515.SZ.csv.gz": {
+      "bytes": 10955,
+      "sha256": "f0635c1a083be02467388c2df4750e2e0028ae59b0fbceea2ac583db6480ec71"
+    },
+    "raw/batch_0022/income/002516.SZ.csv.gz": {
+      "bytes": 13112,
+      "sha256": "044bda0d369f492275a0d8e6196882bae27710ccfb21baa353f6763371de0dd8"
+    },
+    "raw/batch_0022/income/002517.SZ.csv.gz": {
+      "bytes": 12483,
+      "sha256": "4de5ec68204b127b85f13758ccc0fecd63e93adf42aae165b0f2e56ce2ecf151"
+    },
+    "raw/batch_0022/income/002518.SZ.csv.gz": {
+      "bytes": 12807,
+      "sha256": "b78f43c60fb035e8791e4dbace06b8e57c7f3402c4fd2ca1af4c59a004735ed7"
+    },
+    "raw/batch_0022/income/002519.SZ.csv.gz": {
+      "bytes": 11654,
+      "sha256": "aec322dd8e185af69a3e2fedca857b001aae6088199129debe3279075a6297bc"
+    },
+    "raw/batch_0022/income/002520.SZ.csv.gz": {
+      "bytes": 12285,
+      "sha256": "3fab544b945c6a161c757a027e63ea4d3a8829af19a1b04e01b3961662f57ae9"
+    },
+    "raw/batch_0022/income/002521.SZ.csv.gz": {
+      "bytes": 11319,
+      "sha256": "96d6ab65b30625cdf16337298d901a207fdd23f1573b256dbf69bc1fa6eab4d4"
+    },
+    "raw/batch_0022/income/002522.SZ.csv.gz": {
+      "bytes": 12563,
+      "sha256": "96ab17f80de2d479ba152d544acc83953fa8f2be6639663fe4bae60046c01786"
+    },
+    "raw/batch_0022/income/002523.SZ.csv.gz": {
+      "bytes": 12438,
+      "sha256": "d71ecdf5cdb70941b947248ee15e2e69e16876e800ae11c8142ba2cd1040a525"
+    },
+    "raw/batch_0022/income/002524.SZ.csv.gz": {
+      "bytes": 11166,
+      "sha256": "47ddd48957c68d50f5c5a1afb6b69829fbe7341f2e651ed9d62ed397837f2d00"
+    },
+    "raw/batch_0022/income/002526.SZ.csv.gz": {
+      "bytes": 12284,
+      "sha256": "7ae73363afbc76c9024dacc9a9e13209b6a1d8a5c4bd863d6e9e1c9a6d1a5fe8"
+    },
+    "raw/batch_0022/income/002527.SZ.csv.gz": {
+      "bytes": 13068,
+      "sha256": "445aa260dc3724a51fc449ac99bcff449545fc3d282981795068cddca4b07d30"
+    },
+    "raw/batch_0022/income/002528.SZ.csv.gz": {
+      "bytes": 12808,
+      "sha256": "64bfa4aeadae7c0c87ca99a07f8a340574bf7e66d1a0c6f27750a95113db4753"
+    },
+    "raw/batch_0022/income/601949.SH.csv.gz": {
+      "bytes": 9585,
+      "sha256": "660a30a2024661382d84c2a9f45afae0c623e8b0ffba5db865757728e047630c"
+    },
+    "raw/batch_0022/income/601952.SH.csv.gz": {
+      "bytes": 8482,
+      "sha256": "c3b1ccd0260032cc6a08e2bffc9c74f9d2e9ceee687b3ab4bb0592e2613b9d9d"
+    },
+    "raw/batch_0022/income/601956.SH.csv.gz": {
+      "bytes": 5765,
+      "sha256": "c610457d4919714da017f64e887fd2b6280360eb01be1b0c31a8eeb357e678d6"
+    },
+    "raw/batch_0022/income/601958.SH.csv.gz": {
+      "bytes": 14709,
+      "sha256": "177b21cfaa363cdabea6b3ca2d4878aaff30ddb95f75e3941a57215f28c15b9b"
+    },
+    "raw/batch_0022/income/601963.SH.csv.gz": {
+      "bytes": 9657,
+      "sha256": "2156775559defba6b95d3f038dd1ac5c208da95916174aeca391eedd8690315e"
+    },
+    "raw/batch_0022/income/601965.SH.csv.gz": {
+      "bytes": 11408,
+      "sha256": "705e696cdd0cdf85dfc3b47cec2aca347137efd244fd9512ab49dbedbbc285ee"
+    },
+    "raw/batch_0022/income/601966.SH.csv.gz": {
+      "bytes": 9355,
+      "sha256": "a2fef65997e8a8248ec03055b403a06570a4f00df1f6f713ce7936f3ef4d2c90"
+    },
+    "raw/batch_0022/income/601968.SH.csv.gz": {
+      "bytes": 11672,
+      "sha256": "441b7926dd3812e2b1a30ef57a3128d7557e0a58acc54c077c96b3e31768cebe"
+    },
+    "raw/batch_0022/income/601969.SH.csv.gz": {
+      "bytes": 9616,
+      "sha256": "bb3e767700216b32020b130793706d486ef2c035e0c3b8644104220fd67b28e3"
+    },
+    "raw/batch_0022/income/601975.SH.csv.gz": {
+      "bytes": 17048,
+      "sha256": "7e5f7afc219ea75209047baa9b0603b94f3c9c3eb5cfdc5d248ed86d61af3658"
+    },
+    "raw/batch_0022/income/601985.SH.csv.gz": {
+      "bytes": 14371,
+      "sha256": "ea6e95f49b3d1a2129d4eaa913467ac147d725d5179b982f8382224a9e921575"
+    },
+    "raw/batch_0022/income/601988.SH.csv.gz": {
+      "bytes": 11182,
+      "sha256": "27de4ae11bdfa4245ed32bddceb0053204a06903268d62095b9257aac3c4deea"
+    },
+    "raw/batch_0022/income/601989.SH.csv.gz": {
+      "bytes": 14563,
+      "sha256": "12cec09dd10d9ea61bba22a1319d9557b803b78412ca741f8c6903853375dbb8"
+    },
+    "raw/batch_0022/income/601990.SH.csv.gz": {
+      "bytes": 12018,
+      "sha256": "067752b65fbe1fb61429acc64ac6f85d760fd2b1cb465321940c6d12163a97c3"
+    },
+    "raw/batch_0022/income/601991.SH.csv.gz": {
+      "bytes": 11467,
+      "sha256": "952f10947e3a717822c1f8e573e46523ab04cc1ff0c31c968766dce9de15d645"
+    },
+    "raw/batch_0022/income/601992.SH.csv.gz": {
+      "bytes": 15903,
+      "sha256": "bdfd57e39b2b59b66a1d17eb1792c803403dab279280589dc5a73b787c8e4943"
+    },
+    "raw/batch_0022/income/601995.SH.csv.gz": {
+      "bytes": 11805,
+      "sha256": "0a9f42bfe2bd8ba2bddd15e3fda808d14c6a75ce75fa9cdce35dbd0fa61edbcd"
+    },
+    "raw/batch_0022/income/601996.SH.csv.gz": {
+      "bytes": 11884,
+      "sha256": "6d96757c5fa93c7e71aedf1260eb1345fec2bc22b6b211f9bd94ce312bf5d522"
+    },
+    "raw/batch_0022/income/601997.SH.csv.gz": {
+      "bytes": 9186,
+      "sha256": "cdfb8596c348e64f91dc12b8a209d5e9898e9f0db43bb4dba6424ef28bde0e22"
+    },
+    "raw/batch_0022/income/601998.SH.csv.gz": {
+      "bytes": 10062,
+      "sha256": "60ab34a97b66812ae4f263523d3a65796349e90b0dd795e1bc1a5f4d06c01a5c"
+    },
+    "raw/batch_0022/income/601999.SH.csv.gz": {
+      "bytes": 14284,
+      "sha256": "fa35047d0d69b126db94df8daeeec996ed5802660be01ea3d4583ccdb62e7b7b"
+    },
+    "raw/batch_0022/income/603000.SH.csv.gz": {
+      "bytes": 12330,
+      "sha256": "164971249b53b56672f57a831c08e0228b34592bbc3af3ecca51f71c18ca2792"
+    },
+    "raw/batch_0022/income/603001.SH.csv.gz": {
+      "bytes": 12134,
+      "sha256": "39009a8d18ba4827e3756c37b52640947b1b8a9f8d9200cc038e6445dc0e1954"
+    },
+    "raw/batch_0022/income/603002.SH.csv.gz": {
+      "bytes": 10679,
+      "sha256": "8080fd59ce3e44993402952749374658c86872d3c909510c7328bc13e811a401"
+    },
+    "raw/batch_0022/income/603003.SH.csv.gz": {
+      "bytes": 12198,
+      "sha256": "e5f32a55183b1837919afa351451a7472bb75095c86a628c05e51014fedbceb1"
+    },
+    "raw/batch_0022/income/603004.SH.csv.gz": {
+      "bytes": 3257,
+      "sha256": "0a49dd4d595c6242220e8c6ec53f3f61cb38b9c8dfdc06ce008ad5551aeda0ff"
+    },
+    "raw/batch_0022/income/603005.SH.csv.gz": {
+      "bytes": 9767,
+      "sha256": "47d6dc4385906c688576878687e686749753f82a29097a3a41678930dc9d2028"
+    },
+    "raw/batch_0022/income/603006.SH.csv.gz": {
+      "bytes": 9440,
+      "sha256": "78bfd438bc5a719e20e943a7f017acb33366ed4b23038337502c2c19cf5ff7c4"
+    },
+    "raw/batch_0022/income/603007.SH.csv.gz": {
+      "bytes": 8657,
+      "sha256": "0d9b34234f235d7e2db650f009371594dd8edd9ae4dc4e23d1cb8392ea78356f"
+    },
+    "raw/batch_0022/income/603008.SH.csv.gz": {
+      "bytes": 11770,
+      "sha256": "3f479bca321cd21db974b4f89428a29f7c0966cdb09df3a8a0bcf50ea231c918"
+    },
+    "raw/batch_0022/income/603009.SH.csv.gz": {
+      "bytes": 10641,
+      "sha256": "6d4fed3f2247373a62ed0f7c83985377fb98b51f9deabcb7defd71e03141a2ef"
+    },
+    "raw/batch_0022/income/603010.SH.csv.gz": {
+      "bytes": 10252,
+      "sha256": "587f85d84dc037c664903c1ebd6b561c47920c3123e9108fa39fd5e7943dc347"
+    },
+    "raw/batch_0022/income/603011.SH.csv.gz": {
+      "bytes": 9033,
+      "sha256": "2b2d585ebdbdfa8ed52e2797e319276838bfac18d5c12562aee37b7f7e8504d7"
+    },
+    "raw/batch_0022/income/603012.SH.csv.gz": {
+      "bytes": 10331,
+      "sha256": "d31931e9081b0d437f0cb014246839dcea4657282d818c20a3d50010c934385d"
+    },
+    "raw/batch_0022/income/603013.SH.csv.gz": {
+      "bytes": 9330,
+      "sha256": "930b756c582dbfaf6c70b9ada3c6cf14b5e3234f42dfafd9b24aa310cb9d8f69"
+    },
+    "raw/batch_0022/income/603014.SH.csv.gz": {
+      "bytes": 2472,
+      "sha256": "ded7952564962841255acb4a1fd8169b4ef733d0e871ef4f4167cdd64098c861"
+    },
+    "raw/batch_0022/income/603015.SH.csv.gz": {
+      "bytes": 10291,
+      "sha256": "b9b214c6c4a3142357722305ad2e6d1356defce8d930873c4e4ef747979eda23"
+    },
+    "raw/batch_0022/income/603016.SH.csv.gz": {
+      "bytes": 8148,
+      "sha256": "d3cafa0c094290773cf9fcef7fe4813fa9f20a4e7a3f5cd9403eb9b3d2668c85"
+    },
+    "raw/batch_0022/income/603017.SH.csv.gz": {
+      "bytes": 9791,
+      "sha256": "b69950300612621cd56c500f4065fac9e71f9d82bf141da2b86cceefbfe557ce"
+    },
+    "raw/batch_0022/income/603018.SH.csv.gz": {
+      "bytes": 9895,
+      "sha256": "41495c91b239ccb93ac0d09b3101c8003c87e2ad18f3c0af5842ff128ba55c44"
+    },
+    "raw/batch_0022/income/603019.SH.csv.gz": {
+      "bytes": 11135,
+      "sha256": "51c78d3e67df89278984fabee42f3cff1a96957c13b5de21bb8834f071f51c0c"
+    },
+    "raw/batch_0022/income/603020.SH.csv.gz": {
+      "bytes": 10873,
+      "sha256": "547ad0b6be0c66727a029c035fb4d90f1cb30a00323695f595836f60f24f9bb7"
+    },
+    "raw/batch_0022/income/603021.SH.csv.gz": {
+      "bytes": 9076,
+      "sha256": "904219a335cf5be7a047551f4c0bde0f7e555a0456018c2b9255eb52011cf27c"
+    },
+    "raw/batch_0022/income/603022.SH.csv.gz": {
+      "bytes": 8545,
+      "sha256": "f2452b670a2afb4fbf3305f53e0a213af5af6be33ff72eedb74f37d1359b5dc4"
+    },
+    "raw/batch_0022/income/603023.SH.csv.gz": {
+      "bytes": 8169,
+      "sha256": "dec611eb48386b311cc9fa68dc9056e3573d0289ccbe365cac9ae7c3d68258d0"
+    },
+    "raw/batch_0022/income/603025.SH.csv.gz": {
+      "bytes": 9790,
+      "sha256": "9569445e71e581aebec4edc81a0e014eb59b961cd76e7f026a1dec4a9fafd78b"
+    },
+    "raw/batch_0022/income/603026.SH.csv.gz": {
+      "bytes": 10400,
+      "sha256": "fe8419937788ef8ac25494a6ee1f23d3b00b2be8ba268a5f637e348850c71aba"
+    },
+    "raw/batch_0022/income/603027.SH.csv.gz": {
+      "bytes": 8148,
+      "sha256": "812777089ec992260157f0e8a03191f662afcf06816b948cb7355dceecb0457d"
+    },
+    "raw/batch_0022/income/603028.SH.csv.gz": {
+      "bytes": 8809,
+      "sha256": "ea060f53dd629be42bb99d21a2de36d7e09bb75d48155c08fa9d5523ceb972e8"
+    },
+    "raw/batch_0022/income/603029.SH.csv.gz": {
+      "bytes": 8852,
+      "sha256": "7fc7acc09a827b7a63507ff4da12bcfbcc600c023398437268b9200f49b019ae"
+    },
+    "raw/batch_0022/request_log.csv": {
+      "bytes": 39853,
+      "sha256": "1e4757c4a8ed4314956c83c2cbe3a2584b9f58ebcc3262ae8b3cc0e161a5fe50"
+    },
+    "raw/batch_0022/stock_basic_snapshot.csv.gz": {
+      "bytes": 114167,
+      "sha256": "15ec84a105240b220c507bb391da671a076becd2a09033c801e13024c16a48ef"
+    },
+    "raw/batch_0022/universe_slice.csv.gz": {
+      "bytes": 2900,
+      "sha256": "cf287f842217788dd663ae3ab5e4c530013f483b7fdf445f682f95e7eb525a71"
+    }
+  }
+}

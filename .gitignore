@@ -41,7 +41,6 @@ test-output.xml
 mlruns/
 output/
 .zcode/
-data/
 .qoder/
 debug_pipeline.py
 run_rolling_check.py
