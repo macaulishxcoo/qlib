@@ -1,0 +1,78 @@
+{
+  "dataset": "a_share_stock_classification_v2",
+  "rules": {
+    "size": "within-month free-float market-value percentile: small <=40%, mid 40%-80%, large >80%",
+    "industry": "Shenwan L1/L2/L3 effective on asof_date; gap fills are explicitly marked",
+    "board": "stock_basic exchange + market snapshot; board is treated as stable per security",
+    "risk": "ST and delist-phase intervals effective on asof_date",
+    "trading": "suspended when daily_basic has no record on the month-end trading day",
+    "turnover": "month-end free-float turnover-rate percentile; not a 20-day amount capacity measure"
+  },
+  "inputs": [
+    "data/external/tushare/a_share_daily_basic_pit_v1/normalized/daily_basic.csv.gz",
+    "data/external/tushare/a_share_style_pit_v1/raw/industry_member_all",
+    "data/external/tushare/a_share_financial_pit_v1/full/raw/batch_0001/stock_basic_snapshot.csv.gz",
+    "data/external/tushare/a_share_st_status_pit_v1/normalized/st_status_intervals.csv.gz",
+    "data/external/tushare/a_share_index_membership_pit_v1/normalized/monthly_index_membership.csv.gz"
+  ],
+  "summary": {
+    "rows": 550157,
+    "months": 127,
+    "stocks": 5784,
+    "start": "2016-01-29",
+    "end": "2026-07-31",
+    "industry_coverage": 0.993521849217587,
+    "industry_gap_fill_rows": 1579,
+    "size_coverage": 0.9982077843233841,
+    "size_data_quality_counts": {
+      "fresh": 543708,
+      "stale": 5807,
+      "missing": 642
+    },
+    "size_bucket_counts": {
+      "mid": 219666,
+      "small": 219622,
+      "large": 109883
+    },
+    "index_counts_per_month": {
+      "csi300": {
+        "min": 300,
+        "max": 300
+      },
+      "csi500": {
+        "min": 500,
+        "max": 500
+      },
+      "csi800": {
+        "min": 800,
+        "max": 800
+      },
+      "csi1000": {
+        "min": 1000,
+        "max": 1000
+      }
+    },
+    "boards": {
+      "sse_main": 194264,
+      "szse_main": 181309,
+      "chinext": 125918,
+      "star": 35547,
+      "bse": 13119
+    },
+    "risk_status_counts": {
+      "normal": 532997,
+      "st": 17002,
+      "delist_phase": 158
+    },
+    "trading_status_counts": {
+      "trading": 540028,
+      "suspended": 9487,
+      "no_market_data": 642
+    },
+    "industry_l2_coverage": 0.993521849217587,
+    "industry_l3_coverage": 0.993521849217587
+  },
+  "file": "monthly_stock_classification.csv.gz",
+  "sha256": "73822cb2a9f863bb242651768323377a3638c1d3c179a90be842f62d10abcc85",
+  "created_at_utc": "2026-08-12T02:05:55.179023+00:00"
+}

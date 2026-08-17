@@ -1,0 +1,91 @@
+{
+  "note": "Chunked large normalized files (>GitHub 100MB limit). Reassemble with scripts/data_collector/reassemble_large_data_v1.py",
+  "files": [
+    {
+      "original": "data/external/tushare/a_share_daily_basic_pit_v1/normalized/daily_basic.csv.gz",
+      "total_size": 666755638,
+      "chunk_count": 7,
+      "chunks": [
+        {
+          "file": "daily_basic.csv.gz.part00",
+          "sha256": "aa9bef41b2f2f1820e33038d83a5bde6ad22c7c22e9e711d1bd0b7935d0c33ef",
+          "size": 99614720
+        },
+        {
+          "file": "daily_basic.csv.gz.part01",
+          "sha256": "6ea17550122914c52a8b966bf4b7a52130ed47a04dee8c5db5d5fca6dffac3f3",
+          "size": 99614720
+        },
+        {
+          "file": "daily_basic.csv.gz.part02",
+          "sha256": "841d8f4a5269947f1f957d0a3ad01b97a3946441b61b1c3a20e9597634523e75",
+          "size": 99614720
+        },
+        {
+          "file": "daily_basic.csv.gz.part03",
+          "sha256": "7ac5ec9d862db3311b943ca7d28e5db39f57ff433e18f347b652c5e482d8bc80",
+          "size": 99614720
+        },
+        {
+          "file": "daily_basic.csv.gz.part04",
+          "sha256": "661422bd4f03dd8da89a712ed43ae27c53ce21c9fc398f4040f7308a3f92eff6",
+          "size": 99614720
+        },
+        {
+          "file": "daily_basic.csv.gz.part05",
+          "sha256": "498b7343e59f1f72013ead1672d5609fcdaa23c85363f3799f15f10dc9f94e70",
+          "size": 99614720
+        },
+        {
+          "file": "daily_basic.csv.gz.part06",
+          "sha256": "de1e334ea28f77cf8a0e19618dfefe19093be7bbae26aa3993eb9a1a91cb3e1b",
+          "size": 69067318
+        }
+      ]
+    },
+    {
+      "original": "data/external/tushare/moneyflow_pit_v1/normalized/moneyflow.csv.gz",
+      "total_size": 330089389,
+      "chunk_count": 4,
+      "chunks": [
+        {
+          "file": "moneyflow.csv.gz.part00",
+          "sha256": "f6392e1de75227b637906f18081aa78e8e56e94ffa1086034bf49bae68949926",
+          "size": 99614720
+        },
+        {
+          "file": "moneyflow.csv.gz.part01",
+          "sha256": "e8e6de5da0e2cb0b18899d0c9d31be1585184c4102594ac396e130f1fde10192",
+          "size": 99614720
+        },
+        {
+          "file": "moneyflow.csv.gz.part02",
+          "sha256": "190c69f8cc2000431aa86557222692692728d22c942dd7e75b65449d2f079883",
+          "size": 99614720
+        },
+        {
+          "file": "moneyflow.csv.gz.part03",
+          "sha256": "3bab7353d7bf78e98e3cb2d097dde187a9bec811205b41cb0abb01c1c13875cb",
+          "size": 31245229
+        }
+      ]
+    },
+    {
+      "original": "data/external/tushare/margin_pit_v1/normalized/margin_detail.csv.gz",
+      "total_size": 199099784,
+      "chunk_count": 2,
+      "chunks": [
+        {
+          "file": "margin_detail.csv.gz.part00",
+          "sha256": "94741dd9ddf709e00326122cdc81984c8a5a6e488e8e11e92fc4b347db5415a5",
+          "size": 99614720
+        },
+        {
+          "file": "margin_detail.csv.gz.part01",
+          "sha256": "4bb25b232c7b7d3246a09ccb6bb9aa39c03895b9911670c699385444e2281047",
+          "size": 99485064
+        }
+      ]
+    }
+  ]
+}

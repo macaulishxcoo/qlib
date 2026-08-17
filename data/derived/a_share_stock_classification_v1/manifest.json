@@ -1,0 +1,55 @@
+{
+  "dataset": "a_share_stock_classification_v1",
+  "classification_rules": {
+    "size": "within-month free-float market-value percentile: small <=40%, mid 40%-80%, large >80%",
+    "industry": "Shenwan L1 interval effective on asof_date",
+    "index": "Tushare index_weight snapshot on asof_date"
+  },
+  "inputs": [
+    "data/external/tushare/a_share_daily_basic_pit_v1/normalized/daily_basic.csv.gz",
+    "data/external/tushare/a_share_style_pit_v1/raw/industry_member_all",
+    "data/external/tushare/a_share_index_membership_pit_v1/normalized/monthly_index_membership.csv.gz",
+    "data/external/tushare/a_share_financial_pit_v1/full/raw/batch_0001/stock_basic_snapshot.csv.gz"
+  ],
+  "summary": {
+    "rows": 550157,
+    "months": 127,
+    "stocks": 5784,
+    "start": "2016-01-29",
+    "end": "2026-07-31",
+    "industry_coverage": 0.993521849217587,
+    "industry_gap_fill_rows": 1579,
+    "size_coverage": 0.9982077843233841,
+    "size_data_quality_counts": {
+      "fresh": 543708,
+      "stale": 5807,
+      "missing": 642
+    },
+    "size_bucket_counts": {
+      "mid": 219666,
+      "small": 219622,
+      "large": 109883
+    },
+    "index_counts_per_month": {
+      "csi300": {
+        "min": 300,
+        "max": 300
+      },
+      "csi500": {
+        "min": 500,
+        "max": 500
+      },
+      "csi800": {
+        "min": 800,
+        "max": 800
+      },
+      "csi1000": {
+        "min": 1000,
+        "max": 1000
+      }
+    }
+  },
+  "file": "monthly_stock_classification.csv.gz",
+  "sha256": "8d6022f3da5a141868d14f22b8d9d7ecf2aa39304859557d52bf9aa201b32b8b",
+  "created_at_utc": "2026-08-12T00:50:54.935572+00:00"
+}

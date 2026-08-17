@@ -1,0 +1,11 @@
+{
+  "dataset": "a_share_forecast_v1",
+  "purpose": "A 股业绩预告（负面事件分类型研究 T1 经营类事件源）",
+  "start_date": "2022-01-01",
+  "end_date": "2026-08-07",
+  "completed_dates": 1113,
+  "pending_dates": 0,
+  "file_count": 888,
+  "total_rows": 21142,
+  "created_at_utc": "2026-08-14T01:42:49.802168+00:00"
+}

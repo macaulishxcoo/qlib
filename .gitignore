@@ -57,3 +57,12 @@ tags
 ./pretrain
 .idea/
 .aider*
+
+# Local virtualenvs
+.venv-quant/
+
+# Oversized normalized files are stored in git as .partNN chunks instead.
+# Rebuild the originals with: python scripts/data_collector/reassemble_large_data_v1.py
+data/external/tushare/a_share_daily_basic_pit_v1/normalized/daily_basic.csv.gz
+data/external/tushare/moneyflow_pit_v1/normalized/moneyflow.csv.gz
+data/external/tushare/margin_pit_v1/normalized/margin_detail.csv.gz

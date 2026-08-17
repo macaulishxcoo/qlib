@@ -1,0 +1,20 @@
+{
+  "dataset": "a_share_st_status_pit_v1",
+  "source": "Tushare Pro namechange",
+  "raw_rows": 14170,
+  "normalized_rows": 14170,
+  "companies": 5878,
+  "st_intervals": 2838,
+  "delist_phase_intervals": 153,
+  "files": {
+    "raw/namechange_all.csv.gz": {
+      "bytes": 200095,
+      "sha256": "3cf4bfa8ad1f11764a7d3351dd51981e936dc676de60df492873e89fb2613d5b"
+    },
+    "normalized/st_status_intervals.csv.gz": {
+      "bytes": 214072,
+      "sha256": "1045ac26a3d692a4394713c64f43fd760f411277bcc431abd7dac9302309b466"
+    }
+  },
+  "created_at_utc": "2026-08-10T08:37:04.584328+00:00"
+}

@@ -192,12 +192,24 @@ def build_stock_rows(daily: pd.DataFrame, adj: pd.DataFrame, k_map: dict) -> pd.
 
 
 def build_index_rows(idx: pd.DataFrame, existing_factors: dict) -> pd.DataFrame:
-    """Convert one day's index bars to rows; factor stays constant, prices raw."""
+    """Convert one day's index bars to rows; prices scaled by the store's constant factor.
+
+    The Qlib binary store reads ``close`` (etc.) as the *adjusted* price =
+    ``raw * factor``, exactly as for stocks (see ``build_stock_rows``).  Storing
+    raw index points here would create a discontinuity at the first incremental
+    day (the 2026-07-24 factor-break bug).  ``adjclose`` is the raw close so
+    that ``close / adjclose == factor`` holds, matching the stock convention.
+    """
     idx = idx.copy()
     idx["symbol"] = idx["ts_code"].map(ts_code_to_qlib)
     idx["date"] = pd.to_datetime(idx["trade_date"]).dt.strftime("%Y-%m-%d")
     idx["factor"] = idx["symbol"].map(existing_factors)
-    idx["adjclose"] = idx["close"] / idx["factor"]
+    f = idx["factor"]
+    idx["close"] = idx["close"] * f
+    idx["open"] = idx["open"] * f
+    idx["high"] = idx["high"] * f
+    idx["low"] = idx["low"] * f
+    idx["adjclose"] = idx["close"] / f  # == raw close
     idx["change"] = idx["pct_chg"] / 100.0
     idx["vwap"] = idx["close"]  # index volume unit differs; benchmark uses close only
     idx["volume"] = idx["vol"]

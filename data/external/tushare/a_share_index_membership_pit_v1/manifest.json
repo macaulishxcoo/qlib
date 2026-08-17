@@ -1,0 +1,20 @@
+{
+  "dataset": "a_share_index_membership_pit_v1",
+  "source": "Tushare Pro index_weight",
+  "snapshot_rule": "last completed trading day of each calendar month",
+  "indexes": {
+    "csi300": "000300.SH",
+    "csi500": "000905.SH",
+    "csi800": "000906.SH",
+    "csi1000": "000852.SH"
+  },
+  "date_range_requested": {
+    "start": "2016-01-01",
+    "end": "2026-07-31"
+  },
+  "successful_snapshots": 127,
+  "rows": 330200,
+  "normalized_file": "normalized/monthly_index_membership.csv.gz",
+  "normalized_sha256": "baa936c5438e6fa8ca9c32d8c01b69eec23c7e24a17ffd0542a6c4412029b72a",
+  "last_updated_utc": "2026-08-12T00:41:45.176411+00:00"
+}
