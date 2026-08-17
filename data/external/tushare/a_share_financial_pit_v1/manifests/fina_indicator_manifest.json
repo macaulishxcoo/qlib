@@ -1,0 +1,31 @@
+{
+  "dataset": "a_share_fina_indicator_pit_v1",
+  "source": "tushare fina_indicator",
+  "endpoint": "fina_indicator",
+  "status": "complete",
+  "frequency": "quarterly",
+  "date_range": {
+    "start": "20091231",
+    "end": "20260630"
+  },
+  "report_periods": 89,
+  "sample_count": 245966,
+  "stock_count": 5802,
+  "components": {
+    "old": {
+      "path": "full/normalized/",
+      "period": "2009-2024"
+    },
+    "recent": {
+      "path": "recent/",
+      "period": "2025-2026"
+    }
+  },
+  "files": {
+    "normalized/fina_indicator.csv.gz": {
+      "bytes": 99607149,
+      "sha256": "f69540ebe4845528a4a382427033c7a6c88a139e4c1a7a87df9c7a764910a679",
+      "records": 245966
+    }
+  }
+}

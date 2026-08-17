@@ -1,0 +1,20 @@
+{
+  "dataset": "a_share_events_daily_v1",
+  "purpose": "每日结构化事件流：股东增减持/限售解禁/龙虎榜",
+  "start_date": "2022-01-01",
+  "end_date": "2026-08-07",
+  "completed_dates": 1113,
+  "pending_dates": 0,
+  "file_count": 3339,
+  "total_rows": 3256814,
+  "files_by_endpoint": {
+    "share_float": 1113,
+    "stk_holdertrade": 1113,
+    "top_list": 1113
+  },
+  "raw_date_range": [
+    "20220104",
+    "20260807"
+  ],
+  "created_at_utc": "2026-08-12T04:26:34.466142+00:00"
+}
