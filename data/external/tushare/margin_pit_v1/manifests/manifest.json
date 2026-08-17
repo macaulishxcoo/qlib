@@ -1,0 +1,32 @@
+{
+  "dataset": "a_share_margin_pit_v1",
+  "source": "tushare margin_detail",
+  "endpoint": "margin_detail",
+  "status": "complete",
+  "date_range": {
+    "start": "20160104",
+    "end": "20260807"
+  },
+  "trade_days": 2574,
+  "sample_count": 6072984,
+  "stock_count": 5190,
+  "fields": [
+    "trade_date",
+    "ts_code",
+    "rzye",
+    "rqye",
+    "rzmre",
+    "rqyl",
+    "rzche",
+    "rqchl",
+    "rqmcl",
+    "rzrqye"
+  ],
+  "files": {
+    "normalized/margin_detail.csv.gz": {
+      "bytes": 199099784,
+      "sha256": "257811a41b4f99d0c9b428ba1eb54d2f29563cfb7e725fa46a6901f8840eb767",
+      "records": 6072984
+    }
+  }
+}
