@@ -1,0 +1,41 @@
+{
+  "dataset": "a_share_daily_basic_pit_v1",
+  "source": "tushare daily_basic",
+  "endpoint": "daily_basic",
+  "status": "complete",
+  "frequency": "daily",
+  "date_range": {
+    "start": "20160104",
+    "end": "20260807"
+  },
+  "trade_days": 2574,
+  "sample_count": 10926572,
+  "stock_count": 5792,
+  "fields": [
+    "ts_code",
+    "trade_date",
+    "close",
+    "turnover_rate",
+    "turnover_rate_f",
+    "volume_ratio",
+    "pe",
+    "pe_ttm",
+    "pb",
+    "ps",
+    "ps_ttm",
+    "dv_ratio",
+    "dv_ttm",
+    "total_share",
+    "float_share",
+    "free_share",
+    "total_mv",
+    "circ_mv"
+  ],
+  "files": {
+    "normalized/daily_basic.csv.gz": {
+      "bytes": 655839096,
+      "sha256": "59d1096646ee1c09e51585ed66ca05dc0c354f6a281462d9c07eb68fb002926b",
+      "records": 10926572
+    }
+  }
+}
