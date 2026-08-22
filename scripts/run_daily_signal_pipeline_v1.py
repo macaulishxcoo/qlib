@@ -38,7 +38,7 @@ from analyze_a_share_value_quality_level_factors_extension_v1 import (
 from load_financials_extended_v1 import load_financials_extended as load_financials
 from backtest_a_share_value_quality_monthly_sensitivity_v4 import load_amount_avg, NOTIONAL
 
-TOP_K = 50
+TOP_K = 30
 PARTICIPATION = 0.05
 ACCOUNT = 100_000_000
 BENCHMARK = "SH000852"
@@ -48,6 +48,11 @@ ST_INTERVALS = Path("data/external/tushare/a_share_st_status_pit_v1/normalized/s
 V6_REFERENCE = Path("output/analysis_fundamental/a_share_value_quality_monthly_strategy_v6_dailygrid/monthly_composite_dailygrid.csv.gz")
 LEDGER_DIR = Path("output/signal_ledger")
 LIVE_LEDGER_DIR = Path("output/live_ledger")
+# Five-factor: ep+bm+div_yield+accruals+g2 (dt_netprofit_yoy), >=4/5 gate.
+# Frozen in research/protocols/a_share_value_growth_five_factor_strategy_protocol_v2.md
+FIN_TOP = Path("data/external/tushare/a_share_financial_pit_v1/normalized/fina_indicator.csv.gz")
+COMPOSITE_FACTORS = ("ep", "bm", "div_yield", "accruals", "g2")
+COMPOSITE_MIN_FACTORS = 4
 
 # Overbought filter parameters (protocol v11, frozen)
 REBO_WINDOW = 20                # past trading days for return calculation
@@ -92,6 +97,38 @@ def load_financials_with_yoy():
     yoy = yoy.dropna(subset=["available_date"])
     yoy = yoy.drop_duplicates(["ts_code", "end_date", "available_date"], keep="last")
     return fin.merge(yoy, on=["ts_code", "end_date", "available_date"], how="left")
+
+
+def load_g2_series() -> pd.DataFrame:
+    """Load dt_netprofit_yoy from fina_indicator (top-level normalized).
+
+    PIT key: available_date <= rebalance_date.  Used by the five-factor
+    composite as the growth leg (g2).
+    """
+    g2 = pd.read_csv(FIN_TOP, compression="gzip",
+                     usecols=["ts_code", "end_date", "available_date", "dt_netprofit_yoy"])
+    for col in ("end_date", "available_date"):
+        g2[col] = pd.to_datetime(g2[col].astype(str).str.replace("-", "", regex=False),
+                                 format="%Y%m%d", errors="coerce")
+    return g2.drop_duplicates(["ts_code", "end_date", "available_date"], keep="last")
+
+
+def g2_at(fin_g2: pd.DataFrame, date: pd.Timestamp) -> pd.Series:
+    """Latest dt_netprofit_yoy per stock as of `date` (PIT by available_date)."""
+    cur = fin_g2[fin_g2["available_date"].le(date)]
+    cur = cur.sort_values(["ts_code", "end_date", "available_date"], kind="mergesort") \
+        .drop_duplicates(["ts_code", "end_date"], keep="last")
+    latest = cur.sort_values("end_date", kind="mergesort").drop_duplicates("ts_code", keep="last")
+    return latest.set_index("ts_code")["dt_netprofit_yoy"]
+
+
+def composite5_score(frame: pd.DataFrame) -> pd.Series:
+    """Five-factor rank-mean with >=4-of-5 non-missing gate (protocol v2)."""
+    ranks = pd.concat([frame[f].rank(method="first", pct=True) for f in COMPOSITE_FACTORS], axis=1)
+    n_factors = ranks.notna().sum(axis=1)
+    composite = ranks.mean(axis=1)
+    composite[n_factors < COMPOSITE_MIN_FACTORS] = np.nan
+    return composite
 
 
 def deterioration_flags(latest: pd.DataFrame) -> pd.DataFrame:
@@ -232,8 +269,13 @@ def compute_past_returns(codes: list[str], cal: pd.DatetimeIndex,
 def process_month(fin, grid_row, industry, size, st, amount_avg, calendar,
                   top_k=TOP_K, overbought_filter=False, ret_lookup=None,
                   value_trap_filter=False, vt_hits=None,
-                  t5_filter=False, t5_hits=None) -> pd.DataFrame:
+                  t5_filter=False, t5_hits=None,
+                  fin_g2=None) -> pd.DataFrame:
     """Return top-k (or fewer) stocks for one rebalance date, frozen rules.
+
+    Uses the five-factor composite (ep+bm+div_yield+accruals+g2, >=4/5 gate)
+    instead of the four-factor composite.  g2 requires fin_g2 (pre-loaded via
+    load_g2_series); if None, falls back to four-factor composite_score.
 
     If overbought_filter=True, candidates with past-20d return > +20% are
     excluded (replaced by next-ranked stock).  Requires ret_lookup to be
@@ -250,9 +292,14 @@ def process_month(fin, grid_row, industry, size, st, amount_avg, calendar,
         return pd.DataFrame()
     frame = snap.copy()
 
-    # 0. Composite = equal-weight percentile-rank average of the four factors
-    #    with a >=3-factor gate (identical to the validated composite_score).
-    frame["composite"] = composite_score(frame)
+    # 0. Composite = five-factor rank-mean with >=4/5 gate (protocol v2).
+    if fin_g2 is not None:
+        frame = frame.set_index("ts_code")
+        frame["g2"] = g2_at(fin_g2, date).reindex(frame.index)
+        frame = frame.reset_index()
+        frame["composite"] = composite5_score(frame)
+    else:
+        frame["composite"] = composite_score(frame)
 
     # 1. ST / 退市整理 filter.
     frame.loc[frame["ts_code"].isin(st_codes_at(st, asof)), "composite"] = np.nan
@@ -299,13 +346,74 @@ def process_month(fin, grid_row, industry, size, st, amount_avg, calendar,
             print(f"      [filter] {date.date()}: excluded {len(excluded)} overbought: "
                   f"{', '.join(f'{c}({r:+.1%})' for c, r in excluded[:3])}", flush=True)
 
-    # 4. Top-k by neutralized score.
-    top = frame.dropna(subset=["neutral_composite"]).nlargest(top_k, "neutral_composite").copy()
+    # 4. Top-k by neutralized score, with per-industry cap (protocol v3, cap=3).
+    ranked = frame.dropna(subset=["neutral_composite"]).nlargest(
+        top_k * 5, "neutral_composite")
+    INDUSTRY_CAP = 3
+    ind_count = {}
+    selected_indices = []
+    for idx, r in ranked.iterrows():
+        ind = r.get("l1_code")
+        if pd.isna(ind):
+            ind = "UNKNOWN"
+        if ind_count.get(ind, 0) >= INDUSTRY_CAP:
+            continue
+        ind_count[ind] = ind_count.get(ind, 0) + 1
+        selected_indices.append(idx)
+        if len(selected_indices) >= top_k:
+            break
+    top = frame.loc[selected_indices].copy()
     top = top.sort_values("neutral_composite", ascending=False).reset_index(drop=True)
     top["rank"] = np.arange(1, len(top) + 1)
     top["weight"] = 1.0 / len(top)
     top["rebalance_date"] = date
     return top[["rebalance_date", "rank", "ts_code", "neutral_composite", "weight"]]
+
+
+def round_to_lots(hold: pd.DataFrame, capital: float, close_map: dict[str, float]) -> pd.DataFrame:
+    """Round equal-weight holdings to integer lots (100 shares) with residual
+    re-allocation.
+
+    1. Compute target = capital / n_stocks, buy floor(target / (price * 100)) lots.
+    2. Distribute remaining cash to lowest-weight stocks first, 1 lot at a time.
+    Returns hold with added columns: lots, invested, actual_weight, price.
+    """
+    if hold.empty:
+        return hold
+    n = len(hold)
+    target = capital / n
+    lots = {}
+    remaining = capital
+    for _, r in hold.iterrows():
+        price = close_map.get(r["ts_code"], np.nan)
+        if pd.isna(price) or price <= 0:
+            lots[r["ts_code"]] = 0
+            continue
+        h = int(target / (price * 100))
+        lots[r["ts_code"]] = h
+        remaining -= h * 100 * price
+    # Residual re-allocation: give 1 lot to lowest-weight stock that can afford it
+    while remaining > 0:
+        changed = False
+        # Sort by current invested amount ascending (lowest weight first)
+        order = sorted(lots.keys(), key=lambda c: lots[c] * 100 * close_map.get(c, 1e9))
+        for c in order:
+            price = close_map.get(c, np.nan)
+            if pd.isna(price) or price <= 0:
+                continue
+            if remaining >= price * 100:
+                lots[c] += 1
+                remaining -= price * 100
+                changed = True
+                break  # re-sort after each addition
+        if not changed:
+            break
+    hold = hold.copy()
+    hold["price"] = hold["ts_code"].map(close_map)
+    hold["lots"] = hold["ts_code"].map(lots)
+    hold["invested"] = hold["lots"] * 100 * hold["price"]
+    hold["actual_weight"] = hold["invested"] / capital
+    return hold
 
 
 def consistency_check(holdings: dict[pd.Timestamp, pd.DataFrame]) -> dict:
@@ -360,6 +468,8 @@ def main() -> None:
                         help="exclude financially deteriorating stocks, deter_any2 (v13 protocol)")
     parser.add_argument("--t5-filter", action="store_true",
                         help="exclude stocks with a 跌幅上榜 event in the past 20 trading days (v12 protocol)")
+    parser.add_argument("--capital", type=float, default=500000,
+                        help="total strategy capital for lot-rounding (default 500000)")
     args = parser.parse_args()
     top_k = args.top_k
     use_filter = args.overbought_filter
@@ -372,6 +482,9 @@ def main() -> None:
 
     # Financial loader: value-trap filter needs the YoY columns.
     fin = load_financials_with_yoy() if use_vt else load_financials()
+    # Five-factor growth leg (g2 = dt_netprofit_yoy), always loaded.
+    fin_g2 = load_g2_series()
+    print(f"[data] fin rows={len(fin)}, g2 rows={len(fin_g2)}", flush=True)
     # Production grid extends to the latest calendar day (month-end rebalance
     # keeps extending as new data arrives); backtest callers keep BT_END.
     grid, industry, size, st = load_aux(end=calendar[-1])
@@ -415,7 +528,8 @@ def main() -> None:
             hold = process_month(fin, row, industry, size, st, amount_avg, calendar,
                                  top_k=top_k, overbought_filter=use_filter, ret_lookup=ret_lookup,
                                  value_trap_filter=use_vt, vt_hits=vt_hits,
-                                 t5_filter=use_t5, t5_hits=t5_hits)
+                                 t5_filter=use_t5, t5_hits=t5_hits,
+                                 fin_g2=fin_g2)
             if hold.empty:
                 print(f"      {row.rebalance_date.date()}: no holdings (data gap?)", flush=True)
                 continue
@@ -481,7 +595,8 @@ def main() -> None:
         hold = process_month(fin, grid_row, industry, size, st, amount_avg, calendar,
                              top_k=top_k, overbought_filter=use_filter, ret_lookup=ret_lookup,
                              value_trap_filter=use_vt, vt_hits=vt_hits,
-                             t5_filter=use_t5, t5_hits=t5_hits)
+                             t5_filter=use_t5, t5_hits=t5_hits,
+                             fin_g2=fin_g2)
         rebalance_date = grid_row.rebalance_date
         tags = []
         if use_filter:
@@ -506,7 +621,8 @@ def main() -> None:
                 prev_hold = process_month(fin, prev_row, industry, size, st, amount_avg, calendar,
                                           top_k=top_k, overbought_filter=use_filter, ret_lookup=ret_lookup,
                                           value_trap_filter=use_vt, vt_hits=vt_hits,
-                                          t5_filter=use_t5, t5_hits=t5_hits)
+                                          t5_filter=use_t5, t5_hits=t5_hits,
+                                          fin_g2=fin_g2)
 
             current_codes = set(hold["ts_code"]) if not hold.empty else set()
             prev_codes = set(prev_hold["ts_code"]) if not prev_hold.empty else set()
@@ -515,13 +631,34 @@ def main() -> None:
             hold_codes = current_codes & prev_codes
 
             # Build actionable list with action labels.
+            # Fetch close prices on rebalance date for lot-rounding.
+            # Use daily_basic (raw close) not qlib $close (adjusted), because
+            # lot sizes must be based on actual trade prices.
+            close_map = {}
+            all_hold_codes = list(hold["ts_code"]) if not hold.empty else []
+            if all_hold_codes:
+                db_date = int(pd.Timestamp(rebalance_date).strftime("%Y%m%d"))
+                db = pd.read_csv(
+                    Path("data/external/tushare/a_share_daily_basic_pit_v1/normalized/daily_basic.csv.gz"),
+                    compression="gzip",
+                    usecols=["ts_code", "trade_date", "close"])
+                db_day = db[db["trade_date"] == db_date].set_index("ts_code")
+                close_map = db_day["close"].to_dict()
+            # Round to integer lots with residual re-allocation.
+            live_capital = args.capital if hasattr(args, 'capital') and args.capital else 500000
+            hold_lots = round_to_lots(hold, live_capital, close_map) if not hold.empty else hold
+
             action_rows = []
-            if not hold.empty:
-                for _, r in hold.iterrows():
+            if not hold_lots.empty:
+                for _, r in hold_lots.iterrows():
                     action = "BUY" if r["ts_code"] in buy_codes else "HOLD"
                     action_rows.append({
                         "rank": int(r["rank"]), "ts_code": r["ts_code"],
-                        "weight": round(r["weight"], 6), "action": action,
+                        "weight": round(r["actual_weight"], 6) if "actual_weight" in r else round(r["weight"], 6),
+                        "lots": int(r["lots"]) if "lots" in r else 0,
+                        "price": round(r["price"], 2) if "price" in r else 0,
+                        "invested": round(r["invested"], 0) if "invested" in r else 0,
+                        "action": action,
                     })
             if not prev_hold.empty:
                 for _, r in prev_hold.iterrows():
