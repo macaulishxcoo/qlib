@@ -202,7 +202,23 @@ python scripts/run_daily_signal_pipeline_v1.py --date 2026-06-30 --top-k 30 --li
 3. 五因子 top30_cap3 模拟盘初始化（新持仓、新净值基线；v8+v11 模拟盘继续跑作对照）；
 4. （可选）三策略 A/B/C 对比脚本补入库 + 对应的决策文档。
 
+**执行层验证（新方向，2026-08-21 评估）**：
+- **RQAlpha 重测**：评估文档 `RQALPHA_BACKTEST_COMPARISON_AND_FEASIBILITY.md`——rqalpha 6.3.0
+  已装于 `.venv-rqalpha`（独立 venv，勿动 qlib 主环境）；路线 = 方案 C（qlib 侧补红利税/真实涨跌停，
+  0.5 天）→ 方案 A（自建 bundle 重测，2.5 天，唯一硬缺口 = tushare `dividend` 表）。
+  动机：本项目用后复权价无红利税、涨跌停 9.5% 近似；RQAlpha 用真实价+分红税+精确涨跌停，
+  对齐"实盘真实度"（本策略高股息暴露，税差异估计 0.3~0.6pp/年）。
+
 **研究（未测方向，按 DEV_LOG_DailyStrategyExploration.md §5 + 数据盘点）**：
+0. **美股隔夜→A 股次日传导**：**已闭环（2026-08-24）** `overnight_priced_at_open` +
+   `intraday_overtrading_reversal_weak`（conduction_magnitude 0.197）——开盘定价
+   （gap β=0.279 t=11.5 R²=26%）、日内无持续（β=−0.08 弱反转）、恐慌传导更强（+0.086）；
+   **不可交易 → 归档为开盘预案知识**。证据：`research/decisions/us_overnight_conduction_closure_v1.md`、
+   `output/analysis_static/us_overnight_conduction_v1/`；数据 `data/external/tushare/us_index_v1/`
+   （7 指数 2010 起，含 XIN9 富时 A50，可复用做 H5 中介）。
+   **P3 行业级（2026-08-24 补）**：`sector_matching_not_supported`——美股科技（IXIC）对 A 股科技板块
+   无特殊传导（matched-unmatched 增量 +0.011≈0）；行业差异 = 全球风险暴露排序
+   （有色 0.393 > 通信 0.354 > … > 银行 0.167）→ **市场级风险溢价通道，非板块匹配信息**。
 1. **业绩预告增速**（`a_share_forecast_v1`，2022 起）：成长因子高频领先版本，独立事件族实验；
 2. **融券余量信号**（rqye/rqyl/rqmcl）："空头在定价坏消息"的直接度量，已入库从未消费；
 3. **涨幅类上榜（涨停/连板）**：top_list reason 文本已有（零下载），T+1 开盘行为；
@@ -245,6 +261,7 @@ python scripts/data_collector/update_daily_basic_v1.py
 | 7 | `research/charters/a_share_research_universe_charter_v1.md` | 母池/分层/验证治理 |
 | 8 | `research/decisions/scheduling_deployment_record_v1.md` + `paper_trading_double_filter_switch_v1.md` | 自动化/模拟盘工程状态 |
 | 9 | `metrics_judgment_standard.md` | 指标评审标准 |
+| 10 | `RQALPHA_BACKTEST_COMPARISON_AND_FEASIBILITY.md` | RQAlpha 重测评估（口径对照/bundle 格式/方案 A-C） |
 
 ---
 
@@ -253,3 +270,6 @@ python scripts/data_collector/update_daily_basic_v1.py
 | 日期 | 变更 |
 |---|---|
 | 2026-08-21 | 创建：全仓盘点后生成项目总览（结构/数据/三研究线/实盘状态/待办/红线），供新会话直接入口 |
+| 2026-08-21 | 新增 RQAlpha 评估文档（`RQALPHA_BACKTEST_COMPARISON_AND_FEASIBILITY.md`）：rqalpha 6.3.0 装于 `.venv-rqalpha`；差额口径（无红利税/9.5% 涨跌停 vs 真实口径）；bundle 全格式已查明；方案 C→A 路线入 §8 |
+| 2026-08-21 | 新立实验方向：美股隔夜→A 股传导（协议 `us_market_overnight_conduction_protocol_v1.md`，draft 待批准；tushare index_global 实测可用，美股个股无权限） |
+| 2026-08-24 | 美股传导实验**闭环**：下载 7 指数 2010 起（`us_index_v1/`，tushare 分页漂移 bug 规避）；P1/P2 完成 → `overnight_priced_at_open`（gap β=0.279/R²26%）+ `intraday_overtrading_reversal_weak`（β=−0.08，不可交易）；闭关于 `us_overnight_conduction_closure_v1.md` |
