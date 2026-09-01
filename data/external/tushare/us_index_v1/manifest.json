@@ -1,0 +1,74 @@
+{
+  "dataset": "us_index_v1",
+  "purpose": "美股/全球指数日线（隔夜传导研究）",
+  "source": "tushare index_global",
+  "start_date": "2010-01-01",
+  "end_date": "2026-08-24",
+  "created_at_utc": "2026-08-24T09:50:51.378743+00:00",
+  "codes": {
+    "SPX": {
+      "rows": 4184,
+      "first_date": "2010-01-04",
+      "last_date": "2026-08-21",
+      "dup_dates": 0,
+      "pct_chg_mismatch": 0,
+      "thin_years": {},
+      "ok": true
+    },
+    "IXIC": {
+      "rows": 4184,
+      "first_date": "2010-01-04",
+      "last_date": "2026-08-21",
+      "dup_dates": 0,
+      "pct_chg_mismatch": 0,
+      "thin_years": {},
+      "ok": true
+    },
+    "DJI": {
+      "rows": 4184,
+      "first_date": "2010-01-04",
+      "last_date": "2026-08-21",
+      "dup_dates": 0,
+      "pct_chg_mismatch": 0,
+      "thin_years": {},
+      "ok": true
+    },
+    "RUT": {
+      "rows": 4192,
+      "first_date": "2010-01-04",
+      "last_date": "2026-08-21",
+      "dup_dates": 0,
+      "pct_chg_mismatch": 0,
+      "thin_years": {},
+      "ok": true
+    },
+    "XIN9": {
+      "rows": 4041,
+      "first_date": "2010-01-04",
+      "last_date": "2026-08-24",
+      "dup_dates": 0,
+      "pct_chg_mismatch": 0,
+      "thin_years": {},
+      "ok": true
+    },
+    "HSI": {
+      "rows": 4096,
+      "first_date": "2010-01-04",
+      "last_date": "2026-08-24",
+      "dup_dates": 0,
+      "pct_chg_mismatch": 0,
+      "thin_years": {},
+      "ok": true
+    },
+    "HKTECH": {
+      "rows": 2864,
+      "first_date": "2014-12-31",
+      "last_date": "2026-08-24",
+      "dup_dates": 0,
+      "pct_chg_mismatch": 0,
+      "thin_years": {},
+      "ok": true
+    }
+  },
+  "normalized_rows": 27745
+}
