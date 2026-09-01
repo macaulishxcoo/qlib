@@ -66,3 +66,6 @@ tags
 data/external/tushare/a_share_daily_basic_pit_v1/normalized/daily_basic.csv.gz
 data/external/tushare/moneyflow_pit_v1/normalized/moneyflow.csv.gz
 data/external/tushare/margin_pit_v1/normalized/margin_detail.csv.gz
+
+# Local virtualenvs
+.venv-rqalpha/

@@ -51,13 +51,14 @@ python scripts/run_daily_signal_pipeline_v1.py --date 2026-06-30 --top-k 30 --li
 | `qlib/` | Qlib 上游核心库（勿改，除非明确需要） |
 | `data/external/tushare/` | **外部数据（4.4GB）**，见 §4 |
 | `data/derived/` | 派生数据（股票分类 v1/v2、事件面板） |
-| `scripts/` | **全部自定义研究/回测/管道脚本**（约 60 个） |
+| `scripts/` | **自定义研究/回测/管道脚本**（2026-09-01 瘦身后 33 个：主策略链 + 五因子回测 + 近期闭环实验；线1/线3 已闭环脚本已删，结论见 decisions） |
 | `scripts/data_collector/` | 下载/审计/更新脚本 |
-| `output/analysis_fundamental/` | 基本面线实验结果（每策略一个目录） |
-| `output/analysis_static/` | 静态/日频线实验结果 |
+| `output/analysis_fundamental/` | 基本面线保留结果：v6_dailygrid（**管道 replay 一致性参照，勿删**）、v8_top15、五因子最终线、distress_split |
+| `output/analysis_static/` | 仅 `us_overnight_conduction_v1/`（最新闭环证据） |
 | `output/live_ledger/` | 信号名单（`signal_*.csv`，含实盘月度名单） |
 | `output/signal_ledger/` | 信号/持仓/组合三账本（replay 用） |
 | `output/paper_trading/` | 模拟盘 nav_log |
+| `output/holdings_3strategies_cap3_2026/` | 三策略 A/B/C 持仓对比（含 lots） |
 | `research/charters/` | 章程（母池定义） |
 | `research/protocols/` | 冻结的实验协议（每个实验先写协议再执行） |
 | `research/decisions/` | **结论文档**（每个闭环一条 closure；唯一证据源） |
@@ -65,7 +66,11 @@ python scripts/run_daily_signal_pipeline_v1.py --date 2026-06-30 --top-k 30 --li
 | `DEV_LOG_*.md` | 开发日志（RollingTraining=线1；DailyStrategyExploration=线3） |
 | `PROJECT_SYNC.md` | 本文件 |
 | `metrics_judgment_standard.md` | IC/IR/MDD/换手率等指标评审标准 |
-| `alpha158_factor_guide.md` | Alpha158 因子指南（线1资产） |
+
+> **2026-09-01 清理说明**：线1/线3 已闭环实验的脚本与产物已删除（先 commit 后删，
+> 归档备份在项目外 `/home/xiaocong/qlib_archive_20260901/output_experiments_full.tar.gz`，
+> 316MB，含全量旧 output）。`alpha158_factor_guide.md`、`price_in_check.py`、
+> `debug_pipeline.py`、`.venv-rqalpha`、`.venv-quant`、`build/` 等亦已删除。
 
 ---
 
@@ -203,8 +208,9 @@ python scripts/run_daily_signal_pipeline_v1.py --date 2026-06-30 --top-k 30 --li
 4. （可选）三策略 A/B/C 对比脚本补入库 + 对应的决策文档。
 
 **执行层验证（新方向，2026-08-21 评估）**：
-- **RQAlpha 重测**：评估文档 `RQALPHA_BACKTEST_COMPARISON_AND_FEASIBILITY.md`——rqalpha 6.3.0
-  已装于 `.venv-rqalpha`（独立 venv，勿动 qlib 主环境）；路线 = 方案 C（qlib 侧补红利税/真实涨跌停，
+- **RQAlpha 重测**：评估文档 `RQALPHA_BACKTEST_COMPARISON_AND_FEASIBILITY.md`——
+  （2026-09-01 清理时 `.venv-rqalpha` 已删，启动前需重建 venv 并 `pip install rqalpha==6.3.0`）；
+  路线 = 方案 C（qlib 侧补红利税/真实涨跌停，
   0.5 天）→ 方案 A（自建 bundle 重测，2.5 天，唯一硬缺口 = tushare `dividend` 表）。
   动机：本项目用后复权价无红利税、涨跌停 9.5% 近似；RQAlpha 用真实价+分红税+精确涨跌停，
   对齐"实盘真实度"（本策略高股息暴露，税差异估计 0.3~0.6pp/年）。
@@ -273,3 +279,5 @@ python scripts/data_collector/update_daily_basic_v1.py
 | 2026-08-21 | 新增 RQAlpha 评估文档（`RQALPHA_BACKTEST_COMPARISON_AND_FEASIBILITY.md`）：rqalpha 6.3.0 装于 `.venv-rqalpha`；差额口径（无红利税/9.5% 涨跌停 vs 真实口径）；bundle 全格式已查明；方案 C→A 路线入 §8 |
 | 2026-08-21 | 新立实验方向：美股隔夜→A 股传导（协议 `us_market_overnight_conduction_protocol_v1.md`，draft 待批准；tushare index_global 实测可用，美股个股无权限） |
 | 2026-08-24 | 美股传导实验**闭环**：下载 7 指数 2010 起（`us_index_v1/`，tushare 分页漂移 bug 规避）；P1/P2 完成 → `overnight_priced_at_open`（gap β=0.279/R²26%）+ `intraday_overtrading_reversal_weak`（β=−0.08，不可交易）；闭关于 `us_overnight_conduction_closure_v1.md` |
+| 2026-09-01 | 数据入库：daily_basic 增量至 2026-08-31、`us_index_v1`；实验记录入库：财务困境分层（`distress_split_supported`）、美股传导行业级 P3（`sector_matching_not_supported`）、风格切换验证（style_switch）、板块分层工具（board_segmentation） |
+| 2026-09-01 | **全仓瘦身**：删除线1/线3 已闭环实验脚本（约 30 个）与旧版回测产物（output 430MB→33MB），全部归档于项目外 `/home/xiaocong/qlib_archive_20260901/output_experiments_full.tar.gz`；`.venv-rqalpha`/`.venv-quant`/`build/` 等环境已删（RQAlpha 重测若启动需重建 venv，评估文档保留）；主策略链 19 脚本导入验证 + replay 冒烟通过（v6 参照读取正常，mismatch 为五因子 vs 四因子参照的预期差异） |
