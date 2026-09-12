@@ -25,7 +25,7 @@ OUT2 = ROOT / 'output/analysis_fundamental/microcap_topn_exec_v1'
 for d in (OUT1, OUT2):
     d.mkdir(parents=True, exist_ok=True)
 
-START, END = '2020-01-01', '2026-08-31'
+START, END = '2018-06-01', '2026-08-31'
 BT_START = pd.Timestamp('2022-01-04')
 CRASH = (pd.Timestamp('2024-01-01'), pd.Timestamp('2024-02-29'))
 COST = 0.0080  # microcap 单边
@@ -133,13 +133,16 @@ turn = (V * 100) / ts_daily.where(ts_daily > 0)
 sd21 = turn.rolling(21).std()
 sd252 = turn.rolling(252).std()
 S_bias = sd21 / sd252 - 1
+sd42_504 = turn.rolling(42).std()
+sd504 = turn.rolling(504).std()
+S_bias42 = sd42_504 / sd504 - 1
 dif = C.ewm(span=12, adjust=False).mean() - C.ewm(span=26, adjust=False).mean()
 S_macd = 2 * (dif - dif.ewm(span=9, adjust=False).mean())
 S_std21 = RET.rolling(21).std()
 
 FI_SIGNALS = {'delta_gpm': fi.set_index('ts_code')[['delta_gpm', 'available_date', 'end_date']],
               'pa': fi.set_index('ts_code')[['pa', 'available_date', 'end_date']]}
-DAILY_SIGNALS = {'Z1': Z1, 'bias_21_252': S_bias, 'MACD_neg': -S_macd, 'std_21d_neg': -S_std21}
+DAILY_SIGNALS = {'Z1': Z1, 'bias_21_252': S_bias, 'bias_42_504': S_bias42, 'MACD_neg': -S_macd, 'std_21d_neg': -S_std21}
 
 
 def qlib_idx(ts_codes):
@@ -271,7 +274,7 @@ print(crash_days.iloc[::5].round(3).to_string())
 
 # ---------------- Z_final（五簇: Z1 / delta_gpm+pa / bias / MACD / std21） ----------------
 print('[signal] Z_final ...', flush=True)
-CLUSTERS = [['Z1'], ['delta_gpm', 'pa'], ['bias_21_252'], ['MACD_neg'], ['std_21d_neg']]
+CLUSTERS = [['Z1'], ['delta_gpm', 'pa'], ['bias_42_504', 'bias_21_252'], ['MACD_neg'], ['std_21d_neg']]
 Z_final = None
 for comp in CLUSTERS:
     parts = [cs_rank(DAILY_SIGNALS[s]) for s in comp if s in DAILY_SIGNALS]
@@ -297,120 +300,142 @@ mf = [d for d in td_s.groupby(trading_days.to_period('M')).min().sort_values()
       if np.searchsorted(me_domain, np.datetime64(d), side='right') - 1 >= 0]
 print(f'[bt] 调仓月数={len(mf)}', flush=True)
 
-TRIGGERS = {
-    'v1_dd_half': lambda t: pd.notna(V1.get(t, np.nan)) and V1.get(t) < -0.08,
-    'v2_amt_half': lambda t: pd.notna(V2.get(t, np.nan)) and V2.get(t) < 0.7,
-    'v3_style_half': lambda t: pd.notna(V3.get(t, np.nan)) and V3.get(t) > 3.0,
-}
+F_V1 = (V1 < -0.08).fillna(False)   # 日频布尔触发序列
+F_V2 = (V2 < 0.7).fillna(False)
+F_V3 = (V3 > 3.0).fillna(False)
+FIRE = {'v1_dd_half': F_V1, 'v2_amt_half': F_V2, 'v3_style_half': F_V3}
+F_COMBO = F_V1 | F_V2 | F_V3
+# 解除条件: 连续 5 日未触发
+F_CLEAR = {}
+for _k, _f in list(FIRE.items()) + [('combo_or', F_COMBO)]:
+    _g = _f.rolling(5).sum()
+    F_CLEAR[_k] = (_g == 0) & _f.notna()
 
 
 def run(arm, cost=COST, top_n=None):
-    """月度调仓 + 逐日状态减仓（协议: 触发 T+1 执行半仓, 解除连续 5 日恢复）。"""
-    cash, holdings = 1.0, {}
+    """月度调仓（T 收盘生成目标, T+1 开盘成交）+ 日频状态乘数（T 收盘判断, T+1 开盘执行）。
+    会计: 逐票市值随价格漂移（真实买入持有）, NAV = 现金 + Σ v_i。"""
+    nav, cash = 1.0, 1.0
+    v = {}  # sym -> 市值(NAV 单位)
     navs, turns = [], []
-    weight_state = 1.0  # 当前仓位乘数
-    below_since = None
+    weight_state = 1.0
+    pending_swap = None   # (fill_day, {sym: w}, to)
+    pending_state = None  # (exec_day, multiplier)
     trigger_log = []
-    for i in range(len(mf) - 1):
-        d = mf[i]
-        d1 = mf[i + 1]
-        cp = cal.get_loc(d)
-        buy = cal[cp + 1]
-        ep = cal.get_loc(d1)
-        sell = cal[min(ep + 1, len(cal) - 1)]
-        dom = domain_for(d)
-        bad = bad_at(d)
-        cands = [s for s in C.columns if s in dom and s not in bad]
-        if len(cands) < 50:
-            navs.append((d1, cash, len(holdings)))
+    is_state_arm = arm in FIRE or arm == 'combo_or'
+    if is_state_arm:
+        fire_ser = F_COMBO if arm == 'combo_or' else FIRE[arm]
+        clear_ser = F_CLEAR[arm]
+    else:
+        fire_ser = clear_ser = None
+
+    for idx, t in enumerate(trading_days):
+        if t < mf[0] or idx >= len(trading_days) - 2:
             continue
-        z = Z_final.loc[d].reindex(cands).dropna()
-        if arm == 'pool_ew':
-            w = pd.Series(1.0, index=z.index)
-        elif top_n:
-            top = z.nlargest(top_n).index
-            wz = 1.0 + 0.5 * (z.loc[top].rank(pct=True) - 0.5)
-            w = wz / wz.sum()
-        else:  # enhance_full
-            w = 1.0 + 0.5 * (z.rank(pct=True) - 0.5)
-            w = w / w.sum()
-        # 状态触发（T 日收盘判断, 影响本月建仓仓位）
-        if arm in TRIGGERS:
-            if TRIGGERS[arm](d):
-                weight_state = 0.5
-                below_since = d
-                trigger_log.append(str(d.date()))
-            else:
-                # 解除: 状态正常持续 ≥5 个交易日才恢复全仓
-                ok_run = True
-                idx_now = cal.get_loc(d)
-                if idx_now >= 5:
-                    for k in range(1, 6):
-                        dt = cal[idx_now - k]
-                        if TRIGGERS[arm](dt):
-                            ok_run = False
-                            break
-                if ok_run:
-                    weight_state = 1.0
-                    below_since = None
-        elif arm == 'combo_or':
-            fired = any(fn(d) for fn in TRIGGERS.values())
-            if fired:
-                weight_state = 0.5
-                trigger_log.append(str(d.date()))
-            else:
-                idx_now = cal.get_loc(d)
-                ok_run = True
-                if idx_now >= 5:
-                    for k in range(1, 6):
-                        dt = cal[idx_now - k]
-                        if any(fn(dt) for fn in TRIGGERS.values()):
-                            ok_run = False
-                            break
-                if ok_run:
-                    weight_state = 1.0
-        w_eff = w * weight_state
-        # 现金部分: (1-仓位) 留现金
-        invest_frac = weight_state
-        o_buy = O.loc[buy]
-        new_h = {s: wv * invest_frac for s, wv in w_eff.items()
-                 if pd.notna(o_buy.get(s, np.nan)) and o_buy.get(s, 0) > 0}
-        old, new = set(holdings), set(new_h)
-        to = (len(old - new) + len(new - old)) / 2 / max(len(new), 1) if new else 1.0
-        cash *= (1 - cost * to)
-        turns.append(to)
-        holdings = new_h
-        o_sell = O.loc[sell]
-        rets, wsum = [], 0.0
-        for s, wv in holdings.items():
-            b, sl = o_buy.get(s, np.nan), o_sell.get(s, np.nan)
-            if pd.notna(b) and pd.notna(sl) and b > 0:
-                rets.append(wv * (sl / b - 1))
-                wsum += wv
-        pr = sum(rets) / wsum if wsum > 0 else 0.0
-        cash += (1 - invest_frac) * 0  # 现金收益 0（保守）
-        cash *= (1 + pr)
-        navs.append((d1, cash, len(holdings)))
+        i = CIDX[t]
+        # ---- 1) 当日计价: 持仓自 (t-1) 开盘持有至 t 开盘（停牌冻结, 比例成本日不计） ----
+        port_dv = 0.0
+        for s, vi in v.items():
+            j = SIDX.get(s)
+            r = 0.0
+            if j is not None:
+                c0, c1 = RN[i, j], ON[i, j]
+                if np.isfinite(c0) and np.isfinite(c1) and c0 > 0:
+                    r = c1 / c0 - 1
+            vi_new = vi * (1 + r)
+            port_dv += vi_new - vi
+            v[s] = vi_new
+        nav += port_dv
+        # ---- 2) T 开盘执行（计价之后: 今天开盘前的收益归旧持仓） ----
+        # a. 状态切换
+        if is_state_arm and pending_state is not None and pending_state[0] == t:
+            new_st = pending_state[1]
+            inv = sum(v.values())
+            if inv > 0:
+                if new_st < weight_state:
+                    frac_sell = (weight_state - new_st) / max(weight_state, 1e-9)
+                    nav -= inv * frac_sell * cost
+                    for s in v:
+                        v[s] *= (1 - frac_sell)
+                elif new_st > weight_state and cash > 0:
+                    frac_buy = min((new_st - weight_state) / max(weight_state, 1e-9), cash / inv)
+                    nav -= inv * frac_buy * cost
+                    for s in v:
+                        v[s] *= (1 + frac_buy)
+            weight_state = new_st
+            pending_state = None
+        # b. 调仓成交（全部卖出 → 按目标权重买入, 单次换手成本）
+        if pending_swap is not None and pending_swap[0] == t:
+            _, w, to = pending_swap
+            nav *= (1 - cost * to)
+            v = {}
+            for s, wi in w.items():
+                j = SIDX.get(s)
+                if j is not None and np.isfinite(ON[i, j]) and ON[i, j] > 0:
+                    v[s] = wi * weight_state * nav
+            cash = nav - sum(v.values())
+            turns.append(to)
+            pending_swap = None
+        cash = nav - sum(v.values())
+        navs.append((t, nav, len(v)))
+        # ---- 3) T 收盘: 状态判断（T+1 开盘生效）+ 调仓目标生成（T+1 开盘成交） ----
+        if is_state_arm:
+            if bool(fire_ser.at[t]):
+                if weight_state == 1.0 and pending_state is None:
+                    pending_state = (trading_days[idx + 1], 0.5)
+                    trigger_log.append(str(t.date()))
+            elif weight_state == 0.5 and pending_state is None and bool(clear_ser.at[t]):
+                pending_state = (trading_days[idx + 1], 1.0)
+        if t in mf_set:
+            dom = domain_for(t)
+            bad = bad_at(t)
+            cands = [s for s in C.columns if s in dom and s not in bad]
+            if len(cands) >= 50:
+                z = Z_final.loc[t].reindex(cands).dropna()
+                if len(z):
+                    if arm == 'pool_ew':
+                        w = pd.Series(1.0, index=z.index)
+                        w = w / w.sum()
+                    elif top_n:
+                        top = z.nlargest(top_n).index
+                        wz = 1.0 + 0.5 * (z.loc[top].rank(pct=True) - 0.5)
+                        w = wz / wz.sum()
+                    else:
+                        w = 1.0 + 0.5 * (z.rank(pct=True) - 0.5)
+                        w = w / w.sum()
+                    old, new = set(v), set(w.index)
+                    to = (len(old - new) + len(new - old)) / 2 / max(len(new), 1) if new else 1.0
+                    pending_swap = (trading_days[idx + 1], w.to_dict(), to)
     df = pd.DataFrame(navs, columns=['datetime', 'nav', 'n']).set_index('datetime')
     return df, (float(np.mean(turns)) if turns else np.nan), trigger_log
 
 
+mf_set = set(mf)
+D_RET = O.shift(1)         # 开盘→开盘口径（与 fusion 月频引擎一致）
+CN = O.to_numpy()
+RN = D_RET.to_numpy()
+ON = O.to_numpy()
+CIDX = {d: i for i, d in enumerate(cal)}
+SIDX = {s: j for j, s in enumerate(C.columns)
+        if True}
 print('\n[exp1] 状态减仓臂 ...', flush=True)
 ARMS1 = ['base_enhance', 'v1_dd_half', 'v2_amt_half', 'v3_style_half', 'combo_or']
 rows, navs1, trig_summary = [], {}, {}
 for arm in ARMS1:
     df, to, tlog = run(arm)
-    r = df['nav'].pct_change().dropna()
+    r_d = df['nav'].pct_change().dropna()
+    r_m = df['nav'].resample('ME').last().pct_change().dropna()
     years = (df.index[-1] - df.index[0]).days / 365.25
     cagr = df['nav'].iloc[-1] ** (1 / years) - 1
     mdd = (df['nav'] / df['nav'].cummax() - 1).min()
-    ir = r.mean() / r.std() * np.sqrt(12) if r.std() > 0 else np.nan
+    ir = r_m.mean() / r_m.std() * np.sqrt(12) if r_m.std() > 0 else np.nan
     seg = df['nav'].loc[CRASH[0]:CRASH[1]]
     crash_ret = seg.iloc[-1] / df['nav'].loc[:CRASH[0]].iloc[-1] - 1 if len(seg) else np.nan
     rows.append({'arm': arm, 'CAGR': cagr, 'IR': ir, 'MDD': mdd, 'final_nav': df['nav'].iloc[-1],
-                 'avg_turnover': to, 'n_trigger_months': len(tlog), 'crash_2024': crash_ret})
+                 'avg_turnover': to, 'n_trigger_days': len(tlog), 'crash_2024': crash_ret})
     navs1[arm] = df['nav']
     trig_summary[arm] = tlog
+    df['nav'].to_csv(OUT1 / f'nav_{arm}.csv')
     print(f'  {arm}: CAGR={cagr:+.1%} IR={ir:.2f} MDD={mdd:.1%} 触发月={len(tlog)} 崩盘段={crash_ret:+.1%}', flush=True)
 
 bt1 = pd.DataFrame(rows)
@@ -423,15 +448,16 @@ dec1 = []
 for _, r in bt1.iterrows():
     if r['arm'] == 'base_enhance':
         continue
-    if r['MDD'] <= -0.20 and r['CAGR'] >= 0.18:
+    mdd_gain = r['MDD'] - base['MDD']  # 正值=MDD 变浅
+    if r['MDD'] >= -0.20 and r['CAGR'] >= 0.18:
         tier = 'risk_engineering_passed'
-    elif base['MDD'] - r['MDD'] >= 0.05 and r['CAGR'] < 0.18:
+    elif mdd_gain >= 0.05 and r['CAGR'] < 0.18:
         tier = 'risk_mdd_fixed_cost_high'
-    elif base['MDD'] - r['MDD'] < 0.02:
+    elif mdd_gain < 0.02:
         tier = 'state_variable_dead'
     else:
         tier = 'mdd_improved_partial'
-    dec1.append({'arm': r['arm'], 'tier': tier, 'MDD_gain': base['MDD'] - r['MDD'],
+    dec1.append({'arm': r['arm'], 'tier': tier, 'MDD_gain': mdd_gain,
                  'CAGR_cost': r['CAGR'] - base['CAGR']})
 dd1 = pd.DataFrame(dec1)
 dd1.to_csv(OUT1 / 'decision_exp1.csv', index=False)
@@ -443,13 +469,14 @@ ARMS2 = [('enhance_full', None), ('enhance_top150', 150), ('enhance_top100', 100
 rows2, navs2 = [], {}
 for arm, tn in ARMS2:
     df, to, _ = run(arm, top_n=tn)
-    r = df['nav'].pct_change().dropna()
+    r_m2 = df['nav'].resample('ME').last().pct_change().dropna()
     years = (df.index[-1] - df.index[0]).days / 365.25
     cagr = df['nav'].iloc[-1] ** (1 / years) - 1
     mdd = (df['nav'] / df['nav'].cummax() - 1).min()
-    ir = r.mean() / r.std() * np.sqrt(12) if r.std() > 0 else np.nan
+    ir = r_m2.mean() / r_m2.std() * np.sqrt(12) if r_m2.std() > 0 else np.nan
     rows2.append({'arm': arm, 'CAGR': cagr, 'IR': ir, 'MDD': mdd, 'avg_turnover': to})
     navs2[arm] = df['nav']
+    df['nav'].to_csv(OUT2 / f'nav_{arm}.csv')
     print(f'  {arm}: CAGR={cagr:+.1%} IR={ir:.2f} MDD={mdd:.1%} 换手={to:.1%}', flush=True)
 
 bt2 = pd.DataFrame(rows2)
