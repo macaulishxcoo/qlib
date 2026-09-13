@@ -204,7 +204,10 @@ python scripts/run_daily_signal_pipeline_v1.py --date 2026-06-30 --top-k 30 --li
 
 **研究（未测方向，按 DEV_LOG_DailyStrategyExploration.md §5 + 数据盘点）**：
 1. **业绩预告增速**（`a_share_forecast_v1`，2022 起）：成长因子高频领先版本，独立事件族实验；
-2. **融券余量信号**（rqye/rqyl/rqmcl）："空头在定价坏消息"的直接度量，已入库从未消费；
+2. ~~**融券余量信号**（rqye/rqyl/rqmcl）~~ → **已测并关闭**（2026-09-13）：
+   方向正确（IC 全负）、与价量及 rzye 正交（最大 |corr| 0.22）、3/4 通过 T-1 滞后对齐，
+   但效应量不足（主口径 h=5 \|IC\| 0.0237 vs 门槛 0.05；h=20 仅 0.0406）。
+   见 `research/decisions/a_share_short_interest_signal_closure_v1.md`；
 3. **涨幅类上榜（涨停/连板）**：top_list reason 文本已有（零下载），T+1 开盘行为；
 4. **行业轮动/行业内相对恶化**：财务 + 申万行业已有，状态型/轮动型两种形态；
 5. **指数调整/行业轮动**：指数调整已关闭；sw_industry_index_v1 未测。
@@ -253,3 +256,5 @@ python scripts/data_collector/update_daily_basic_v1.py
 | 日期 | 变更 |
 |---|---|
 | 2026-08-21 | 创建：全仓盘点后生成项目总览（结构/数据/三研究线/实盘状态/待办/红线），供新会话直接入口 |
+| 2026-09-13 | 关闭 §8 研究候选第 2 条（融券信号）：四信号方向正确、正交、通过滞后对齐，但效应量不足 → `not_supported_closed`，见 `research/decisions/a_share_short_interest_signal_closure_v1.md` |
+| 2026-09-13 | 迁移到新机器后的环境与数据重建记录：见 `research/docs/MIGRATION_STATUS_2026-09.md`（WSL2 + CPython 3.12 + pyqlib 0.9.7；`cn_data_2026` 重建为 2015-2026、5,802 只；`main` 与五因子 top30_cap3 已复现，cap3 集中度逐位一致） |
