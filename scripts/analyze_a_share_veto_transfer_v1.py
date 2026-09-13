@@ -42,7 +42,7 @@ from backtest_a_share_five_factor_daily_execution_v1 import (  # noqa: E402
 from backtest_a_share_value_quality_monthly_dailygrid_v6 import DAILY_BASIC  # noqa: E402
 
 CAPITAL = 500_000.0
-SIGNALS = ["size_small", "rev_20", "rev_5", "lowvol", "lowturn"]
+SIGNALS = ["size_small", "rev_20", "rev_5", "lowvol", "lowturn", "lowprice"]
 
 
 def log(m):
@@ -77,6 +77,9 @@ def build_alt_panels(snap_dates: pd.DatetimeIndex) -> dict:
     to = db.pivot_table(index="datetime", columns="ts_code", values="turnover_rate", aggfunc="sum")
     panels["size_small"] = (-np.log(mv.where(mv > 0))).reindex(snap_dates)
     panels["lowturn"] = (-to).reindex(snap_dates)
+    # 低名义价格: 用于检验"价格可行性过滤"里那部分选股贡献是否真是 alpha。
+    # 注意这是【截面价格排序】, 不是"排除高价"这个可行性约束本身。
+    panels["lowprice"] = (-C).reindex(snap_dates)
     log(f"      panels: { {k: v.shape for k, v in panels.items()} }")
     return panels
 
