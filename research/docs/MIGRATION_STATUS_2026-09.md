@@ -93,6 +93,41 @@ rows with relative error > 1e-4: 0  (0.0000%)
 
 验证脚本：`scripts/migration/validate_prices_vs_daily_basic_v1.py`。
 
+### 9.4 五因子 top30_cap3（最终实盘形态）：跑通，结构与结论一致
+
+`scripts/backtest_a_share_value_growth_five_factor_industry_cap_v3.py` 在新数据上跑通
+（`output/analysis_fundamental/a_share_value_growth_five_factor_industry_cap_v3/`）。
+
+**stress 费率下 net 超额：**
+
+| 阶段 | top15_cap3 | top15_free | **top30_cap3** | top30_free |
+|---|---|---|---|---|
+| development | +0.214 | +0.213 | +0.250 | +0.243 |
+| confirmation | −0.085 | −0.083 | −0.009 | −0.044 |
+| holdout | +0.039 | +0.028 | **+0.152** | +0.127 |
+| new_coverage | −0.236 | −0.306 | **−0.247** | −0.242 |
+| full | +0.045 | +0.035 | **+0.105** | +0.088 |
+
+**与记录（PROJECT_SYNC §5.2）对照：**
+
+| 项 | 记录 | 本次复现 | 一致性 |
+|---|---|---|---|
+| top30_cap3 full IR | 0.94 | 0.825 | 方向一致（四臂最高） |
+| holdout IR | 1.09 | 1.286 | 方向一致 |
+| full MDD | −25.9% | −27.2% | 接近 |
+| new_coverage | −16.8% | −24.7% | **同向，程度更差** |
+| **单行业占比** | **10%** | **10.0%** | **完全一致** |
+| **前三行业占比** | **29.9%** | **29.97%** | **完全一致** |
+
+**结论**：
+1. 组合构建层（行业 cap3）**逐位复现**（单行业 10.0%、前三 29.97%），说明信号与选择逻辑正确；
+2. 四臂排序与"top30_cap3 为最优形态"的结论**成立**；
+3. 已知的 **2026 风格逆风在复现中同样出现且更严重**（new_coverage −24.7%）——
+   这印证了 PROJECT_SYNC §5 记录的未解问题，且说明它**不是旧数据的偶然**；
+4. 值得注意：**top30_cap3 全期 stress 后净超额 +10.5%**，本身已越过"扣成本后 ≥10%"的门槛，
+   但完全由 development + holdout 贡献，**new_coverage 段是净拖累**。所以真正的瓶颈不是
+   "找不到 >10% 的策略"，而是**该策略在 2025-07 之后的风格逆风下失效**。
+
 ---
 
 ## 2. 已核实：完好无损的资产
