@@ -1,0 +1,68 @@
+# https://github.com/github/gitignore/blob/master/Python.gitignore
+__pycache__/
+
+*.pyc
+*.pyd
+*.so
+*.ipynb
+.ipynb_checkpoints
+_build
+build/
+dist/
+
+*.pkl
+*.hd5
+*.csv
+
+.env
+.vim
+.nvimrc
+.vscode
+
+qlib/VERSION.txt
+qlib/data/_libs/expanding.cpp
+qlib/data/_libs/rolling.cpp
+qlib/_version.py
+examples/estimator/estimator_example/
+examples/rl/data/
+examples/rl/checkpoints/
+examples/rl/outputs/
+examples/rl_order_execution/data/
+examples/rl_order_execution/outputs/
+
+*.egg-info/
+
+# test related
+test-output.xml
+.output
+.data
+
+# special software
+mlruns/
+output/
+.zcode/
+.qoder/
+debug_pipeline.py
+run_rolling_check.py
+*.log
+
+tags
+
+.pytest_cache/
+.mypy_cache/
+.vscode/
+
+*.swp
+
+./pretrain
+.idea/
+.aider*
+
+# Local virtualenvs
+.venv-quant/
+
+# Oversized normalized files are stored in git as .partNN chunks instead.
+# Rebuild the originals with: python scripts/data_collector/reassemble_large_data_v1.py
+data/external/tushare/a_share_daily_basic_pit_v1/normalized/daily_basic.csv.gz
+data/external/tushare/moneyflow_pit_v1/normalized/moneyflow.csv.gz
+data/external/tushare/margin_pit_v1/normalized/margin_detail.csv.gz

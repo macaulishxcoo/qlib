@@ -1,0 +1,91 @@
+# Fixed comparison v1, Version B: 13 development-selected core features.
+# Run only after protocol review:
+# qrun examples/benchmarks/LightGBM/workflow_config_lightgbm_csi1000_cmp_b_core13_v1.yaml --uri_folder output/mlruns_static
+experiment_name: static_csi1000_cmp_b_core13_v1
+qlib_init:
+    provider_uri: "~/.qlib/qlib_data/cn_data_2026"
+    region: cn
+market: &market csi1000
+benchmark: &benchmark SH000852
+data_handler_config: &data_handler_config
+    start_time: 2020-01-01
+    end_time: 2026-07-23
+    instruments: *market
+    data_loader:
+        class: QlibDataLoader
+        kwargs:
+            config:
+                feature:
+                    - ["Std($close, 5)/$close", "($high-$low)/$open", "Std($close, 10)/$close", "Std($close, 60)/$close", "Std($close, 20)/$close", "Min($low, 60)/$close", "$high/$close", "Corr($close/Ref($close,1), Log($volume/Ref($volume, 1)+1), 20)", "Corr($close, Log($volume+1), 10)", "Max($high, 5)/$close", "($high-Greater($open, $close))/$open", "Corr($close, Log($volume+1), 20)", "Corr($close/Ref($close,1), Log($volume/Ref($volume, 1)+1), 10)"]
+                    - ["STD5", "KLEN", "STD10", "STD60", "STD20", "MIN60", "HIGH0", "CORD20", "CORR10", "MAX5", "KUP", "CORR20", "CORD10"]
+                label:
+                    - ["Ref($close, -2)/Ref($close, -1) - 1"]
+                    - ["LABEL0"]
+            freq: day
+    # Keep feature preprocessing identical to Qlib's raw Alpha158 handler.
+    infer_processors: []
+    learn_processors:
+        - class: DropnaLabel
+        - class: CSZScoreNorm
+          kwargs:
+            fields_group: label
+port_analysis_config: &port_analysis_config
+    strategy:
+        class: TopkDropoutStrategy
+        module_path: qlib.contrib.strategy
+        kwargs:
+            signal: <PRED>
+            topk: 50
+            n_drop: 5
+    backtest:
+        start_time: 2025-01-01
+        end_time: 2026-07-23
+        account: 100000000
+        benchmark: *benchmark
+        exchange_kwargs:
+            limit_threshold: 0.095
+            deal_price: close
+            open_cost: 0.0005
+            close_cost: 0.0015
+            min_cost: 5
+task:
+    model:
+        class: LGBModel
+        module_path: qlib.contrib.model.gbdt
+        kwargs:
+            loss: mse
+            colsample_bytree: 0.9
+            learning_rate: 0.1
+            subsample: 0.9
+            lambda_l1: 205.6999
+            lambda_l2: 580.9768
+            max_depth: 8
+            num_leaves: 250
+            num_threads: 20
+    dataset:
+        class: DatasetH
+        module_path: qlib.data.dataset
+        kwargs:
+            handler:
+                class: DataHandlerLP
+                module_path: qlib.data.dataset.handler
+                kwargs: *data_handler_config
+            segments:
+                train: [2020-01-01, 2022-12-31]
+                valid: [2023-01-01, 2024-12-31]
+                test: [2025-01-01, 2026-07-23]
+    record:
+        - class: SignalRecord
+          module_path: qlib.workflow.record_temp
+          kwargs:
+            model: <MODEL>
+            dataset: <DATASET>
+        - class: SigAnaRecord
+          module_path: qlib.workflow.record_temp
+          kwargs:
+            ana_long_short: False
+            ann_scaler: 252
+        - class: PortAnaRecord
+          module_path: qlib.workflow.record_temp
+          kwargs:
+            config: *port_analysis_config
