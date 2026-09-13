@@ -275,3 +275,6 @@ python scripts/data_collector/update_daily_basic_v1.py
 | 2026-09-13 | 迁移到新机器后的环境与数据重建记录：见 `research/docs/MIGRATION_STATUS_2026-09.md`（WSL2 + CPython 3.12 + pyqlib 0.9.7；`cn_data_2026` 重建为 2015-2026、5,802 只；`main` 与五因子 top30_cap3 已复现，cap3 集中度逐位一致） |
 | 2026-09-13 | 开启并按协议关闭**隔夜/日内收益分解日频因子线**（用户要求转向真正日频、不再沿月频主线）：端点 A RankIC 强通过（`id_vol_20` IC −0.078 / t −20.6），端点 B 扣成本多头组合 28 个组合 stress 下无一为正 → `not_supported`。十分位诊断揭示 IC 由单个极端十分位制造、截面 90% 平坦，回溯解释教训 1。见 `research/decisions/a_share_overnight_intraday_daily_closure_v1.md`；§8 新增第 6/7 条方法论要求，第 3 条（涨停/连板）优先级提升 |
 | 2026-09-13 | 修复五因子线 balancesheet 读取路径缺陷（`load_financials_extended_v1.py` 增加 `BAL_FULL` 基址）→ top30_cap3 全期 stress IR 0.825 → **0.630**，全期净 +0.0836；commit `737d985` |
+| 2026-09-13 | 开启并按协议关闭**涨停板事件日频策略线**：39 个 h×分档单元**全部为负**（两半样本同号，t 达 −29），最接近中性的 `炸板 h=1` 也仅 −0.02%（t=−0.66）。4 条冻结先验中 **3 条被数据反向推翻**（一字板/缩量/封板越"强"负超额越大）→ `not_supported`。见 `research/decisions/a_share_limit_up_event_closure_v1.md` |
+| 2026-09-13 | **基准口径标定**（重要，影响后续所有超额口径）：等权全池月度再平衡 **+7.06%/年**，中证1000 **+2.39%/年**，差 **+4.67pp** 为小市值溢价。日度再平衡 bonus 仅 +0.47pp/年 → 此前"基准不可实现"的质疑**被证伪**，两条日频线的负结论**按原样成立**。后续协议须同时报"相对中证1000"与"相对等权全池"两组口径。见 `research/decisions/benchmark_calibration_v1.md` |
+| 2026-09-13 | 两条独立日频线（隔夜/日内、涨停事件）指向同一机制：**多头超额不在"买入强势股"，而在"避开极端强势股"**。毒尾否决价值量级 ≈ +3.2pp/年，定为下一线（否决过滤+宽基等权），见 §8 |
