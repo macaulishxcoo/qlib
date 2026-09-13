@@ -80,8 +80,13 @@ def load_signals(signal_pattern: str = "signal_*.csv") -> pd.DataFrame:
 
 
 def get_holdings_on(date: pd.Timestamp, signals: pd.DataFrame) -> list[str]:
-    """Get the list of ts_codes held on a given date (latest rebalance <= date)."""
-    valid = signals[signals["rebalance_date"] <= date]
+    """Get the list of ts_codes held on a given date (latest rebalance **before** date).
+
+    必须用严格小于: 信号在 t 日收盘生成、t+1 开盘成交, 故 t 日当天【还持有】上一期组合。
+    若用 <= , 调仓日会拿"新组合"去赚 t-1 收盘到 t 收盘的收益 —— 每个调仓日
+    凭空多出 1 天不可实现的前瞻收益 (10 日调仓下约占 10% 的交易日)。
+    """
+    valid = signals[signals["rebalance_date"] < date]
     if valid.empty:
         return []
     latest_rebal = valid["rebalance_date"].max()
@@ -236,7 +241,10 @@ def show_status() -> None:
         return
 
     latest = nav.iloc[-1]
-    start_nav = float(PORTFOLIO_CAPITAL)
+    # 初始资金应取 NAV 日志的首行, 而不是模块常量 PORTFOLIO_CAPITAL ——
+    # 后者只会在 --init 时被赋值, 故 --status 会一直显示 100,000,
+    # 与 --init --capital 500000 写下的净值序列不符, 算出 +390% 这类荒谬收益。
+    start_nav = float(nav.iloc[0]["nav"]) or float(PORTFOLIO_CAPITAL)
     total_return = (latest["nav"] / start_nav - 1) * 100
 
     # Compute benchmark total return

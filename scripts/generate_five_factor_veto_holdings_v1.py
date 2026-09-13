@@ -148,6 +148,17 @@ def main() -> int:
     h = pd.DataFrame(rows).sort_values("target_value", ascending=False)
     h["weight"] = h["target_value"] / h["target_value"].sum()
     total = float(h["target_value"].sum())
+
+    # --- 显式校验: asof 当日必须有非空价格 ---
+    # 此前因 store 日历领先于行情 21 天, 产出过一份"30 只全 0 股"的清单且不报错。
+    n_priced = int(np.isfinite(h["close"]).sum())
+    if n_priced == 0:
+        raise SystemExit(
+            f"asof={asof.date()} 查不到任何价格 —— 数据可能落后于日历。"
+            "请先运行 scripts/data_collector/update_daily_market_data_v1.py")
+    if n_priced < len(h) * 0.5:
+        log(f"      [warn] 仅 {n_priced}/{len(h)} 只有价格, 请核查数据完整性")
+
     path = OUT / f"holdings_{asof.date()}.csv"
     h.to_csv(path, index=False)
 
@@ -178,9 +189,20 @@ def main() -> int:
         "top_k": TOP_K, "industry_cap": CAP, "veto_q": VETO_Q,
         "n_holdings": int(len(h)), "invested": total,
         "utilization": total / args.capital,
+        "n_priced": n_priced,
         "next_rebalance_hint": "每 10 个交易日调仓; 下次 = 本日 +10 交易日",
     }, indent=2, ensure_ascii=False))
-    log(f"\n已写出: {path}")
+
+    # --- 写入 live_ledger, 供 paper_trading_tracker_v1.py 消费 ---
+    # 格式: output/live_ledger/signal_YYYY-MM-DD_<tag>.csv, 需含 ts_code 与 action
+    LEDGER = Path(__file__).resolve().parents[1] / "output" / "live_ledger"
+    LEDGER.mkdir(parents=True, exist_ok=True)
+    sig = h[["ts_code", "industry", "close", "shares", "target_value", "weight", "score"]].copy()
+    sig.insert(1, "action", "BUY")
+    sig_path = LEDGER / f"signal_{asof.date()}_ffveto.csv"
+    sig.to_csv(sig_path, index=False)
+    log(f"已写出 live_ledger: {sig_path}")
+    log(f"已写出: {path}")
     return 0
 
 
