@@ -1,15 +1,44 @@
 # 新机器迁移状态与恢复计划
 
-> 生成时间：2026-09-13
+> 生成时间：2026-09-13（最后更新：环境与数据已重建完成，见 §8）
 > 这条记录取代 `research/docs/RESEARCH_PLAN.md` / `RESUME.md` / `ENVIRONMENT.md` 里的环境部分。
-> 那三份文档写在"看不到仓库既有资产"的阶段，其中的自建系统 `research/cnquant` 已被本项目
-> 既有研究线取代，**不再作为主线**。
+> 那三份文档写在"看不到仓库既有资产"的阶段，其中的自建系统已归档到
+> `research/archive/parallel_track_2026-09/`（附说明），**不在主线上**。
+
+---
+
+## 8. 已完成：环境与数据重建（2026-09-13）
+
+用户安装 WSL2（Ubuntu 26.04）并提供 TUSHARE_TOKEN 后，以下工作已全部完成并验证：
+
+| 项 | 结果 |
+|---|---|
+| Python 环境 | `~/qlib-env`（uv 管理的 CPython **3.12.14**，无需 sudo、无需编译器） |
+| 关键包 | pandas **2.3.3**、numpy 2.5.3、scipy、statsmodels、pyarrow、scikit-learn、lightgbm 4.7.0、tushare 1.4.29、**pyqlib 0.9.7** |
+| lightgbm 修复 | 缺 `libgomp.so.1` → 从 `.deb` 解包到 `~/.local/lib`，已写入 venv activate |
+| token | `~/.config/tushare/token`（chmod 600） |
+| qlib 导入 | `python scripts/x.py` 时 `sys.path[0]=scripts/`，因此导入**已安装的 pyqlib**，而非缺编译扩展的本地 `qlib/` 源码 —— 已验证 |
+| 日线行情 | `data/external/tushare/market_daily_v1/raw/`：**2,822 个交易日（2015-01-05 ~ 2026-08-13），0 失败** |
+| qlib bin | `~/.qlib/qlib_data/cn_data_2026`：**2,843 天（2015-01-05 ~ 2026-09-11）**、58,020 个 feature 文件、483.8 MB、5,802 只 instrument |
+| 基准 | `SH000852` 可用（2,843 行，close 4149 ~ 15006） |
+| 路径移植 | 31 处硬编码路径改为 `$HOME` / 仓库相对路径（30 个文件）；**156 个 .py 全部编译通过** |
+| 版本控制 | 仓库原本**没有 `.git`**（旧机器的 .git 未一并拷贝）。已建立安全快照：894 个受版本控制文件（151 份 research 文档 + 160 个 scripts 文件），大数据通过 `.git/info/exclude` 本地排除 |
+
+验证脚本：`scripts/migration/verify_qlib_store_v1.py`（全部 PASS）。
+
+**已知口径差异（重要）**：新 bin 的复权常数取 `K = 1.0`（旧库按自身 bin 校准每股常数）。
+**收益率与旧库一致，绝对价位不一致**。仅影响 qlib 回测里 `min_cost=5` 的绝对量级，
+在 1 亿账户假设下无影响。
+
+**数据范围差异**：旧库 2000-2026，新库 **2015**-2026。已关闭的 CSI1000/Alpha158 线
+（训练段 2008-2020）若重跑，需要把 `--start` 往前推并重新拉取。
 
 ---
 
 ## 1. 一句话状态
 
 **代码、文档、4.19 GB 外部数据都完好；缺的只有"可运行的 Python 环境"和"日线行情数据"。**
+（→ 这两项已于 2026-09-13 重建完成，见上方 §8。）
 两者都有明确的恢复路径，且用户已选定方案（WSL2 + 提供 TUSHARE_TOKEN）。
 
 ---
