@@ -114,7 +114,9 @@ def main() -> int:
     print(f"  滚动12个月 中位/最差 {status['rolling_12m_median']:+.4f} / "
           f"{status['rolling_12m_min']:+.4f}")
     trig = status["rolling_12m_current"] is not None and status["rolling_12m_current"] < 0
-    print(f"\n状态: {'⚠ 滚动12个月为负 —— 触发复核' if trig else '正常'}")
+    print(f"\n状态: {'⚠ 滚动12个月(vs中证1000)为负' if trig else '正常'}")
+    print("注意: 单一口径转负**不足以**判定衰减 —— 近期实测 vs中证1000=-10.4% 而 "
+          "vs等权全池=+19.6%。应同时跟踪等权全池口径, 两者同时为负才触发复核。")
     return 2 if trig else 0
 
 
