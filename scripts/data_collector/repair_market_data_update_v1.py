@@ -32,7 +32,7 @@ import numpy as np
 import pandas as pd
 
 DEFAULT_QLIB_DIR = Path.home() / ".qlib/qlib_data/cn_data_2026"
-DEFAULT_RAW_DIR = Path("/home/xiaocong/worksapces/qlib/data/external/tushare/market_daily_v1")
+DEFAULT_RAW_DIR = Path(__file__).resolve().parents[2] / "data/external/tushare/market_daily_v1"
 DEFAULT_START = "2026-07-24"
 DEFAULT_END = "2026-08-07"
 

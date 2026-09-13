@@ -163,7 +163,7 @@ def main() -> None:
     paired["receivable_deterioration"] = paired["receivable_intensity"] - paired["receivable_intensity_prior"]
     paired["inventory_deterioration"] = paired["inventory_intensity"] - paired["inventory_intensity_prior"]
     paired["working_capital_deterioration"] = (paired["receivable_deterioration"] + paired["inventory_deterioration"]) / 2.0
-    calendar_path = Path("/root/.qlib/qlib_data/cn_data_2026/calendars/day.txt")
+    calendar_path = Path.home() / ".qlib/qlib_data/cn_data_2026/calendars/day.txt"
     if not calendar_path.is_file():
         raise SystemExit(f"missing Qlib CN calendar: {calendar_path}")
     calendar = pd.DatetimeIndex(pd.to_datetime(pd.read_csv(calendar_path, header=None)[0], errors="coerce").dropna().sort_values())

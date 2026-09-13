@@ -186,7 +186,7 @@ def main() -> None:
     grid_path = root / "data/external/tushare/a_share_style_pit_v1/normalized/monthly_rebalance_grid.csv.gz"
     industry_path = root / "data/external/tushare/a_share_style_pit_v1/normalized/industry_l1_effective_intervals.csv.gz"
     size_path = root / "data/external/tushare/a_share_style_pit_v1/normalized/monthly_free_float_size.csv.gz"
-    qlib_dir = "/root/.qlib/qlib_data/cn_data_2026"
+    qlib_dir = str(Path.home() / ".qlib/qlib_data/cn_data_2026")
     qlib.init(provider_uri=qlib_dir, region=REG_CN)
     calendar = pd.DatetimeIndex(pd.to_datetime(D.calendar(start_time="2014-01-01", end_time="2025-12-31", freq="day")))
     events = pd.read_csv(event_path, compression="gzip", parse_dates=["available_date", "effective_date", "expiry_date"])

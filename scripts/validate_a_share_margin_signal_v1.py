@@ -33,7 +33,7 @@ import qlib
 from qlib.config import REG_CN
 from qlib.data import D
 
-PROBE_DIR = Path("/tmp/margin_probe")
+PROBE_DIR = Path(__file__).resolve().parents[1] / "data/external/tushare/margin_pit_v1/raw"
 HISTORY_DIR = PROBE_DIR / "history"
 RECENT_FILES = sorted(PROBE_DIR.glob("20*.csv.gz"))  # 建议拉取的近6个月文件
 HORIZONS = [1, 5, 10, 20]  # 前向收益持有期

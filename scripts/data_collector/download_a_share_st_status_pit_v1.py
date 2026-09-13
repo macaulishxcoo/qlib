@@ -32,11 +32,11 @@ PAGE_SIZE = 200
 def load_token() -> str:
     token = os.environ.get("TUSHARE_TOKEN", "").strip()
     if not token:
-        token_path = Path("/root/.config/tushare/token")
+        token_path = Path.home() / ".config/tushare/token"
         if token_path.is_file():
             token = token_path.read_text(encoding="utf-8").strip()
     if not token:
-        raise RuntimeError("No Tushare token found (TUSHARE_TOKEN or /root/.config/tushare/token)")
+        raise RuntimeError("No Tushare token found (TUSHARE_TOKEN or ~/.config/tushare/token)")
     return token
 
 

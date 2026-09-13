@@ -34,7 +34,7 @@ import numpy as np
 import pandas as pd
 
 DEFAULT_QLIB_DIR = Path.home() / ".qlib/qlib_data/cn_data_2026"
-DEFAULT_RAW_DIR = Path("/home/xiaocong/worksapces/qlib/data/external/tushare/market_daily_v1")
+DEFAULT_RAW_DIR = Path(__file__).resolve().parents[1] / "data/external/tushare/market_daily_v1"
 
 # Fields that represent *prices* and must be scaled by factor.
 PRICE_FIELDS = ("open", "high", "low", "close", "vwap")

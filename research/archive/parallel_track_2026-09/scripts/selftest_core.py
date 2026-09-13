@@ -166,7 +166,8 @@ def main() -> int:
           f"got {probe['limit_up_price']}")
 
     # --- tradability --------------------------------------------------------
-    marked = mark_tradability(limits)    suspended = marked[(marked["code"] == "sz.000002") & (marked["tradestatus"] == 0)]
+    marked = mark_tradability(limits)
+    suspended = marked[(marked["code"] == "sz.000002") & (marked["tradestatus"] == 0)]
     check("suspended day is flagged", len(suspended) == 1 and bool(suspended["is_suspended"].iloc[0]))
     check("suspended day cannot be bought or sold",
           bool(suspended["cannot_buy_today"].iloc[0]) and bool(suspended["cannot_sell_today"].iloc[0]))

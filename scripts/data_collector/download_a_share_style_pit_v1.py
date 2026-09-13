@@ -51,7 +51,7 @@ def sha256_file(path: Path) -> str:
 def load_token() -> str:
     token = os.environ.get("TUSHARE_TOKEN", "").strip()
     if not token:
-        token_path = Path("/root/.config/tushare/token")
+        token_path = Path.home() / ".config/tushare/token"
         if token_path.is_file():
             token = token_path.read_text(encoding="utf-8").strip()
     if not token:
@@ -124,7 +124,7 @@ def recover_daily_logs(raw_daily: Path, logs: pd.DataFrame) -> pd.DataFrame:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
-    parser.add_argument("--qlib-data-dir", type=Path, default=Path("/root/.qlib/qlib_data/cn_data_2026"))
+    parser.add_argument("--qlib-data-dir", type=Path, default=Path.home() / ".qlib/qlib_data/cn_data_2026")
     parser.add_argument("--sleep-seconds", type=float, default=0.3)
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()

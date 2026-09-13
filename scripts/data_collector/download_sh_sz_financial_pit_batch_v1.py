@@ -58,7 +58,7 @@ def sha256_file(path: Path) -> str:
 def load_token() -> str:
     token = os.environ.get("TUSHARE_TOKEN", "").strip()
     if not token:
-        path = Path("/root/.config/tushare/token")
+        path = Path.home() / ".config/tushare/token"
         if path.is_file():
             token = path.read_text(encoding="utf-8").strip()
     if not token:

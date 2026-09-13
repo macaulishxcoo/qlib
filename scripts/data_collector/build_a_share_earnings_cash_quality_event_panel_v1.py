@@ -202,7 +202,7 @@ def main() -> None:
         ["profit_positive_to_positive", "profit_turnaround", "profit_deterioration"],
         default="profit_loss_to_loss",
     )
-    calendar = pd.DatetimeIndex(pd.to_datetime(pd.read_csv("/root/.qlib/qlib_data/cn_data_2026/calendars/day.txt", header=None)[0], errors="coerce").dropna().sort_values())
+    calendar = pd.DatetimeIndex(pd.to_datetime(pd.read_csv(str(Path.home() / ".qlib/qlib_data/cn_data_2026/calendars/day.txt"), header=None)[0], errors="coerce").dropna().sort_values())
     panel["effective_date"] = next_trading_days(panel["available_date"], calendar).values
     effective_positions = calendar.searchsorted(pd.DatetimeIndex(panel["effective_date"]), side="left")
     panel["expiry_date"] = [calendar[position + 119] if not pd.isna(panel["effective_date"].iloc[index]) and position + 119 < len(calendar) else pd.NaT for index, position in enumerate(effective_positions)]

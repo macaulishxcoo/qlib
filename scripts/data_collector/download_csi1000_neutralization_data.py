@@ -15,7 +15,7 @@ import tushare as ts
 
 DEFAULT_START = "2025-01-01"
 DEFAULT_END = "2026-07-23"
-TOKEN_PATH = Path("/root/.config/tushare/token")
+TOKEN_PATH = Path.home() / ".config/tushare/token"
 
 
 def qlib_to_tushare(symbol: str) -> str:

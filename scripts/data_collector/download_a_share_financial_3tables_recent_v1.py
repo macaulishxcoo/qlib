@@ -34,7 +34,7 @@ START_END = "20250331"  # keep reports from 2025-Q1 onwards
 def load_token() -> str:
     token = os.environ.get("TUSHARE_TOKEN", "").strip()
     if not token:
-        p = Path("/root/.config/tushare/token")
+        p = Path.home() / ".config/tushare/token"
         if p.is_file():
             token = p.read_text(encoding="utf-8").strip()
     if not token:

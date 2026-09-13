@@ -39,7 +39,7 @@ import numpy as np
 import pandas as pd
 import tushare as ts
 
-TOKEN_PATH = Path("/root/.config/tushare/token")
+TOKEN_PATH = Path.home() / ".config/tushare/token"
 
 
 def load_token() -> str:

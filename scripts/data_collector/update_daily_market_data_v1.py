@@ -62,9 +62,9 @@ import numpy as np
 import pandas as pd
 import tushare as ts
 
-TOKEN_PATH = Path("/root/.config/tushare/token")
+TOKEN_PATH = Path.home() / ".config/tushare/token"
 DEFAULT_QLIB_DIR = Path.home() / ".qlib/qlib_data/cn_data_2026"
-DEFAULT_RAW_DIR = Path("/home/xiaocong/worksapces/qlib/data/external/tushare/market_daily_v1")
+DEFAULT_RAW_DIR = Path(__file__).resolve().parents[2] / "data/external/tushare/market_daily_v1"
 
 # Fields present in the Qlib binary store; the raw CSV uses the same names so that
 # DumpDataUpdate appends them directly.

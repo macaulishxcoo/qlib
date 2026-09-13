@@ -30,7 +30,7 @@ from pathlib import Path
 import pandas as pd
 import tushare as ts
 
-TOKEN_PATH = Path("/root/.config/tushare/token")
+TOKEN_PATH = Path.home() / ".config/tushare/token"
 DEFAULT_RAW_DIR = Path("data/external/tushare/a_share_events_daily_v1")
 QLIB_CALENDAR = Path("~/.qlib/qlib_data/cn_data_2026/calendars/day.txt").expanduser()
 START_DATE = "2022-01-01"

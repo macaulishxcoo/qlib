@@ -31,7 +31,7 @@ INDEXES = {
     "csi800": "000906.SH",
     "csi1000": "000852.SH",
 }
-TOKEN_PATH = Path("/root/.config/tushare/token")
+TOKEN_PATH = Path.home() / ".config/tushare/token"
 
 
 def atomic_csv(frame: pd.DataFrame, path: Path) -> None:

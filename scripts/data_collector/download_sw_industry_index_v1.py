@@ -19,7 +19,7 @@ from pathlib import Path
 import pandas as pd
 import tushare as ts
 
-TOKEN_PATH = Path("/root/.config/tushare/token")
+TOKEN_PATH = Path.home() / ".config/tushare/token"
 DATA_ROOT = Path("data/external/tushare/sw_industry_index_v1")
 RAW_DIR = DATA_ROOT / "raw"
 NORMALIZED_DIR = DATA_ROOT / "normalized"

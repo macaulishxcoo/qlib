@@ -23,7 +23,7 @@ from pathlib import Path
 import pandas as pd
 import tushare as ts
 
-TOKEN_PATH = Path("/root/.config/tushare/token")
+TOKEN_PATH = Path.home() / ".config/tushare/token"
 QLIB_DIR = Path.home() / ".qlib/qlib_data/cn_data_2026"
 DATA_ROOT = Path("data/external/tushare/moneyflow_pit_v1")
 RAW_DIR = DATA_ROOT / "raw"
