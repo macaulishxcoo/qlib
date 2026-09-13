@@ -66,8 +66,8 @@ def main() -> int:
         pd.read_csv(QLIB_DIR / "calendars" / "day.txt", header=None)[0]))
 
     from backtest_a_share_value_quality_monthly_dailygrid_v6 import DAILY_BASIC
-    db = pd.read_csv(DAILY_BASIC, compression="gzip", usecols=["trade_date"])
-    db_dates = pd.to_datetime(db["trade_date"].astype(str), format="%Y%m%d")
+    db_dates = pd.read_csv(DAILY_BASIC, compression="gzip", usecols=["trade_date"])
+    db_dates = pd.to_datetime(db_dates["trade_date"].astype(str), format="%Y%m%d")
     asof = db_dates.max()
     # 对齐到 qlib 日历中 <= asof 的最后一个交易日
     asof = calendar[calendar <= asof].max()
@@ -85,10 +85,19 @@ def main() -> int:
                      parse_dates=["start_date", "end_date"])
 
     log("[2/4] building snapshot ...")
-    from backtest_a_share_value_quality_monthly_dailygrid_v6 import build_daily_grid
-    _, size_all = build_daily_grid(end=asof)
-    size_latest = size_all[size_all["asof_date"] == size_all["asof_date"].max()].copy()
+    # 直接取 asof 当日的 daily_basic 行作为 size 层。
+    # 不要走 build_daily_grid(end=asof): 它只返回【月末】日期, 会把 size 停在月末,
+    # 而 asof 可能已是最新月 -> 市值/中性化层比 asof 落后数周。
+    db = pd.read_csv(DAILY_BASIC, compression="gzip",
+                     usecols=["trade_date", "ts_code", "total_mv", "total_share", "dv_ttm"])
+    db["datetime"] = pd.to_datetime(db["trade_date"].astype(str), format="%Y%m%d")
+    size_latest = db[db["datetime"] == asof].copy()
+    if size_latest.empty:
+        raise SystemExit(f"daily_basic 在 {asof.date()} 无数据")
     size_latest["asof_date"] = asof
+    size_latest = size_latest[["ts_code", "asof_date", "total_mv", "total_share", "dv_ttm"]]
+    size_latest["size_control"] = size_latest["total_mv"].rank(pct=True)
+    log(f"      size 层来自 {asof.date()}, {len(size_latest):,} 只")
     grid = pd.DataFrame({"rebalance_date": [asof], "asof_date": [asof]})
     universe = sorted(size_latest["ts_code"].unique())
     amount_avg = load_amount_avg(universe, calendar)

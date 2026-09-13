@@ -281,8 +281,30 @@ def main() -> None:
     aux_dir.mkdir(parents=True, exist_ok=True)
 
     calendar = read_store_calendar(args.qlib_dir)
-    last_store_day = calendar[-1].strftime("%Y-%m-%d")
-    print(f"[store] calendar last day: {last_store_day} ({len(calendar)} days)")
+    cal_last = calendar[-1]
+    # 日历可能【领先于】实际行情: 日历被扩展了但对应交易日的数据从未抓取。
+    # 若直接用 calendar[-1] 作为基准, 会误判 "no new trading days" 而永远不补数 ——
+    # 实测 calendar 到 2026-09-11 但 raw 行情只到 2026-08-13, 于是 21 个交易日被静默跳过。
+    # 故基准取 min(日历末日, raw 行情末日)。
+    raw_days = []
+    for cand in (raw_dir, raw_dir / "raw"):
+        if not cand.is_dir():
+            continue
+        ds = sorted(p.name.split(".")[0] for p in cand.glob("*.csv.gz")
+                    if p.name[:8].isdigit())
+        if ds:
+            raw_days = ds          # 取能找到按日文件的那一层
+            break
+    if raw_days:
+        raw_last = pd.to_datetime(raw_days[-1], format="%Y%m%d")
+        last_store_day = min(cal_last, raw_last).strftime("%Y-%m-%d")
+        if raw_last < cal_last:
+            print(f"[warn] 日历末日 {cal_last.date()} 领先于行情末日 {raw_last.date()} "
+                  f"({(cal_last - raw_last).days} 天); 以行情为准补齐")
+    else:
+        last_store_day = cal_last.strftime("%Y-%m-%d")
+    print(f"[store] calendar last day: {cal_last.date()} ({len(calendar)} days); "
+          f"数据基准日: {last_store_day}")
 
     pro = ts.pro_api(load_token())
     end_date = args.end_date or datetime.now().strftime("%Y-%m-%d")
