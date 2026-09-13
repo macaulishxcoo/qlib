@@ -209,8 +209,23 @@ python scripts/run_daily_signal_pipeline_v1.py --date 2026-06-30 --top-k 30 --li
    但效应量不足（主口径 h=5 \|IC\| 0.0237 vs 门槛 0.05；h=20 仅 0.0406）。
    见 `research/decisions/a_share_short_interest_signal_closure_v1.md`；
 3. **涨幅类上榜（涨停/连板）**：top_list reason 文本已有（零下载），T+1 开盘行为；
+   **← 优先级已提升**：隔夜/日内线（2026-09-13 关闭）的十分位诊断证明
+   「极端近期涨幅」正是毒尾所在（D10 前瞻 5 日年化 −19.5%），本方向是从该毒尾内部
+   区分"连板 vs 见顶"，是当前证据支持度最高的日频候选；
 4. **行业轮动/行业内相对恶化**：财务 + 申万行业已有，状态型/轮动型两种形态；
 5. **指数调整/行业轮动**：指数调整已关闭；sw_industry_index_v1 未测。
+
+**新增方法论要求（2026-09-13，来自隔夜/日内线关闭）**：
+
+6. **任何新因子在只看 IC 之前，必须先输出十分位单调性表**。隔夜/日内线的
+   `id_vol_20` 达到 IC −0.078 / t = −20.6（项目史上最强日频截面信号），
+   但十分位表显示 D1~D9 是 `+0.12~+0.14` 的平坦高原、全部 IC 由单个 D10 崩塌制造，
+   故多头组合必亏。**IC 的统计强度不能替代截面梯度**。既有教训 1
+   （换手率水平 IC +0.064 → top50 −0.49/年）的根因即在此。
+   见 `research/decisions/a_share_overnight_intraday_daily_closure_v1.md` §2。
+7. **换手量级是回测正确性的第一道哨兵**：该线首版因强制保留逻辑取反导致组合冻结，
+   年化换手仅 0.6（正常 15~35）却输出 `SUPPORTED`。任何回测若换手显著低于
+   调仓频率的倒数，应先怀疑实现缺陷而非庆祝低成本。
 
 **明确不再做**（避免重复）：Alpha101/191 扩库、自动因子挖掘（AlphaGen/gplearn/PySR）、
 更复杂深度学习、先指定 CSI1000/微盘池、完整多因子模型、市场宽度择时、
@@ -258,3 +273,5 @@ python scripts/data_collector/update_daily_basic_v1.py
 | 2026-08-21 | 创建：全仓盘点后生成项目总览（结构/数据/三研究线/实盘状态/待办/红线），供新会话直接入口 |
 | 2026-09-13 | 关闭 §8 研究候选第 2 条（融券信号）：四信号方向正确、正交、通过滞后对齐，但效应量不足 → `not_supported_closed`，见 `research/decisions/a_share_short_interest_signal_closure_v1.md` |
 | 2026-09-13 | 迁移到新机器后的环境与数据重建记录：见 `research/docs/MIGRATION_STATUS_2026-09.md`（WSL2 + CPython 3.12 + pyqlib 0.9.7；`cn_data_2026` 重建为 2015-2026、5,802 只；`main` 与五因子 top30_cap3 已复现，cap3 集中度逐位一致） |
+| 2026-09-13 | 开启并按协议关闭**隔夜/日内收益分解日频因子线**（用户要求转向真正日频、不再沿月频主线）：端点 A RankIC 强通过（`id_vol_20` IC −0.078 / t −20.6），端点 B 扣成本多头组合 28 个组合 stress 下无一为正 → `not_supported`。十分位诊断揭示 IC 由单个极端十分位制造、截面 90% 平坦，回溯解释教训 1。见 `research/decisions/a_share_overnight_intraday_daily_closure_v1.md`；§8 新增第 6/7 条方法论要求，第 3 条（涨停/连板）优先级提升 |
+| 2026-09-13 | 修复五因子线 balancesheet 读取路径缺陷（`load_financials_extended_v1.py` 增加 `BAL_FULL` 基址）→ top30_cap3 全期 stress IR 0.825 → **0.630**，全期净 +0.0836；commit `737d985` |
