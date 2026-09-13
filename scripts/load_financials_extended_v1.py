@@ -17,16 +17,27 @@ import pandas as pd
 
 FIN = Path("data/external/tushare/a_share_financial_pit_v1")
 FULL = FIN / "full/normalized"
+# The balancesheet statement is NOT in full/normalized/batch_*: that tree holds
+# only cashflow / fina_indicator / income. Balancesheet was downloaded into its
+# own tree, which is what the frozen validator loader
+# (analyze_a_share_value_quality_level_factors_extension_v1.load_financials,
+# BAL_BASE) reads. Pointing at FULL here silently produced an all-NaN
+# total_assets and therefore an almost entirely missing `accruals` leg.
+BAL_FULL = FIN / "balancesheet_v1/normalized"
 RECENT_3T = FIN / "recent_3tables"
 
 
-def _read_full(table: str, cols: list[str]) -> pd.DataFrame:
+def _read_batches(base: Path, table: str, cols: list[str]) -> pd.DataFrame:
     frames = []
-    for batch in sorted(FULL.glob("batch_*")):
+    for batch in sorted(base.glob("batch_*")):
         path = batch / f"{table}.csv.gz"
         if path.exists():
             frames.append(pd.read_csv(path, compression="gzip", usecols=cols))
     return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(columns=cols)
+
+
+def _read_full(table: str, cols: list[str]) -> pd.DataFrame:
+    return _read_batches(FULL, table, cols)
 
 
 def _read_recent_3tables(table: str, cols: list[str]) -> pd.DataFrame:
@@ -70,8 +81,8 @@ def load_financials_extended() -> pd.DataFrame:
     fin = fin.drop_duplicates(["ts_code", "end_date", "available_date"], keep="last")
 
     # ---- three statements ----
-    def load_stmt(table: str, cols: list[str]) -> pd.DataFrame:
-        full = _read_full(table, cols)
+    def load_stmt(table: str, cols: list[str], base: Path | None = None) -> pd.DataFrame:
+        full = _read_batches(base or FULL, table, cols)
         recent = _read_recent_3tables(table, cols)
         frame = pd.concat([full, recent], ignore_index=True)
         frame = _fill_available(frame)
@@ -80,7 +91,8 @@ def load_financials_extended() -> pd.DataFrame:
 
     cash = load_stmt("cashflow", ["ts_code", "end_date", "ann_date", "available_date", "n_cashflow_act"])
     income = load_stmt("income", ["ts_code", "end_date", "ann_date", "available_date", "n_income_attr_p"])
-    bal = load_stmt("balancesheet", ["ts_code", "end_date", "ann_date", "available_date", "total_assets"])
+    bal = load_stmt("balancesheet", ["ts_code", "end_date", "ann_date", "available_date", "total_assets"],
+                    base=BAL_FULL)
 
     result = fin
     result = result.merge(
