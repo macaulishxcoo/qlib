@@ -49,12 +49,30 @@ def qlib_symbol(code: str) -> str:
     return f"{suffix}{number}"
 
 
-def load_amount_avg(codes: list[str], calendar: pd.DatetimeIndex) -> pd.DataFrame:
-    """Prior-20-trading-day average dollar amount per code, indexed by asof date."""
+def load_amount_avg(codes: list[str], calendar: pd.DatetimeIndex,
+                    start=None, end=None) -> pd.DataFrame:
+    """Prior-20-trading-day average dollar amount per code, indexed by asof date.
+
+    参数 start/end 可选; 默认覆盖 calendar 的完整范围。
+
+    ⚠ 历史缺陷（2026-09-13 修复）: 原实现使用**本模块的** BT_START/BT_END 作为查询窗口。
+    本模块是另一条实验线的脚本, 其 BT_START 是近期日期; 被五因子线调用时会出现
+    `warm_start > end_time` 的**倒置窗口** → D.features 返回 0 行 → pivot 得 0 列 →
+    调用方 `avg` 全为 NaN → `NaN < 门槛` 恒为 False → **流动性过滤静默失效**。
+    （实测: 门槛相差 200 倍时每期候选数逐位相同 = 2,925。）
+    现改为由传入的 calendar 决定窗口, 不再依赖模块级常量, 并显式检查倒置。
+    """
     qlib_codes = [qlib_symbol(c) for c in codes]
-    warm_start = calendar[calendar.searchsorted(BT_START) - 30]
+    s = pd.Timestamp(start) if start is not None else calendar[0]
+    e = pd.Timestamp(end) if end is not None else calendar[-1]
+    pos = int(calendar.searchsorted(s))
+    warm_start = calendar[max(0, pos - 30)]
+    if pd.Timestamp(warm_start) >= pd.Timestamp(e):
+        raise ValueError(
+            f"load_amount_avg: 窗口倒置 warm_start={warm_start} >= end={e}; "
+            "请检查 start/end 参数")
     raw = (
-        D.features(qlib_codes, ["$amount"], start_time=warm_start, end_time=BT_END, freq="day")
+        D.features(qlib_codes, ["$amount"], start_time=warm_start, end_time=e, freq="day")
         .rename(columns={"$amount": "amount"})
         .reset_index()
     )
