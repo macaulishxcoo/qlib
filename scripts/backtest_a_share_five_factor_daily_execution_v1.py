@@ -79,12 +79,17 @@ def _to_ts_code(qlib_code: str) -> str:
     return f"{num}.{ex}"
 
 
-def build_toxic_rank(calendar: pd.DatetimeIndex) -> pd.DataFrame:
-    """毒尾分 (与毒尾否决线 v1 完全一致的定义), 返回 日期 x **ts_code** 的 pct rank。"""
+def build_toxic_rank(calendar: pd.DatetimeIndex, end: str | None = None) -> pd.DataFrame:
+    """毒尾分 (与毒尾否决线 v1 完全一致的定义), 返回 日期 x **ts_code** 的 pct rank。
+
+    end: 结束日期, 默认 BT_END。生成实盘信号时须传最新日期,
+         否则毒尾面板会在 BT_END 截止, 导致最新日无法做否决 (曾因此静默漏掉否决)。
+    """
     from qlib.data import D
     inst = D.instruments(market="all")
+    end_s = end if end is not None else str(BT_END.date())
     df = D.features(inst, ["$open", "$close", "$volume"],
-                    start_time=str(BT_START.date()), end_time=str(BT_END.date()), freq="day")
+                    start_time=str(BT_START.date()), end_time=end_s, freq="day")
     df.columns = ["open", "close", "volume"]
     df = df[~df.index.duplicated()]
     O = df["open"].unstack(0).sort_index().astype("float32")
