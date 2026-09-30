@@ -69,3 +69,15 @@ data/external/tushare/margin_pit_v1/normalized/margin_detail.csv.gz
 
 # Local virtualenvs
 .venv-rqalpha/
+
+# JQData (聚宽) SDK 本地安装与凭据 —— 勿入库
+.jqdata_env/
+.jqdata_tmp/
+.jqdata_cache/
+.jqdata/
+
+# qdata/聚宽 因子复现：报告与清单入库，缓存与日志不入库
+output/qdata_factor_repro/cache/
+output/qdata_factor_repro/*.log
+output/jqdata_factor_repro/cache/
+**/__pycache__/
