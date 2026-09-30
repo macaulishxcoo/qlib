@@ -171,11 +171,33 @@ def main() -> None:
     calendar = read_store_calendar()
     print(f"[store] calendar last day: {calendar[-1].date()} ({len(calendar)} days)")
 
+    # ⚠ store 日历是随行情 dump 一起推进的, 会落后于"今天"。
+    # 若只用它作为候选日集合, daily_basic 永远补不到行情日历之后的日子
+    # (实测 2026-09-24 运行时只到 09-11, 却报 "no missing days")。
+    # 故用 tushare 交易日历把候选日补到最新。
+    pro = None
+    if not args.normalize_only:
+        pro = ts.pro_api(load_token())
+        try:
+            today = datetime.now().strftime("%Y%m%d")
+            cal = pro.trade_cal(exchange="SSE",
+                                start_date=calendar[-1].strftime("%Y%m%d"),
+                                end_date=today, is_open="1")
+            extra = pd.to_datetime(cal["cal_date"])
+            extra = extra[extra > calendar[-1]].sort_values()
+            if len(extra):
+                calendar = pd.DatetimeIndex(list(calendar) + list(extra))
+                print(f"[extend] tushare 交易日历补 {len(extra)} 天 "
+                      f"-> {calendar[-1].date()}")
+            else:
+                print("[extend] tushare 日历无更新")
+        except Exception as exc:
+            print(f"[warn] trade_cal 失败, 沿用 store 日历: {exc}")
+
     existing = existing_raw_dates()
     print(f"[raw] {len(existing)} files present")
 
     if not args.normalize_only:
-        pro = ts.pro_api(load_token())
         download_missing_days(pro, calendar, existing, dry_run=args.dry_run)
 
     if args.dry_run:
