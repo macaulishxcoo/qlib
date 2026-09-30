@@ -1,0 +1,3 @@
+factor,family,verdict_xs,n_days,n_stocks_med,spearman_med,spearman_min,spearman_mean
+dividend_yield_3y_avg[cash_div],qdata_value,APPROX,4,5085,0.990599381738687,0.9903898562666842,0.9905682583445852
+dividend_yield_3y_avg[cash_div_tax],qdata_value,APPROX,4,5085,0.990599381738687,0.9903898562666842,0.9905682583445852

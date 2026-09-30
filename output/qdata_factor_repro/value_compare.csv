@@ -1,0 +1,2 @@
+factor,family,verdict,n_overlap,n_official,coverage,max_abs_err,p99_abs_err,mean_abs_err,rel_err,corr,official_mag,verdict_robust,p99_rel_err,med_rel_err,mean_rel_err,verdict_med,note
+book_to_market,qdata_value,FAIL,438,438,1.0,0.24969353206916178,0.24337217682690415,0.006776304827745442,0.16514588073431333,0.9996068264968615,1.5119573734380254,FAIL,0.1609649723612925,1.2839298231030121e-11,0.004481809439069613,EXACT,

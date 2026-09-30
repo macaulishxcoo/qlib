@@ -1,0 +1,72 @@
+factor,family,verdict,n_overlap,n_official,coverage,max_abs_err,p99_abs_err,mean_abs_err,rel_err,corr,official_mag,note
+debt_to_equity_ratio,quality,GOOD,348,348,1.0,3.660948397765651e-07,3.660948397765651e-07,2.380549398809754e-07,8.349710537233068e-08,0.9999999999999993,4.384521333333333,
+debt_to_tangible_equity_ratio,quality,GOOD,290,348,0.8333333333333334,4.675036304746527e-07,4.675036304746527e-07,2.382589515681488e-07,9.468501981091998e-08,0.9999999999999989,4.9374614,覆盖率不足（官方 348 / 重叠 290）
+quick_ratio,quality,GOOD,232,232,1.0,3.1349139872904885e-07,3.1349139872904885e-07,1.4421368435546533e-07,1.443549224210522e-07,0.9999999999999963,2.171671,
+current_ratio,quality,GOOD,232,232,1.0,4.5468061204978483e-07,4.5468061204978483e-07,2.9496481257496043e-07,1.5908880322375342e-07,0.9999999999999942,2.85803025,
+super_quick_ratio,quality,GOOD,58,232,0.25,2.3917099878367765e-07,2.3917099878367765e-07,2.3917099878367765e-07,5.045897470282719e-07,,0.473991,覆盖率不足（官方 232 / 重叠 58）
+adjusted_profit_to_total_profit,quality,GOOD,348,348,1.0,4.870296059777957e-07,4.870296059777957e-07,3.074422557277264e-07,6.051414086982183e-07,0.9999999999836573,0.8048194999999999,
+debt_to_asset_ratio,quality,GOOD,348,348,1.0,4.998131535316475e-07,4.998131535316475e-07,3.1567132995069525e-07,8.241950228016027e-07,0.9999999999995326,0.6064258333333332,
+long_debt_to_working_capital_ratio,quality,GOOD,232,232,1.0,4.988040607778466e-07,4.988040607778466e-07,3.6250072317582085e-07,1.068102913871192e-06,0.999999999999783,0.46699999999999986,
+equity_to_asset_ratio,quality,GOOD,348,348,1.0,4.998131535871586e-07,4.998131535871586e-07,3.156713299738249e-07,1.2699338420005343e-06,0.9999999999995326,0.39357416666666667,
+non_current_asset_ratio,quality,GOOD,232,232,1.0,4.3780505620816257e-07,4.3780505620816257e-07,2.3226874849846535e-07,1.6568807487597668e-06,0.9999999999941271,0.2642345,
+MLEV,quality,GOOD,232,348,0.6666666666666666,4.946047368128981e-07,4.887215902621536e-07,2.513645943396414e-07,2.308510007023051e-06,0.9999999999996494,0.21425280172413794,覆盖率不足（官方 348 / 重叠 232）
+long_debt_to_asset_ratio,quality,GOOD,174,348,0.5,2.530861263642589e-07,2.530861263642589e-07,1.421604983317786e-07,4.3895125720078905e-06,0.9999999999980179,0.057657,覆盖率不足（官方 348 / 重叠 174）
+long_term_debt_to_asset_ratio,quality,GOOD,232,232,1.0,3.9831627327360786e-07,3.9831627327360786e-07,3.104945327510691e-07,6.168942406046463e-06,0.9999999999952921,0.06456799999999997,
+net_profit_to_total_operate_revenue_ttm,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+cfo_to_ev,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+accounts_payable_turnover_days,quality,NO_DATA,0,174,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_profit_ratio,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_non_operating_income_to_total_profit,quality,NO_DATA,0,348,0.0,,,,,,,需营业外收入/支出单期值，income 表有 non_operating_revenue/expense，但口径未验证 → 未实现。
+fixed_asset_ratio,quality,NO_DATA,0,348,0.0,,,,,,,同上：缺「在建工程」，分母少一项。
+account_receivable_turnover_days,quality,NO_DATA,0,174,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+DEGM,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+sale_expense_to_operating_revenue,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_tax_to_operating_revenue_ratio_ttm,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+inventory_turnover_days,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+OperatingCycle,quality,NO_DATA,0,174,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_operate_cash_flow_to_operate_income,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_operating_cash_flow_coverage,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+intangible_asset_ratio,quality,NO_DATA,0,348,0.0,,,,,,,官方与本地无共同有效值
+inventory_turnover_rate,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_profit_growth_rate,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_operate_cash_flow_to_net_debt,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_operate_cash_flow_to_asset,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+total_asset_turnover_rate,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+ROAEBITTTM,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_profit_ratio,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+current_asset_turnover_rate,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+financial_expense_rate,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_profit_to_total_profit,quality,NO_DATA,0,348,0.0,,,,,,,文档为「经营活动净收益/利润总额」，中间量「经营活动净收益」无直接字段 → 未实现。
+equity_to_fixed_asset_ratio,quality,NO_DATA,0,348,0.0,,,,,,,已实现，但**缺「在建工程」科目**（balance 表无 construction_in_progress 字段）→ 分母少一项，预期为 APPROX/FAIL。
+net_operate_cash_flow_to_total_liability,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+cash_rate_of_sales,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_profit_to_operating_revenue,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+roa_ttm,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+admin_expense_rate,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+fixed_assets_turnover_rate,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+invest_income_associates_to_total_profit,quality,NO_DATA,0,348,0.0,,,,,,,需「对联营和合营企业的投资收益」，income 表映射不唯一 → 未实现。
+goods_service_cash_to_operating_revenue_ttm,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+cash_to_current_liability,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_operate_cash_flow_to_total_current_liability,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+ACCA,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+roe_ttm,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+accounts_payable_turnover_rate,quality,NO_DATA,0,174,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+gross_income_ratio,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+account_receivable_turnover_rate,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+equity_turnover_rate,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+total_profit_to_cost_ratio,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_cost_to_operating_revenue_ratio,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+LVGI,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+SGI,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+GMI,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+DSRI,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+rnoa_ttm,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+profit_margin_ttm,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+roe_ttm_8y,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+asset_turnover_ttm,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+roic_ttm,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+roa_ttm_8y,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+SGAI,quality,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+DEGM_8y,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+maximum_margin,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+margin_stability,quality,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去四季之和）或多年度基期。试用账号财务数据只覆盖 2025Q1~Q4，四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。

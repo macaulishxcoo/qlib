@@ -1,0 +1,5 @@
+factor,family,verdict_xs,n_days,n_stocks_med,spearman_med,spearman_min,spearman_mean
+asset_turnover,qdata_quality_growth,EXACT,3,5421,0.9999944484223391,0.9999567142561617,0.9999818703669466
+yoy_total_asset,qdata_quality_growth,EXACT,3,5431,0.9999821552298989,0.9996908695913881,0.9998869086584579
+asset_growth_qoq,qdata_quality_growth,FAIL,3,5536,0.7783424527389973,0.7778644694144082,0.7787907352368085
+np_ttm_qoq,qdata_quality_growth,FAIL,3,5395,0.6134501373839789,0.6134501373839789,0.6140016774601564

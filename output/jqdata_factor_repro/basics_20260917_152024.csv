@@ -1,0 +1,38 @@
+factor,family,verdict,n_overlap,n_official,coverage,max_abs_err,p99_abs_err,mean_abs_err,rel_err,corr,official_mag,note
+net_interest_expense,basics,EXACT,116,232,0.5,0.0,0.0,0.0,0.0,0.9999999999999998,433576134.525,已实现（EXACT）。覆盖率 50%：金融类标的的 interest_income/interest_expense 缺失。
+market_cap,basics,EXACT,348,348,1.0,0.000244140625,0.000244140625,2.1704312028556033e-05,4.081380237698317e-16,1.0,598181523850.5747,已实现。注意 valuation 表单位为亿元，因子单位为元 → ×1e8。
+circulating_market_cap,basics,EXACT,348,348,1.0,0.000244140625,0.000244140625,1.8678862473060343e-05,4.327283332787442e-16,1.0,564189137212.6437,已实现。同 market_cap，需 ×1e8。
+retained_earnings,basics,EXACT,348,348,1.0,0.42999267578125,0.42999267578125,0.20999654134114584,1.5170175760420975e-12,0.9999999999999997,283446073777.93335,
+net_working_capital,basics,EXACT,232,232,1.0,0.489990234375,0.489990234375,0.21498966217041016,4.094908618480064e-12,1.0,119658405114.02501,
+sales_to_price_ratio,basics,GOOD,348,348,1.0,4.997202246587173e-07,4.985016608385905e-07,2.666598455104106e-07,4.231931494591463e-07,0.9999999999999839,1.1808325,
+cash_flow_to_price_ratio,basics,GOOD,348,348,1.0,4.995102930735809e-07,4.883147969625412e-07,2.529825595445399e-07,3.5603629934207612e-06,0.9999999999977717,0.14029757471264367,
+total_operating_revenue_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_profit_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_operate_cash_flow_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_revenue_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+interest_carry_current_liability,basics,NO_DATA,0,232,0.0,,,,,,,已实现。覆盖率低（银行等金融类无「无息/有息」划分，官方对 000001.XSHE 直接返回 nan）。
+sale_expense_ttm,basics,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+gross_profit_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+total_operating_cost_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+non_operating_net_profit_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_invest_cash_flow_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+financial_expense_ttm,basics,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+administration_expense_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+value_change_profit_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+total_profit_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_finance_cash_flow_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+interest_free_current_liability,basics,NO_DATA,0,348,0.0,,,,,,,官方与本地无共同有效值
+EBIT,basics,NO_DATA,0,348,0.0,,,,,,,需 净利润+所得税+财务费用，其中「财务费用」在 income 表映射不唯一 → 未实现。
+net_profit_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+OperateNetIncome,basics,NO_DATA,0,348,0.0,,,,,,,文档为「经营活动净收益/利润总额(%) × 利润总额」，中间量无直接字段 → 未实现。
+EBITDA,basics,NO_DATA,0,348,0.0,,,,,,,构成科目跨表且含折旧摊销，映射不唯一 → 未实现。
+asset_impairment_loss_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+np_parent_company_owners_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_cost_ttm,basics,NO_DATA,0,348,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+net_debt,basics,NO_DATA,0,348,0.0,,,,,,,需「总债务」定义，构成科目不唯一 → 未实现。
+non_recurring_gain_loss,basics,NO_DATA,0,348,0.0,,,,,,,需归母净利润与扣非净利润之差，归母字段映射不唯一 → 未实现。
+goods_sale_and_service_render_cash_ttm,basics,NO_DATA,0,232,0.0,,,,,,,依赖 TTM（过去 4 个单季之和）。试用账号财务数据只覆盖 2025Q1~Q4，且四季求和与官方有 0.35%~6.26% 残差（现金流类可达 137%）→ 无法达 GOOD 档。详见 conventions.py F 段。
+operating_assets,basics,NO_DATA,0,348,0.0,,,,,,,依赖 financial_assets → 未实现。
+financial_assets,basics,NO_DATA,0,348,0.0,,,,,,,构成含「可供出售金融资产/持有至到期投资」，新准则下映射不唯一 → 未实现。
+operating_liability,basics,NO_DATA,0,232,0.0,,,,,,,依赖 financial_liability → 未实现。
+financial_liability,basics,NO_DATA,0,232,0.0,,,,,,,文档定义被截断，有息非流动负债构成不完整 → 未实现。

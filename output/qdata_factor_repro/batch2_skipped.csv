@@ -1,0 +1,10 @@
+factor,reason
+fcf_to_market,公式 = (NOCF_TTM − SICO_TTM)/(ClosePrice×TotalShares)，需要现金流量表 TTM；本地仅有 fina_indicator（无现金流量表/利润表原始科目），本批未做。
+ncf_to_market,含 CrossSectionalRank + 需要现金流量表 TTM（筹资+投资+经营净现金流）。
+ocf_to_market,含 CrossSectionalRank + 需要现金流量表 TTM（经营现金流净额）。
+ebitda_to_market,含 CrossSectionalRank + 需要利润表 EBITDA。
+earnings_cut_to_market,含 CrossSectionalRank + 需要扣非净利润 TTM。（副产品：已实测其**内层** = profit_dedt_TTM/(ClosePrice×TotalShares)，见报告）
+sales_to_market,含 CrossSectionalRank + 公式用单季营业总收入 Q（非 PS_TTM 的 TTM 口径）。
+pegh5,含 CrossSectionalRank + 需要 5 年 EPS 与 EPS_TTM（财务）。
+etp5,含 CrossSectionalRank + 需要 5 年净利润与市值滚动均值（财务）。
+dividend_yield_3y_avg,含 CrossSectionalRank + 需要 3 年每股实派分红（分红表）。

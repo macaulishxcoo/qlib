@@ -1,0 +1,2293 @@
+{
+ "MACD": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "fast": "快线周期，默认为 12",
+   "slow": "慢线周期，默认为 26",
+   "signal": "信号线周期，默认为 9"
+  },
+  "formula": "1. DIF = EMA(Close, 12) - EMA(Close, 26)\n2. DEA = EMA(DIF, 9)\n3. MACD = 2 × (DIF - DEA)",
+  "archived_reason": ""
+ },
+ "adjusted_sharpe_750d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数，默认 750"
+  },
+  "formula": "AdjustedSharpe = Mean(DailyReturn, 750) / StdDev(DailyReturn, 750)^4",
+  "archived_reason": ""
+ },
+ "alpha101_1": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(Ts_ArgMax(SignedPower(IF(Returns < 0, StdDev(Returns, 20), Close), 2), 5)) - 0.5",
+  "archived_reason": ""
+ },
+ "alpha101_10": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank((0 < Ts_Min(Delta(Close, 1), 4)) ? Delta(Close, 1)\n             : ((Ts_Max(Delta(Close, 1), 4) < 0) ? Delta(Close, 1) : -1 * Delta(Close, 1)))",
+  "archived_reason": ""
+ },
+ "alpha101_101": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Close - Open) / ((High - Low) + 0.001)",
+  "archived_reason": ""
+ },
+ "alpha101_11": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Rank(Ts_Max(VWAP - Close, 3)) + Rank(Ts_Min(VWAP - Close, 3))) * Rank(Delta(Volume, 3))",
+  "archived_reason": ""
+ },
+ "alpha101_12": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Sign(Delta(Volume, 1)) * (-1 * Delta(Close, 1))",
+  "archived_reason": ""
+ },
+ "alpha101_13": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(Covariance(Rank(Close), Rank(Volume), 5))",
+  "archived_reason": ""
+ },
+ "alpha101_14": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(Delta(Returns, 3)) * Correlation(Open, Volume, 10)",
+  "archived_reason": ""
+ },
+ "alpha101_15": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Sum(Rank(Correlation(Rank(High), Rank(Volume), 3)), 3)",
+  "archived_reason": ""
+ },
+ "alpha101_16": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(Covariance(Rank(High), Rank(Volume), 5))",
+  "archived_reason": ""
+ },
+ "alpha101_17": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (-1 * Rank(Ts_Rank(Close, 10))) * Rank(Delta(Delta(Close, 1), 1)) * Rank(Ts_Rank(Volume / ADV20, 5))",
+  "archived_reason": ""
+ },
+ "alpha101_18": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(StdDev(Abs(Close - Open), 5) + (Close - Open) + Correlation(Close, Open, 10))",
+  "archived_reason": ""
+ },
+ "alpha101_19": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (-1 * Sign((Close - Delay(Close, 7)) + Delta(Close, 7))) * (1 + Rank(1 + Sum(Returns, 250)))",
+  "archived_reason": ""
+ },
+ "alpha101_2": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Correlation(Rank(Delta(Log(Volume), 2)), Rank((Close - Open) / Open), 6)",
+  "archived_reason": ""
+ },
+ "alpha101_20": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(Open - Delay(High, 1)) * Rank(Open - Delay(Close, 1)) * Rank(Open - Delay(Low, 1))",
+  "archived_reason": ""
+ },
+ "alpha101_21": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Sum(Close, 8) / 8 + StdDev(Close, 8) < Sum(Close, 2) / 2) ? -1\n        : ((Sum(Close, 2) / 2 < Sum(Close, 8) / 8 - StdDev(Close, 8)) ? 1\n           : ((1 < Volume / ADV20 || Volume / ADV20 == 1) ? 1 : -1))",
+  "archived_reason": ""
+ },
+ "alpha101_22": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Delta(Correlation(High, Volume, 5), 5) * Rank(StdDev(Close, 20))",
+  "archived_reason": ""
+ },
+ "alpha101_23": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Sum(High, 20) / 20 < High) ? -1 * Delta(High, 2) : 0",
+  "archived_reason": ""
+ },
+ "alpha101_24": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Delta(Sum(Close, 100) / 100, 100) / Delay(Close, 100) <= 0.05)\n        ? -1 * (Close - Ts_Min(Close, 100)) : -1 * Delta(Close, 3)",
+  "archived_reason": ""
+ },
+ "alpha101_25": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(-1 * Returns * ADV20 * VWAP * (High - Close))",
+  "archived_reason": ""
+ },
+ "alpha101_26": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Ts_Max(Correlation(Ts_Rank(Volume, 5), Ts_Rank(High, 5), 5), 3)",
+  "archived_reason": ""
+ },
+ "alpha101_27": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (0.5 < Rank(Sum(Correlation(Rank(Volume), Rank(VWAP), 6), 2) / 2.0)) ? -1 : 1",
+  "archived_reason": ""
+ },
+ "alpha101_28": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Scale(Correlation(ADV20, Low, 5) + (High + Low) / 2 - Close)",
+  "archived_reason": ""
+ },
+ "alpha101_29": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Min(Product(Rank(Rank(Scale(Log(Sum(Ts_Min(\n        Rank(Rank(-1 * Rank(Delta(Close - 1, 5)))), 2), 1))))), 1), 5)\n        + Ts_Rank(Delay(-1 * Returns, 6), 5)",
+  "archived_reason": ""
+ },
+ "alpha101_3": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Correlation(Rank(Open), Rank(Volume), 10)",
+  "archived_reason": ""
+ },
+ "alpha101_30": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (1 - Rank(Sign(Close - Delay(Close, 1)) + Sign(Delay(Close, 1) - Delay(Close, 2))\n        + Sign(Delay(Close, 2) - Delay(Close, 3))) * Sum(Volume, 5)) / Sum(Volume, 20)",
+  "archived_reason": ""
+ },
+ "alpha101_31": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(Rank(Rank(Decay_Linear(-1 * Rank(Rank(Delta(Close, 10))), 10))))\n        + Rank(-1 * Delta(Close, 3))\n        + Sign(Scale(Correlation(ADV20, Low, 12)))",
+  "archived_reason": ""
+ },
+ "alpha101_32": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Scale(Sum(Close, 7) / 7 - Close) + 20 * Scale(Correlation(VWAP, Delay(Close, 5), 230))",
+  "archived_reason": ""
+ },
+ "alpha101_33": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(-1 * (1 - Open / Close))",
+  "archived_reason": ""
+ },
+ "alpha101_34": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(1 - Rank(StdDev(Returns, 2) / StdDev(Returns, 5)) + 1 - Rank(Delta(Close, 1)))",
+  "archived_reason": ""
+ },
+ "alpha101_35": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Ts_Rank(Volume, 32) * (1 - Ts_Rank((Close + High) - Low, 16)) * (1 - Ts_Rank(Returns, 32))",
+  "archived_reason": ""
+ },
+ "alpha101_36": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = 2.21 * Rank(Correlation(Close - Open, Delay(Volume, 1), 15))\n        + 0.7 * Rank(Open - Close)\n        + 0.73 * Rank(Ts_Rank(Delay(-1 * Returns, 6), 5))\n        + Rank(Abs(Correlation(VWAP, ADV20, 6)))\n        + 0.6 * Rank((Sum(Close, 200) / 200 - Open) * (Close - Open))",
+  "archived_reason": ""
+ },
+ "alpha101_37": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(Correlation(Delay(Open - Close, 1), Close, 200)) + Rank(Open - Close)",
+  "archived_reason": ""
+ },
+ "alpha101_38": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(Ts_Rank(Close, 10)) * Rank(Close / Open)",
+  "archived_reason": ""
+ },
+ "alpha101_39": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(Delta(Close, 7) * (1 - Rank(Decay_Linear(Volume / ADV20, 9))))\n        * (1 + Rank(Sum(Returns, 250)))",
+  "archived_reason": ""
+ },
+ "alpha101_4": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Ts_Rank(Rank(Low), 9)",
+  "archived_reason": ""
+ },
+ "alpha101_40": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(StdDev(High, 10)) * Correlation(High, Volume, 10)",
+  "archived_reason": ""
+ },
+ "alpha101_41": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (High * Low) ^ 0.5 - VWAP",
+  "archived_reason": ""
+ },
+ "alpha101_42": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(VWAP - Close) / Rank(VWAP + Close)",
+  "archived_reason": ""
+ },
+ "alpha101_43": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Ts_Rank(Volume / ADV20, 20) * Ts_Rank(-1 * Delta(Close, 7), 8)",
+  "archived_reason": ""
+ },
+ "alpha101_44": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Correlation(High, Rank(Volume), 5)",
+  "archived_reason": ""
+ },
+ "alpha101_45": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(Sum(Delay(Close, 5), 20) / 20) * Correlation(Close, Volume, 2)\n        * Rank(Correlation(Sum(Close, 5), Sum(Close, 20), 2))",
+  "archived_reason": ""
+ },
+ "alpha101_46": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (0.25 < (Delay(Close, 20) - Delay(Close, 10)) / 10 - (Delay(Close, 10) - Close) / 10) ? -1\n        : ((((Delay(Close, 20) - Delay(Close, 10)) / 10 - (Delay(Close, 10) - Close) / 10) < 0)\n           ? 1 : -1 * (Close - Delay(Close, 1)))",
+  "archived_reason": ""
+ },
+ "alpha101_47": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Rank(1 / Close) * Volume / ADV20) * (High * Rank(High - Close) / (Sum(High, 5) / 5))\n        - Rank(VWAP - Delay(VWAP, 5))",
+  "archived_reason": ""
+ },
+ "alpha101_48": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = IndNeutralize(Correlation(Delta(Close, 1), Delta(Delay(Close, 1), 1), 250) * Delta(Close, 1) / Close)\n        / Sum((Delta(Close, 1) / Delay(Close, 1)) ^ 2, 250)",
+  "archived_reason": ""
+ },
+ "alpha101_49": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = ((Delay(Close, 20) - Delay(Close, 10)) / 10 - (Delay(Close, 10) - Close) / 10 < -0.1)\n        ? 1 : -1 * (Close - Delay(Close, 1))",
+  "archived_reason": ""
+ },
+ "alpha101_5": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(Open - (Sum(VWAP, 10) / 10)) * (-1 * Abs(Rank(Close - VWAP)))",
+  "archived_reason": ""
+ },
+ "alpha101_50": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Ts_Max(Rank(Correlation(Rank(Volume), Rank(VWAP), 5)), 5)",
+  "archived_reason": ""
+ },
+ "alpha101_51": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = ((Delay(Close, 20) - Delay(Close, 10)) / 10 - (Delay(Close, 10) - Close) / 10 < -0.05)\n        ? 1 : -1 * (Close - Delay(Close, 1))",
+  "archived_reason": ""
+ },
+ "alpha101_52": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = ((-1 * Ts_Min(Low, 5) + Delay(Ts_Min(Low, 5), 5)) * Rank((Sum(Returns, 240) - Sum(Returns, 20)) / 220))\n        * Ts_Rank(Volume, 5)",
+  "archived_reason": ""
+ },
+ "alpha101_53": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Delta(((Close - Low) - (High - Close)) / (Close - Low), 9)",
+  "archived_reason": ""
+ },
+ "alpha101_54": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (-1 * (Low - Close) * Open^5) / ((Low - High) * Close^5)",
+  "archived_reason": ""
+ },
+ "alpha101_55": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Correlation(Rank((Close - Ts_Min(Low, 12)) / (Ts_Max(High, 12) - Ts_Min(Low, 12))),\n                        Rank(Volume), 6)",
+  "archived_reason": ""
+ },
+ "alpha101_56": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank(Sum(Returns, 10) / Sum(Sum(Returns, 2), 3)) * Rank(Returns * Cap)",
+  "archived_reason": ""
+ },
+ "alpha101_57": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -(Close - VWAP) / Decay_Linear(Rank(Ts_ArgMax(Close, 30)), 2)",
+  "archived_reason": ""
+ },
+ "alpha101_58": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Ts_Rank(Decay_Linear(Correlation(IndNeutralize(VWAP), Volume, 4), 8), 6)",
+  "archived_reason": ""
+ },
+ "alpha101_59": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Ts_Rank(Decay_Linear(Correlation(IndNeutralize(VWAP), Volume, 4), 16), 8)",
+  "archived_reason": ""
+ },
+ "alpha101_6": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Correlation(Open, Volume, 10)",
+  "archived_reason": ""
+ },
+ "alpha101_60": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -(2 * Scale(Rank((Close - Low - (High - Close)) / (High - Low) * Volume))\n        - Scale(Rank(Ts_ArgMax(Close, 10))))",
+  "archived_reason": ""
+ },
+ "alpha101_61": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(VWAP - Ts_Min(VWAP, 16)) < Rank(Correlation(VWAP, ADV180, 18))",
+  "archived_reason": ""
+ },
+ "alpha101_62": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Rank(Correlation(VWAP, Sum(ADV20, 22), 10))\n        < Rank(Rank(Open) + Rank(Open) < Rank((High + Low) / 2) + Rank(High))) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_63": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Rank(Decay_Linear(Delta(IndNeutralize(Close), 2), 8))\n        - Rank(Decay_Linear(Correlation(VWAP, Sum(ADV180, 37), 14), 12))) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_64": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Rank(Correlation(Sum(Open, 13), Sum(ADV120, 13), 17))\n        < Rank(Delta(Delta_Mix, 4))) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_65": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Rank(Correlation(Open, Sum(ADV60, 9), 6)) < Rank(Open - Ts_Min(Open, 14))) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_66": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Rank(Decay_Linear(Delta(VWAP, 4), 7))\n        + Ts_Rank(Decay_Linear((Low - VWAP) / (Open - (High + Low) / 2), 11), 7)) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_67": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(High - Ts_Min(High, 2)) ^ Rank(Correlation(IndNeutralize(VWAP), IndNeutralize(ADV20), 6)) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_68": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (Ts_Rank(Correlation(Rank(High), Rank(ADV15), 9), 14) < Rank(Delta(Close, 1))) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_69": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(Ts_Max(Delta(IndNeutralize(VWAP), 3), 5)) ^ Ts_Rank(Correlation(Close, ADV20, 5), 9) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_7": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (ADV20 < Volume) ? (-1 * Ts_Rank(Abs(Delta(Close, 7)), 60) * Sign(Delta(Close, 7))) : -1\n\n说明: 当日成交量 ≤ 20 日均量（缩量或停牌）时输出 -1，\n为公式定义的哨兵值，非数据缺失；截面排序使用时应剔除或单独分组。",
+  "archived_reason": ""
+ },
+ "alpha101_70": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = Rank(Delta(VWAP, 1)) ^ Ts_Rank(Correlation(IndNeutralize(Close), ADV50, 18), 18) * -1",
+  "archived_reason": ""
+ },
+ "alpha101_8": {
+  "factor_type": "Alpha101",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = -1 * Rank((Sum(Open, 5) * Sum(Returns, 5)) - Delay((Sum(Open, 5) * Sum(Returns, 5)), 10))",
+  "archived_reason": ""
+ },
+ "alpha101_9": {
+  "factor_type": "Alpha101",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Alpha = (0 < Ts_Min(Delta(Close, 1), 5)) ? Delta(Close, 1)\n        : ((Ts_Max(Delta(Close, 1), 5) < 0) ? Delta(Close, 1) : -1 * Delta(Close, 1))",
+  "archived_reason": ""
+ },
+ "alpha_1000d_000300": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数"
+  },
+  "formula": "Alpha_t = Intercept from OLS(DailyStockReturn_{t-d+1:t} ~ DailyIndexReturn_{t-d+1:t})\nFactor = Alpha_t",
+  "archived_reason": ""
+ },
+ "alpha_125d_000300": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数"
+  },
+  "formula": "Alpha_t = Intercept from OLS(DailyStockReturn_{t-d+1:t} ~ DailyIndexReturn_{t-d+1:t})\nFactor = Alpha_t",
+  "archived_reason": ""
+ },
+ "alpha_1320d_000001": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数"
+  },
+  "formula": "Alpha_t = Intercept from OLS(DailyStockReturn_{t-d+1:t} ~ DailyIndexReturn_{t-d+1:t})\nFactor = Alpha_t",
+  "archived_reason": ""
+ },
+ "alpha_250d_000300": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数"
+  },
+  "formula": "Alpha_t = Intercept from OLS(DailyStockReturn_{t-d+1:t} ~ DailyIndexReturn_{t-d+1:t})\nFactor = Alpha_t",
+  "archived_reason": ""
+ },
+ "alpha_500d_000300": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数"
+  },
+  "formula": "Alpha_t = Intercept from OLS(DailyStockReturn_{t-d+1:t} ~ DailyIndexReturn_{t-d+1:t})\nFactor = Alpha_t",
+  "archived_reason": ""
+ },
+ "alpha_528d_000001": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数"
+  },
+  "formula": "Alpha_t = Intercept from OLS(DailyStockReturn_{t-d+1:t} ~ DailyIndexReturn_{t-d+1:t})\nFactor = Alpha_t",
+  "archived_reason": ""
+ },
+ "alpha_792d_000001": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数"
+  },
+  "formula": "Alpha_t = Intercept from OLS(DailyStockReturn_{t-d+1:t} ~ DailyIndexReturn_{t-d+1:t})\nFactor = Alpha_t",
+  "archived_reason": ""
+ },
+ "amount_ma_20d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "移动平均窗口，默认为 20"
+  },
+  "formula": "AmountMA = Mean(TurnoverAmount, 20)",
+  "archived_reason": ""
+ },
+ "ar_ap_to_revenue": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio = (AdvanceReceipts - AdvancePayment) / OperatingRevenue\nFactor = CrossSectionalRank(Ratio)",
+  "archived_reason": ""
+ },
+ "asset_growth_qoq": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Growth = TotalAssets_t / TotalAssets_{prev_report} - 1   # 财报披露日计算\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "asset_turnover": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "AssetTurnover = OperatingRevenue_TTM / TotalAssets\nFactor = CrossSectionalRank(AssetTurnover)",
+  "archived_reason": ""
+ },
+ "avg_turnover_10d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "1. DailyTurnoverRate = Volume / AShares\n2. Factor = ts_mean(DailyTurnoverRate, 10)",
+  "archived_reason": ""
+ },
+ "avg_turnover_126d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = MA(DailyTurnoverRate, w=6*21)",
+  "archived_reason": ""
+ },
+ "avg_turnover_20d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "1. DailyTurnoverRate = Volume / AShares\n2. Factor = ts_mean(DailyTurnoverRate, 20)",
+  "archived_reason": ""
+ },
+ "avg_turnover_21d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = MA(DailyTurnoverRate, w=1*21)",
+  "archived_reason": ""
+ },
+ "avg_turnover_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = MA(DailyTurnoverRate, w=12*21)",
+  "archived_reason": ""
+ },
+ "avg_turnover_42d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = MA(DailyTurnoverRate, w=2*21)",
+  "archived_reason": ""
+ },
+ "avg_turnover_5d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "1. DailyTurnoverRate = Volume / AShares\n2. Factor = ts_mean(DailyTurnoverRate, 5)",
+  "archived_reason": ""
+ },
+ "avg_turnover_63d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = MA(DailyTurnoverRate, w=3*21)",
+  "archived_reason": ""
+ },
+ "beta_1000d_000300": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "滚动窗口天数"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Epsilon\nBeta = Cov(StockReturn, IndexReturn) / Var(IndexReturn) over a rolling window.",
+  "archived_reason": ""
+ },
+ "beta_125d_000300": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "滚动窗口天数"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Epsilon\nBeta = Cov(StockReturn, IndexReturn) / Var(IndexReturn) over a rolling window.",
+  "archived_reason": ""
+ },
+ "beta_1320d_000001": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "滚动窗口天数"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Epsilon\nBeta = Cov(StockReturn, IndexReturn) / Var(IndexReturn) over a rolling window.",
+  "archived_reason": ""
+ },
+ "beta_250d_000300": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "滚动窗口天数"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Epsilon\nBeta = Cov(StockReturn, IndexReturn) / Var(IndexReturn) over a rolling window.",
+  "archived_reason": ""
+ },
+ "beta_500d_000300": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "滚动窗口天数"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Epsilon\nBeta = Cov(StockReturn, IndexReturn) / Var(IndexReturn) over a rolling window.",
+  "archived_reason": ""
+ },
+ "beta_60d_000300": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "滚动窗口天数"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Epsilon\nBeta = Cov(StockReturn, IndexReturn) / Var(IndexReturn) over a rolling window.",
+  "archived_reason": ""
+ },
+ "beta_consistency_1320d_000300": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归和滚动窗口天数 (默认 1320，约60个月)"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Residual\nBetaConsistency = StdDev(Beta * Residual) over 1320 days",
+  "archived_reason": ""
+ },
+ "bias_std_turn_126d_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Std_short = StdDev(DailyTurnoverRate, w=6*21)\n3. Std_long = StdDev(DailyTurnoverRate, w=12*21)\n4. Factor = Std_short / Std_long - 1",
+  "archived_reason": ""
+ },
+ "bias_std_turn_126d_504d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Std_short = StdDev(DailyTurnoverRate, w=6*21)\n3. Std_long = StdDev(DailyTurnoverRate, w=24*21)\n4. Factor = Std_short / Std_long - 1",
+  "archived_reason": ""
+ },
+ "bias_std_turn_21d_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Std_short = StdDev(DailyTurnoverRate, w=1*21)\n3. Std_long = StdDev(DailyTurnoverRate, w=12*21)\n4. Factor = Std_short / Std_long - 1",
+  "archived_reason": ""
+ },
+ "bias_std_turn_21d_504d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Std_short = StdDev(DailyTurnoverRate, w=1*21)\n3. Std_long = StdDev(DailyTurnoverRate, w=24*21)\n4. Factor = Std_short / Std_long - 1",
+  "archived_reason": ""
+ },
+ "bias_std_turn_42d_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Std_short = StdDev(DailyTurnoverRate, w=2*21)\n3. Std_long = StdDev(DailyTurnoverRate, w=12*21)\n4. Factor = Std_short / Std_long - 1",
+  "archived_reason": ""
+ },
+ "bias_std_turn_42d_504d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Std_short = StdDev(DailyTurnoverRate, w=2*21)\n3. Std_long = StdDev(DailyTurnoverRate, w=24*21)\n4. Factor = Std_short / Std_long - 1",
+  "archived_reason": ""
+ },
+ "bias_std_turn_63d_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Std_short = StdDev(DailyTurnoverRate, w=3*21)\n3. Std_long = StdDev(DailyTurnoverRate, w=12*21)\n4. Factor = Std_short / Std_long - 1",
+  "archived_reason": ""
+ },
+ "bias_std_turn_63d_504d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Std_short = StdDev(DailyTurnoverRate, w=3*21)\n3. Std_long = StdDev(DailyTurnoverRate, w=24*21)\n4. Factor = Std_short / Std_long - 1",
+  "archived_reason": ""
+ },
+ "bias_turn_126d_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. MA_short = MA(DailyTurnoverRate, w=6*21)\n3. MA_long = MA(DailyTurnoverRate, w=12*21)\n4. Factor = MA_short / MA_long - 1",
+  "archived_reason": ""
+ },
+ "bias_turn_126d_504d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. MA_short = MA(DailyTurnoverRate, w=6*21)\n3. MA_long = MA(DailyTurnoverRate, w=24*21)\n4. Factor = MA_short / MA_long - 1",
+  "archived_reason": ""
+ },
+ "bias_turn_21d_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. MA_short = MA(DailyTurnoverRate, w=1*21)\n3. MA_long = MA(DailyTurnoverRate, w=12*21)\n4. Factor = MA_short / MA_long - 1",
+  "archived_reason": ""
+ },
+ "bias_turn_21d_504d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. MA_short = MA(DailyTurnoverRate, w=1*21)\n3. MA_long = MA(DailyTurnoverRate, w=24*21)\n4. Factor = MA_short / MA_long - 1",
+  "archived_reason": ""
+ },
+ "bias_turn_42d_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. MA_short = MA(DailyTurnoverRate, w=2*21)\n3. MA_long = MA(DailyTurnoverRate, w=12*21)\n4. Factor = MA_short / MA_long - 1",
+  "archived_reason": ""
+ },
+ "bias_turn_42d_504d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. MA_short = MA(DailyTurnoverRate, w=2*21)\n3. MA_long = MA(DailyTurnoverRate, w=24*21)\n4. Factor = MA_short / MA_long - 1",
+  "archived_reason": ""
+ },
+ "bias_turn_63d_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. MA_short = MA(DailyTurnoverRate, w=3*21)\n3. MA_long = MA(DailyTurnoverRate, w=12*21)\n4. Factor = MA_short / MA_long - 1",
+  "archived_reason": ""
+ },
+ "bias_turn_63d_504d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. MA_short = MA(DailyTurnoverRate, w=3*21)\n3. MA_long = MA(DailyTurnoverRate, w=24*21)\n4. Factor = MA_short / MA_long - 1",
+  "archived_reason": ""
+ },
+ "book_to_market": {
+  "factor_type": "Value",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "book_to_market = (SE_without_MI_pri + DeferredTaxAssets_pri) / (ClosePrice × TotalShares)",
+  "archived_reason": ""
+ },
+ "cash_profit_ratio": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio = (NetOperateCashFlow_TTM - NetProfit_TTM) / NetProfit_TTM\nFactor = CrossSectionalRank(Ratio)",
+  "archived_reason": ""
+ },
+ "cash_ratio": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "CashRatio = (CashEquivalents + TradingAssets) / TotalCurrentLiability\nFactor = CrossSectionalRank(CashRatio)",
+  "archived_reason": ""
+ },
+ "cfcr": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "CFCR = NetOperateCashFlow_TTM / InterestExpense_TTM\nFactor = CrossSectionalRank(CFCR)",
+  "archived_reason": ""
+ },
+ "current_ratio": {
+  "factor_type": "Quality",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": true,
+  "params": {},
+  "formula": "CurrentRatio = CurrentAssets / CurrentLiabilities",
+  "archived_reason": "直通候选（需实测确认）：qdata 文档给了公式，但实际直接取预计算字段 lake.financial_derivative.*，其派生口径可能与公式不同。应先实测比对；若确认无法还原，再归档为结构性不可复现。"
+ },
+ "days_beyond_upper_lower_21d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "计算窗口"
+  },
+  "formula": "1. Z = (Close_hfq - MA(Close_hfq, 21)) / Std(Close_hfq, 21)\n2. Upper = 统计 Z > 1 的天数\n3. Lower = 统计 Z < -1 的天数\n4. Factor = Upper - Lower",
+  "archived_reason": ""
+ },
+ "days_down_up": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Factor = |ConsecutiveUp - ConsecutiveDown - 1|",
+  "archived_reason": ""
+ },
+ "de": {
+  "factor_type": "Quality",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "DE = TotalDebt / Equity",
+  "archived_reason": ""
+ },
+ "dea": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "fast": "快线周期，默认为 12",
+   "slow": "慢线周期，默认为 26",
+   "signal": "信号线周期，默认为 9"
+  },
+  "formula": "1. DIF = EMA(Close, 12) - EMA(Close, 26)\n2. DEA = EMA(DIF, 9)",
+  "archived_reason": ""
+ },
+ "debt_asset_ratio": {
+  "factor_type": "Quality",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": true,
+  "params": {},
+  "formula": "DebtAssetRatio = TotalDebt / TotalAssets",
+  "archived_reason": "直通候选（需实测确认）：qdata 文档给了公式，但实际直接取预计算字段 lake.financial_derivative.*，其派生口径可能与公式不同。应先实测比对；若确认无法还原，再归档为结构性不可复现。"
+ },
+ "delta_asset_turnover": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "AT = Revenue_TTM / TotalAssets\nDelta = AT_t - AT_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_cash_ratio": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "CashRatio = (Cash + TradingAssets) / CurrentLiability\nDelta = CashRatio_t - CashRatio_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_current_ratio": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Delta = CurrentRatio_t - CurrentRatio_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_de": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "DE = TotalLiability / TotalShareholderEquity\nDelta = DE_t - DE_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_gpm": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Delta = GPM_t - GPM_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_inventory_turnover": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "IT = Cost_TTM / Inventories\nDelta = IT_t - IT_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_npm": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Delta = NPM_t - NPM_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_opm": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "OPM = OperatingProfit / OperatingRevenue\nDelta = OPM_t - OPM_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_quick_ratio": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Delta = QuickRatio_t - QuickRatio_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_roa": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Delta = ROA_t - ROA_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "delta_roe": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Delta = ROE_t - ROE_{t-252}\nFactor = CrossSectionalRank(Delta)",
+  "archived_reason": ""
+ },
+ "dif": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "fast": "快线周期，默认为 12",
+   "slow": "慢线周期，默认为 26"
+  },
+  "formula": "DIF = EMA(Close, 12) - EMA(Close, 26)",
+  "archived_reason": ""
+ },
+ "dividend_yield_3y_avg": {
+  "factor_type": "Value",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "dividend_yield_3y_avg = (SUM(ActualCashDiviRMB, 735) / 3) / ClosePrice\n                      = AVG(ActualCashDiviRMB, 3年) / ClosePrice\nFactor = CrossSectionalRank(dividend_yield_3y_avg)\n\n参考: Afactors faclib/value/div_p_3y",
+  "archived_reason": ""
+ },
+ "eaa": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. EGA = EPS_Q / EPS_Q_{t-252} - 1\n2. EAA = EGA - EGA_{t-63}\nFactor = CrossSectionalRank(EAA)",
+  "archived_reason": ""
+ },
+ "eap": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. EGP = (EPS_Q_t - EPS_Q_{t-252}) / Close\n2. EAP = EGP - EGP_{t-63}\nFactor = CrossSectionalRank(EAP)",
+  "archived_reason": ""
+ },
+ "earnings_cut_to_market": {
+  "factor_type": "Value",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "earnings_cut_to_market = NetProfitCut_TTM / (ClosePrice × TotalShares)\nFactor = CrossSectionalRank(earnings_cut_to_market)\n\n参考: 华泰价值因子",
+  "archived_reason": ""
+ },
+ "earnings_to_price": {
+  "factor_type": "Value",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "earnings_to_price = NPParentCompanyOwners_TTM / (ClosePrice × TotalShares)\n                  = BasicEPS_TTM / ClosePrice",
+  "archived_reason": ""
+ },
+ "ebitda_to_market": {
+  "factor_type": "Value",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ebitda_to_market = EBITDA / (ClosePrice × TotalShares)\nFactor = CrossSectionalRank(ebitda_to_market)",
+  "archived_reason": ""
+ },
+ "eps_q": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Factor = CrossSectionalRank(BasicEPS)",
+  "archived_reason": ""
+ },
+ "eps_ttm": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Factor = CrossSectionalRank(BasicEPS)",
+  "archived_reason": ""
+ },
+ "eps_y": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Factor = CrossSectionalRank(BasicEPS)",
+  "archived_reason": ""
+ },
+ "equity_turnover": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "EquityTurnover = OperatingRevenue_TTM / TotalShareholderEquity\nFactor = CrossSectionalRank(EquityTurnover)",
+  "archived_reason": ""
+ },
+ "etp5": {
+  "factor_type": "Value",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ETP5 = RollingMean(NetProfit_Y, 1260) / RollingMean(MarketCap, 1260)\nFactor = CrossSectionalRank(ETP5)",
+  "archived_reason": ""
+ },
+ "expenses_to_equity_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "TotalExpenses = OperatingExpense_Q + AdministrationExpense_Q + FinancialExpense_Q\nRatio = TotalExpenses / SEWithoutMI\nGrowth = Ratio_t / Ratio_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "fcf_to_market": {
+  "factor_type": "Value",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "fcf_to_market = (NOCF_TTM - SICO_TTM) / (ClosePrice × TotalShares)",
+  "archived_reason": ""
+ },
+ "financial_leverage": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "FinancialLeverage = TotalAssets / TotalShareholderEquity\nFactor = CrossSectionalRank(FinancialLeverage)",
+  "archived_reason": ""
+ },
+ "fixed_asset_turnover": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "FixedAssetTurnover = OperatingRevenue_TTM / FixedAssets\nFactor = CrossSectionalRank(FixedAssetTurnover)",
+  "archived_reason": ""
+ },
+ "float_size": {
+  "factor_type": "Size",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "FloatSize = -log(FloatShares * ClosePrice / 1e6)\n\n该因子值为负对数形式，值越小表示流通市值越大。",
+  "archived_reason": ""
+ },
+ "gpm_q": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "GPM = (Revenue - Cost) / Revenue\nFactor = CrossSectionalRank(GPM)",
+  "archived_reason": ""
+ },
+ "gpm_qoq": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": true,
+  "params": {},
+  "formula": "GPM = (Revenue_TTM - Cost_TTM) / Revenue_TTM\nGrowth = GPM_t / GPM_{prev_report} - 1   # 财报披露日计算\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": "直通候选（需实测确认）：qdata 文档给了公式，但实际直接取预计算字段 lake.financial_derivative.*，其派生口径可能与公式不同。应先实测比对；若确认无法还原，再归档为结构性不可复现。"
+ },
+ "gpm_ttm": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "GPM = (Revenue - Cost) / Revenue\nFactor = CrossSectionalRank(GPM)",
+  "archived_reason": ""
+ },
+ "gpm_y": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "GPM = (Revenue - Cost) / Revenue\nFactor = CrossSectionalRank(GPM)",
+  "archived_reason": ""
+ },
+ "gross_margin_qoq": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. GrossMargin = (Revenue_TTM - Cost_TTM) / Revenue_TTM\n2. Growth = GrossMargin_t / GrossMargin_{prev_report} - 1   # 财报披露日计算\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "high_low_126d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. NetValue_t = CumulativeProduct(1 + DailyReturn_i) from a fixed start point.\n2. Factor = Max(NetValue_{t-w+1:t}) / Min(NetValue_{t-w+1:t})",
+  "archived_reason": ""
+ },
+ "high_low_21d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. NetValue_t = CumulativeProduct(1 + DailyReturn_i) from a fixed start point.\n2. Factor = Max(NetValue_{t-w+1:t}) / Min(NetValue_{t-w+1:t})",
+  "archived_reason": ""
+ },
+ "high_low_252d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. NetValue_t = CumulativeProduct(1 + DailyReturn_i) from a fixed start point.\n2. Factor = Max(NetValue_{t-w+1:t}) / Min(NetValue_{t-w+1:t})",
+  "archived_reason": ""
+ },
+ "high_low_42d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. NetValue_t = CumulativeProduct(1 + DailyReturn_i) from a fixed start point.\n2. Factor = Max(NetValue_{t-w+1:t}) / Min(NetValue_{t-w+1:t})",
+  "archived_reason": ""
+ },
+ "high_low_63d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. NetValue_t = CumulativeProduct(1 + DailyReturn_i) from a fixed start point.\n2. Factor = Max(NetValue_{t-w+1:t}) / Min(NetValue_{t-w+1:t})",
+  "archived_reason": ""
+ },
+ "icr": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ICR = EBIT_TTM / InterestExpense_TTM\nFactor = CrossSectionalRank(ICR)",
+  "archived_reason": ""
+ },
+ "income_tax_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Growth = IncomeTaxCost_TTM_t / IncomeTaxCost_TTM_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "inventory_turnover": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "InventoryTurnover = OperatingCost_TTM / Inventories\nFactor = CrossSectionalRank(InventoryTurnover)",
+  "archived_reason": ""
+ },
+ "log_price": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Factor = log(ClosePrice_hfq)",
+  "archived_reason": ""
+ },
+ "lra_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Growth = LongtermReceivableAccount_t / LongtermReceivableAccount_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "ma_20d": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "移动平均窗口，默认为 20"
+  },
+  "formula": "MA = Mean(Close, 20)",
+  "archived_reason": ""
+ },
+ "market_value_leverage": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "MkvLev = (MarketCap - NonCurrentLiability) / MarketCap\nFactor = CrossSectionalRank(MkvLev)",
+  "archived_reason": ""
+ },
+ "ncf_to_market": {
+  "factor_type": "Value",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ncf_to_market = (FCF_TTM + ICF_TTM + OCF_TTM) / MarketCap\nFactor = CrossSectionalRank(ncf_to_market)\n\n参考: 华泰价值因子，Afactors faclib/value/ncfm",
+  "archived_reason": ""
+ },
+ "nl_size": {
+  "factor_type": "Size",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "nlSize = Residual(Size^3 ~ Size)\n\n该因子是size^3对size截面回归后的残差，代表市值非线性部分，\n用于捕捉市值效应中的非线性成分。\n\nNotes\n---------------\n* 该因子通过截面回归计算残差，每个截面上回归一次\n* 因子值与size的正交，消除了线性市值的影响",
+  "archived_reason": ""
+ },
+ "np_to_deferred_tax_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio = NetProfit_Q / DeferredTaxAssets\nGrowth = Ratio_t / Ratio_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "np_to_fixed_assets_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio = NetProfit_Q / FixedAssets\nGrowth = Ratio_t / Ratio_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "np_to_inventory_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio = NetProfit_Q / Inventories\nGrowth = Ratio_t / Ratio_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "np_to_salary_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio = NetProfit_TTM / StaffBehalfPaid_TTM\nGrowth = Ratio_t / Ratio_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "np_to_total_expenses_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "TotalExpenses = OperatingExpense_Q + AdministrationExpense_Q + FinancialExpense_Q\nRatio = NetProfit_Q / TotalExpenses\nGrowth = Ratio_t / Ratio_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "np_ttm_qoq": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Growth = NetProfit_TTM_t / NetProfit_TTM_{prev_report} - 1   # 财报披露日计算\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "npm_q": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "NPM = NetProfit / OperatingRevenue\nFactor = CrossSectionalRank(NPM)",
+  "archived_reason": ""
+ },
+ "npm_q_qoq": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "NPM = NetProfit_Q / OperatingRevenue_Q\nGrowth = NPM_t / NPM_{prev_report} - 1   # 财报披露日计算\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "npm_tsh": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio = NPParentCompanyOwners_TTM / TotalShares\nFactor = CrossSectionalRank(Ratio)",
+  "archived_reason": ""
+ },
+ "npm_ttm": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "NPM = NetProfit / OperatingRevenue\nFactor = CrossSectionalRank(NPM)",
+  "archived_reason": ""
+ },
+ "npm_ttm_qoq": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": true,
+  "params": {},
+  "formula": "NPM = NetProfit_TTM / OperatingRevenue_TTM\nGrowth = NPM_t / NPM_{prev_report} - 1   # 财报披露日计算\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": "直通候选（需实测确认）：qdata 文档给了公式，但实际直接取预计算字段 lake.financial_derivative.*，其派生口径可能与公式不同。应先实测比对；若确认无法还原，再归档为结构性不可复现。"
+ },
+ "npm_y": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "NPM = NetProfit / OperatingRevenue\nFactor = CrossSectionalRank(NPM)",
+  "archived_reason": ""
+ },
+ "ocf_to_market": {
+  "factor_type": "Value",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ocf_to_market = NetOperateCashFlow_TTM / MarketCap\nFactor = CrossSectionalRank(ocf_to_market)\n\n参考: 华泰价值因子",
+  "archived_reason": ""
+ },
+ "opm_ttm": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "OPM = OperatingProfit / OperatingRevenue\nFactor = CrossSectionalRank(OPM)",
+  "archived_reason": ""
+ },
+ "opm_y": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "OPM = OperatingProfit / OperatingRevenue\nFactor = CrossSectionalRank(OPM)",
+  "archived_reason": ""
+ },
+ "opt_tpro": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio = OperatingProfit_Q / TotalProfit_Q\nFactor = CrossSectionalRank(Ratio)",
+  "archived_reason": ""
+ },
+ "pa": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. PG = ROA_t - ROA_{t-252}\n2. PA = PG - PG_{t-63}\nFactor = CrossSectionalRank(PA)",
+  "archived_reason": ""
+ },
+ "peg_252d": {
+  "factor_type": "Growth",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "EPS增长率计算窗口，默认 252天"
+  },
+  "formula": "1. PE = Close / EPS_TTM\n2. EPS_Growth = ts_returns(EPS, window, mode='simple')\n3. PEG = PE / (EPS_Growth * 100)",
+  "archived_reason": ""
+ },
+ "pegh5": {
+  "factor_type": "Value",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. EPS_Growth_5Y = (BasicEPS_Y_t / BasicEPS_Y_{t-1260})^(1/5) - 1\n2. PEGH5 = ClosePrice / (EPS_Growth_5Y * BasicEPS_TTM)\nFactor = CrossSectionalRank(-PEGH5)",
+  "archived_reason": ""
+ },
+ "price_dist": {
+  "factor_type": "Reversal",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "移动平均窗口，默认为 0（不计算移动平均）"
+  },
+  "formula": "- 价格 < 10: 距离下一个整数的距离\n- 10 <= 价格 < 100: 价格/10 后，距离下一个整数的距离\n- 价格 >= 100: 价格/100 后，距离下一个整数的距离",
+  "archived_reason": ""
+ },
+ "price_position_ir_60d": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数，默认 60"
+  },
+  "formula": "Ratio = (Close - Open) / (High - Low)\nFactor = Mean(Ratio, 60) / StdDev(Ratio, 60)",
+  "archived_reason": ""
+ },
+ "quality_composite": {
+  "factor_type": "Quality",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Ratio_i = Numerator_i / Denominator_i\nFactor = Sum(Ratio_i, filter=True), i = 1..6",
+  "archived_reason": ""
+ },
+ "quick_ratio": {
+  "factor_type": "Quality",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": true,
+  "params": {},
+  "formula": "QuickRatio = (CurrentAssets - Inventory) / CurrentLiabilities",
+  "archived_reason": "直通候选（需实测确认）：qdata 文档给了公式，但实际直接取预计算字段 lake.financial_derivative.*，其派生口径可能与公式不同。应先实测比对；若确认无法还原，再归档为结构性不可复现。"
+ },
+ "receivable_turnover": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ReceivableTurnover = OperatingRevenue_TTM / AccountsReceivable\nFactor = CrossSectionalRank(ReceivableTurnover)",
+  "archived_reason": ""
+ },
+ "return_126d": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "Return = Product(1 + DailyReturn, window=126) - 1",
+  "archived_reason": ""
+ },
+ "return_21d": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "Return = Product(1 + DailyReturn, window=21) - 1",
+  "archived_reason": ""
+ },
+ "return_252d": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "Return = Product(1 + DailyReturn, window=252) - 1",
+  "archived_reason": ""
+ },
+ "return_42d": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "Return = Product(1 + DailyReturn, window=42) - 1",
+  "archived_reason": ""
+ },
+ "return_5d": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "Return = Product(1 + DailyReturn, window=5) - 1",
+  "archived_reason": ""
+ },
+ "return_63d": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "Return = Product(1 + DailyReturn, window=63) - 1",
+  "archived_reason": ""
+ },
+ "return_std_126d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "month": "月数 (如 1 表示 21 个交易日)"
+  },
+  "formula": "ReturnStd = StdDev(DailyReturn) over 6*21 trading days",
+  "archived_reason": ""
+ },
+ "return_std_21d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "month": "月数 (如 1 表示 21 个交易日)"
+  },
+  "formula": "ReturnStd = StdDev(DailyReturn) over 1*21 trading days",
+  "archived_reason": ""
+ },
+ "return_std_252d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "month": "月数 (如 1 表示 21 个交易日)"
+  },
+  "formula": "ReturnStd = StdDev(DailyReturn) over 12*21 trading days",
+  "archived_reason": ""
+ },
+ "return_std_42d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "month": "月数 (如 1 表示 21 个交易日)"
+  },
+  "formula": "ReturnStd = StdDev(DailyReturn) over 2*21 trading days",
+  "archived_reason": ""
+ },
+ "return_std_63d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "month": "月数 (如 1 表示 21 个交易日)"
+  },
+  "formula": "ReturnStd = StdDev(DailyReturn) over 3*21 trading days",
+  "archived_reason": ""
+ },
+ "roa_q": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ROA = NetProfit / TotalAssets\nFactor = CrossSectionalRank(ROA)",
+  "archived_reason": ""
+ },
+ "roa_ttm": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ROA = NetProfit / TotalAssets\nFactor = CrossSectionalRank(ROA)",
+  "archived_reason": ""
+ },
+ "roa_y": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "ROA = NetProfit / TotalAssets\nFactor = CrossSectionalRank(ROA)",
+  "archived_reason": ""
+ },
+ "roe_ttm": {
+  "factor_type": "Quality",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": true,
+  "params": {
+   "lag": "交易日滞后天数"
+  },
+  "formula": "ROE = NetProfit_Parent / TotalEquity",
+  "archived_reason": "直通候选（需实测确认）：qdata 文档给了公式，但实际直接取预计算字段 lake.financial_derivative.*，其派生口径可能与公式不同。应先实测比对；若确认无法还原，再归档为结构性不可复现。"
+ },
+ "roe_ttm_lag63d": {
+  "factor_type": "Quality",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": true,
+  "params": {
+   "lag": "交易日滞后天数"
+  },
+  "formula": "ROE = NetProfit_Parent / TotalEquity",
+  "archived_reason": "直通候选（需实测确认）：qdata 文档给了公式，但实际直接取预计算字段 lake.financial_derivative.*，其派生口径可能与公式不同。应先实测比对；若确认无法还原，再归档为结构性不可复现。"
+ },
+ "roe_y": {
+  "factor_type": "Quality",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": true,
+  "params": {
+   "lag": "交易日滞后天数"
+  },
+  "formula": "ROE = NetProfit_Parent / TotalEquity",
+  "archived_reason": "直通候选（需实测确认）：qdata 文档给了公式，但实际直接取预计算字段 lake.financial_derivative.*，其派生口径可能与公式不同。应先实测比对；若确认无法还原，再归档为结构性不可复现。"
+ },
+ "rsi": {
+  "factor_type": "Reversal",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "period": "RSI 周期"
+  },
+  "formula": "1. Gain = Max(Close - PrevClose, 0)\n2. Loss = Max(PrevClose - Close, 0)\n3. AvgGain = EMA(Gain, 14)  [使用 Wilder's Smoothing]\n4. AvgLoss = EMA(Loss, 14)  [使用 Wilder's Smoothing]\n5. RS = AvgGain / AvgLoss\n6. RSI = 100 - 100 / (1 + RS)\n\n其中 Wilder's Smoothing 等价于 EMA with com = period - 1",
+  "archived_reason": ""
+ },
+ "rsrs": {
+  "factor_type": "Momentum",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "regress_window": "回归窗口，默认为 18",
+   "zscore_window": "Z-Score 标准化窗口，默认为 200"
+  },
+  "formula": "1. Slope_t = Beta from OLS(Low_{t-N+1:t} ~ High_{t-N+1:t}), N=18\n2. RSRS_t = Z-Score(Slope_{t-M+1:t}), M=200",
+  "archived_reason": ""
+ },
+ "sa": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. SPS = OperatingRevenue_Q / TotalShares\n2. SG = SPS_t / SPS_{t-252} - 1\n3. SA = SG - SG_{t-63}\nFactor = CrossSectionalRank(SA)",
+  "archived_reason": ""
+ },
+ "sales_to_market": {
+  "factor_type": "Value",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "sales_to_market = TotalOperatingRevenue_Q / (ClosePrice × TotalShares)\nFactor = CrossSectionalRank(sales_to_market)\n\n参考: 华泰价值因子",
+  "archived_reason": ""
+ },
+ "sharpe_60d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "Sharpe = ts_mean(Return, 60) / ts_std_dev(Return, 60)",
+  "archived_reason": ""
+ },
+ "sharpe_750d": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "窗口天数"
+  },
+  "formula": "Sharpe = ts_mean(Return, 750) / ts_std_dev(Return, 750)",
+  "archived_reason": ""
+ },
+ "sigma_1320d_000001": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归和滚动窗口天数"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Residual\nSigma = StdDev(Residual) over 1320 days",
+  "archived_reason": ""
+ },
+ "sigma_1320d_000300": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归和滚动窗口天数"
+  },
+  "formula": "StockReturn = Alpha + Beta * IndexReturn + Residual\nSigma = StdDev(Residual) over 1320 days",
+  "archived_reason": ""
+ },
+ "size": {
+  "factor_type": "Size",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "Size = -log(TotalShares * ClosePrice / 1e6)\n\n该因子值为负对数形式，值越小表示市值越大。",
+  "archived_reason": ""
+ },
+ "small_cap_reversal_21d": {
+  "factor_type": "Reversal",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {
+   "window": "累计收益窗口天数"
+  },
+  "formula": "CumReturn = Product(1 + DailyReturn, 21) - 1\nReversal = -CumReturn\nSmallCap = CrossSectionalRank(-MarketCap)\nFactor = CrossSectionalRank(Reversal) × SmallCap",
+  "archived_reason": ""
+ },
+ "std_turnover_126d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = StdDev(DailyTurnoverRate, w=6*21)",
+  "archived_reason": ""
+ },
+ "std_turnover_21d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = StdDev(DailyTurnoverRate, w=1*21)",
+  "archived_reason": ""
+ },
+ "std_turnover_252d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = StdDev(DailyTurnoverRate, w=12*21)",
+  "archived_reason": ""
+ },
+ "std_turnover_42d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = StdDev(DailyTurnoverRate, w=2*21)",
+  "archived_reason": ""
+ },
+ "std_turnover_63d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. DailyTurnoverRate = TurnoverVolume / AShares\n2. Factor = StdDev(DailyTurnoverRate, w=3*21)",
+  "archived_reason": ""
+ },
+ "sum_abs_rtn_amount_20d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "滚动窗口，默认为 20"
+  },
+  "formula": "Factor = Sum(|Return|, 20) / Sum(TurnoverAmount, 20) * 1e8\n\n注: 结果放大 1e8 倍（等价于成交额以亿元计），使因子量级落在 1e-4 ~ 1 区间，\n避免入库时 10 位小数舍入摧毁小量级值。仅改变量纲，不影响截面排序与 IC 计算。",
+  "archived_reason": ""
+ },
+ "tax_surcharge_yoy": {
+  "factor_type": "Quality",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "Growth = OperatingTaxSurcharges_TTM_t / OperatingTaxSurcharges_TTM_{4披露前} - 1   # 财报披露日计算（前第4个披露日=去年同期）\nFactor = CrossSectionalRank(Growth_filled)",
+  "archived_reason": ""
+ },
+ "turnover_ma_20d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. VolCapRatio = TurnoverVolume / FloatMarketCap\n2. FloatMarketCap = ClosePrice × FloatShares\n3. If long > 0:\n     Factor = -MA(VolCapRatio, short) / MA(VolCapRatio, long)\n   Else:\n     Factor = -MA(VolCapRatio, short)",
+  "archived_reason": ""
+ },
+ "turnover_ma_20d_120d": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "1. VolCapRatio = TurnoverVolume / FloatMarketCap\n2. FloatMarketCap = ClosePrice × FloatShares\n3. If long > 0:\n     Factor = -MA(VolCapRatio, short) / MA(VolCapRatio, long)\n   Else:\n     Factor = -MA(VolCapRatio, short)",
+  "archived_reason": ""
+ },
+ "volume_alpha_300d_000001": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数 (默认 300)",
+   "sum_window": "成交量滚动求和窗口 (默认 5)"
+  },
+  "formula": "VolMomentum = (RollingSum(Volume, 5) - Lag(RollingSum(Volume, 5), 1)) / Lag(RollingSum(Volume, 5), 1)\nStockVolMomentum = Alpha + Beta * IndexVolMomentum + Epsilon\nVolumeAlpha = Alpha from OLS(StockVolMomentum ~ IndexVolMomentum, 300)",
+  "archived_reason": ""
+ },
+ "volume_alpha_300d_000300": {
+  "factor_type": "Liquidity",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数 (默认 300)",
+   "sum_window": "成交量滚动求和窗口 (默认 5)"
+  },
+  "formula": "VolMomentum = (RollingSum(Volume, 5) - Lag(RollingSum(Volume, 5), 1)) / Lag(RollingSum(Volume, 5), 1)\nStockVolMomentum = Alpha + Beta * IndexVolMomentum + Epsilon\nVolumeAlpha = Alpha from OLS(StockVolMomentum ~ IndexVolMomentum, 300)",
+  "archived_reason": ""
+ },
+ "volume_beta_120d_000300": {
+  "factor_type": "Risk",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {
+   "window": "回归窗口天数 (默认 120)",
+   "sum_window": "成交量滚动求和窗口 (默认 5)"
+  },
+  "formula": "VolMomentum = (RollingSum(Volume, 5) - RollingSum(Volume, 5)[t-1]) / RollingSum(Volume, 5)[t-1]\nVolumeBeta = Cov(StockVolMomentum, IndexVolMomentum) / Var(IndexVolMomentum) over 120 days",
+  "archived_reason": ""
+ },
+ "yoy_net_asset": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "YoY = NetAsset_t / NetAsset_{t-252} - 1\nFactor = CrossSectionalRank(YoY)",
+  "archived_reason": ""
+ },
+ "yoy_net_profit": {
+  "factor_type": "Growth",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "YoY = Value_t / Value_{t-252} - 1",
+  "archived_reason": ""
+ },
+ "yoy_ocf": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "YoY = OCF_TTM_t / OCF_TTM_{t-252} - 1\nFactor = CrossSectionalRank(YoY)",
+  "archived_reason": ""
+ },
+ "yoy_revenue": {
+  "factor_type": "Growth",
+  "criterion": "绝对误差",
+  "has_cross_sectional": false,
+  "passthrough": false,
+  "params": {},
+  "formula": "YoY = Value_t / Value_{t-252} - 1",
+  "archived_reason": ""
+ },
+ "yoy_roa": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "YoY = ROA_TTM_t / ROA_TTM_{t-252} - 1\nFactor = CrossSectionalRank(YoY)",
+  "archived_reason": ""
+ },
+ "yoy_roe": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "YoY = ROE_TTM_t / ROE_TTM_{t-252} - 1\nFactor = CrossSectionalRank(YoY)",
+  "archived_reason": ""
+ },
+ "yoy_total_asset": {
+  "factor_type": "Growth",
+  "criterion": "横截面Spearman",
+  "has_cross_sectional": true,
+  "passthrough": false,
+  "params": {},
+  "formula": "YoY = TotalAsset_t / TotalAsset_{t-252} - 1\nFactor = CrossSectionalRank(YoY)",
+  "archived_reason": ""
+ }
+}

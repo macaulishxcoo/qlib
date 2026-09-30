@@ -1,0 +1,5 @@
+factor,family,verdict_xs,n_days,n_stocks_med,spearman_med,spearman_min,spearman_mean,base
+yoy_roa[ann],pit_basis,FAIL,5,2300,0.9751604651107877,0.9738040640872315,0.976458997238824,yoy_roa
+yoy_roa[f_ann],pit_basis,FAIL,5,2300,0.9765653460357198,0.9732791944227949,0.977158907802648,yoy_roa
+yoy_roe[ann],pit_basis,FAIL,5,2300,0.9794594652573099,0.9768038762759033,0.980513066247515,yoy_roe
+yoy_roe[f_ann],pit_basis,FAIL,5,2300,0.98278983088819,0.9776886928623639,0.9811688609328026,yoy_roe

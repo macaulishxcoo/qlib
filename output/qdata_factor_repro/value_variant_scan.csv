@@ -1,0 +1,8 @@
+variant,官方因子,spearman_med,n_days
+earnings_cut_to_market__attr,earnings_cut_to_market,0.9999986677974768,4
+earnings_cut_to_market__dedt,earnings_cut_to_market,0.9485727835031538,4
+ebitda_to_market__y,ebitda_to_market,0.8356776157902464,4
+fcf_to_market__const,fcf_to_market,0.3320116440858367,4
+fcf_to_market__ts,fcf_to_market,0.25154760650820296,4
+ncf_to_market__invonly,ncf_to_market,0.3174793352833884,4
+sales_to_market__ttm,sales_to_market,0.9714690979824178,4

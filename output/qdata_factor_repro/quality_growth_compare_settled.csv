@@ -1,0 +1,5 @@
+factor,mode,verdict_med,verdict,spearman_med,n_days,n_overlap,coverage,max_abs_err,med_rel_err,corr
+asset_turnover,rank,EXACT,EXACT,0.9999944484223391,3,,,,,
+yoy_total_asset,rank,EXACT,EXACT,0.9999821552298989,3,,,,,
+asset_growth_qoq,rank,FAIL,FAIL,0.7783424527389973,3,,,,,
+np_ttm_qoq,rank,FAIL,FAIL,0.6134501373839789,3,,,,,

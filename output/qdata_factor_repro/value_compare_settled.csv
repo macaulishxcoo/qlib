@@ -1,0 +1,9 @@
+factor,family,verdict_xs,n_days,n_stocks_med,spearman_med,spearman_min,spearman_mean,verdict,n_overlap,n_official,coverage,max_abs_err,p99_abs_err,mean_abs_err,rel_err,corr,official_mag,verdict_robust,p99_rel_err,med_rel_err,mean_rel_err,verdict_med,note
+earnings_cut_to_market,qdata_value,EXACT,4.0,4998.0,0.9999986677974768,0.9999494068321468,0.999986673891874,,,,,,,,,,,,,,,,
+sales_to_market,qdata_value,EXACT,4.0,5040.0,1.0,0.9999857030460141,0.9999964257615035,,,,,,,,,,,,,,,,
+ebitda_to_market,qdata_value,FAIL,4.0,5038.0,0.9100411690981157,0.9017015523619744,0.9248222894597833,,,,,,,,,,,,,,,,
+etp5,qdata_value,FAIL,4.0,3422.0,0.9843789632093602,0.9838618228151464,0.9842879515732579,,,,,,,,,,,,,,,,
+ncf_to_market,qdata_value,FAIL,4.0,4255.0,0.7128448710546782,0.5361052900982648,0.6691514649599322,,,,,,,,,,,,,,,,
+ocf_to_market,qdata_value,FAIL,4.0,4799.0,0.862316375808843,0.7627716547907287,0.8381647783084265,,,,,,,,,,,,,,,,
+pegh5,qdata_value,FAIL,4.0,3030.0,0.9408746570954041,0.9388352287558203,0.9408009612014505,,,,,,,,,,,,,,,,
+fcf_to_market,qdata_value,,,,,,,FAIL,19149.0,19172.0,0.9988003338201544,59.202871546518786,0.7993702884865345,0.06026293844441686,185.1280997610397,0.9314456717693481,0.31979408648896024,FAIL,2.4996406195714003,1.048968386418463e-10,0.18844294185063745,EXACT,

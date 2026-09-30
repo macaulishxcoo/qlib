@@ -1,0 +1,19 @@
+{
+  "family": "style",
+  "codes": [
+    "600519.XSHG",
+    "000002.XSHE",
+    "000651.XSHE",
+    "002415.XSHE",
+    "600036.XSHG",
+    "000001.XSHE"
+  ],
+  "start": "2025-12-01",
+  "end": "2026-03-02",
+  "lookback_days": 400,
+  "conventions": "FQ=post  STD_DDOF=1  EMA_ADJUST=False  ANNUAL_DAYS=250  RF=0.04",
+  "n_factors_expected": 30,
+  "n_factors_implemented": 11,
+  "panel_days": 177,
+  "summary": "1/30 达到可复现（EXACT+GOOD） | EXACT=0  GOOD=1  APPROX=0  FAIL=10  NO_DATA=19"
+}

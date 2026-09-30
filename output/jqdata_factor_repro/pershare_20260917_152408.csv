@@ -1,0 +1,16 @@
+factor,family,verdict,n_overlap,n_official,coverage,max_abs_err,p99_abs_err,mean_abs_err,rel_err,corr,official_mag,note
+retained_earnings_per_share,pershare,GOOD,348,348,1.0,3.3248912068017944e-07,3.3248912068017944e-07,1.6860943870729747e-07,6.705719762018812e-09,0.9999999999999984,49.58291316666667,
+cash_and_equivalents_per_share,pershare,GOOD,348,348,1.0,2.393181937065947e-07,2.393181937065947e-07,1.4880834845835503e-07,8.348276708947689e-09,1.0,28.666777833333345,已实现（GOOD）。注意口径：余额取自 **cash_flow.cash_and_equivalents_at_end**，**不是** balance.cash_equivalents（后者是「货币资金」）。
+retained_profit_per_share,pershare,GOOD,348,348,1.0,4.874368810803276e-07,4.874368810803276e-07,2.9053393339288175e-07,1.2083777852818317e-08,1.0,40.338119999999996,
+net_asset_per_share,pershare,GOOD,174,348,0.5,4.987627804098338e-07,4.987627804098338e-07,3.3566328679531426e-07,1.846607308978169e-08,1.0,27.009682999999992,覆盖率不足（官方 348 / 重叠 174）
+surplus_reserve_fund_per_share,pershare,GOOD,348,348,1.0,4.7145046977448146e-07,4.7145046977448146e-07,2.457433965948515e-07,5.0996324230850194e-08,0.999999999999999,9.244793166666664,
+total_operating_revenue_per_share,pershare,GOOD,348,348,1.0,4.6605066206240053e-07,4.6605066206240053e-07,1.7145458578819253e-07,5.473226154789583e-08,1.0,8.515099666666666,
+operating_revenue_per_share,pershare,GOOD,348,348,1.0,4.6605066206240053e-07,4.6605066206240053e-07,2.2339155577218625e-07,5.541283798428034e-08,0.999999999999999,8.410517833333333,
+operating_profit_per_share,pershare,GOOD,348,348,1.0,4.757633751406587e-07,4.757633751406587e-07,1.9885593603256405e-07,1.0460017312477909e-07,0.9999999999999998,4.5483995,
+capital_reserve_fund_per_share,pershare,GOOD,348,348,1.0,4.167350935446734e-07,4.167350935446734e-07,2.2400481642740702e-07,2.3133284507926107e-07,0.9999999999999879,1.8014523333333334,
+total_operating_revenue_per_share_ttm,pershare,NO_DATA,0,348,0.0,,,,,,,同上：需 TTM 营业总收入。
+operating_revenue_per_share_ttm,pershare,NO_DATA,0,348,0.0,,,,,,,同上：需 TTM 营业收入。
+net_operate_cash_flow_per_share,pershare,NO_DATA,0,348,0.0,,,,,,,同上：需 TTM 经营活动现金流量净额。
+operating_profit_per_share_ttm,pershare,NO_DATA,0,348,0.0,,,,,,,同上：需 TTM 营业利润。
+eps_ttm,pershare,NO_DATA,0,348,0.0,,,,,,,需 TTM 归母净利润（过去四季之和），受财务边界阻断。见 conventions.py F 段。
+cashflow_per_share_ttm,pershare,NO_DATA,0,348,0.0,,,,,,,同上：需 TTM 现金流量净额。
