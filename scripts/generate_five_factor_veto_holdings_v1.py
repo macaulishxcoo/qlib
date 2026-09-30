@@ -32,7 +32,7 @@ from qlib.config import REG_CN  # noqa: E402
 
 import backtest_a_share_value_growth_five_factor_industry_cap_v3 as v3  # noqa: E402
 from backtest_a_share_value_growth_five_factor_industry_cap_v3 import (  # noqa: E402
-    QLIB_DIR, STYLE_DIR, ST_INTERVALS, select_with_industry_cap,
+    QLIB_DIR, STYLE_DIR, ST_INTERVALS, BT_START, select_with_industry_cap,
 )
 from load_financials_extended_v1 import load_financials_extended  # noqa: E402
 from backtest_a_share_value_quality_monthly_sensitivity_v4 import load_amount_avg  # noqa: E402
@@ -76,31 +76,35 @@ def main() -> int:
     log(f"asof_date = {asof.date()}   (daily_basic 最新 {db_dates.max().date()}, "
         f"qlib 日历最新 {calendar.max().date()})")
 
-    # ---- 调仓网格守卫 ----
-    # 本脚本原先只认"最新数据日", 与回测的 10 交易日网格无关 ——
-    # 若每天跑一次, 就会每天产出一个新信号, 模拟盘将每日调仓 (严重偏离策略)。
-    # 故: 若 ledgers 里最近一次信号距今不足 STEP 个交易日, 默认拒绝生成。
+    # ---- 调仓网格守卫 (与回测【同相位】) ----
+    # 回测的调仓网格是 cal[::STEP] (自 BT_START 起每 10 个交易日)。
+    # 本脚本原先只认"最新数据日", 与网格无关 —— 两个后果:
+    #   1) 每天跑一次就会每天产出新信号, 模拟盘每日调仓;
+    #   2) 实盘调仓日与回测错相位 (实测: 网格日为 09-01/09-15,
+    #      而实盘信号落在 09-11/09-29) -> 前瞻轨迹不再是对回测的复现。
+    # 现改为: 只在网格日生成, 且 asof 取"daily_basic 能支撑的最近一个网格日";
+    # 补做错过的调仓时也只用到该网格日及之前的数据, 不引入前瞻。
     STEP = 10
+    db_have = set(pd.to_datetime(db_dates.unique()))
+    eligible = calendar[(calendar >= BT_START)][::STEP]
+    eligible = pd.DatetimeIndex([d for d in eligible if d <= asof and d in db_have])
+    if len(eligible) == 0:
+        raise SystemExit("在日历中找不到 daily_basic 可支撑的网格日")
+    target = eligible[-1]
+    log(f"       最近可用网格日 = {target.date()}")
+
     ledger_dir = OUT.parents[1] / "live_ledger"
     prior = sorted(ledger_dir.glob("signal_*_ffveto.csv")) if ledger_dir.is_dir() else []
     if prior:
         last_sig = pd.Timestamp(prior[-1].name.split("_")[1])
-        pos_last, pos_now = calendar.get_loc(last_sig), calendar.get_loc(asof)
-        elapsed = pos_now - pos_last
-        if elapsed < STEP and not args.force:
-            log(f"[skip] 距上次信号 {last_sig.date()} 仅 {elapsed} 个交易日 "
-                f"(网格步长 {STEP}) -> 调仓未到期, 不生成新信号。")
-            log(f"       如需强制生成(例如补做已错过的调仓), 加 --force。")
+        log(f"       上次信号 = {last_sig.date()}")
+        if last_sig > target:
+            log(f"       ⚠ 上次信号晚于网格日 —— 此前实盘与网格错相位, 本次起对齐。")
+        if last_sig >= target and not args.force:
+            log(f"[skip] 网格日 {target.date()} 已生成过(或已有更晚信号), 不重复生成。")
             return 0
-        if elapsed < STEP:
-            log(f"       [force] 距上次信号仅 {elapsed} 个交易日, 网格未到期, "
-                f"但 --force 已指定 -> 仍生成。")
-        else:
-            log(f"       距上次信号 {last_sig.date()} 已 {elapsed} 个交易日 "
-                f"(网格步长 {STEP}) -> 调仓到期。")
-            if elapsed > STEP:
-                log(f"       ⚠ 超出网格 {elapsed - STEP} 天 —— 这是一次【延迟调仓】, "
-                    f"网格日应为 {calendar[pos_last + STEP].date()}。")
+    log(f"       网格对齐: asof 由 {asof.date()} 改为 {target.date()}")
+    asof = target
 
     log("[1/4] loading shared data ...")
     fin = load_financials_extended()

@@ -40,10 +40,23 @@ def log(m):
     print(m, flush=True)
 
 
-def run(sig, tag):
+def _load_snapshot_cache():
+    """优先用【延伸版】快照(由 rebuild_snapshots_to_date_v1.py 生成, 随新数据推进),
+    否则退回冻结的研究快照。冻结版止于 2026-06-23 —— 用它时"滚动12个月"不会变化,
+    月度检查会变成复读。返回值: (snap_dict, 说明字符串)。"""
+    ext = OUT / "snapshots_500k_10day_extended.pkl"
+    frozen = OUT / "snapshots_500k_10day.pkl"
+    src = ext if ext.exists() else frozen
+    snap = pd.read_pickle(src)
+    ks = sorted(snap)
+    tag = "延伸版(随新数据推进)" if src is ext else "冻结研究快照(不会推进)"
+    return snap, f"{src.name}  {len(snap)} 期  {ks[0].date()} .. {ks[-1].date()}  [{tag}]"
+
+
+def run(sig, tag, end):
     strat = TopkDropoutStrategy(signal=sig, topk=TOP_K, n_drop=TOP_K)
     rep, _ = backtest_daily(
-        start_time=BT_START, end_time=BT_END, strategy=strat, account=CAPITAL,
+        start_time=BT_START, end_time=end, strategy=strat, account=CAPITAL,
         benchmark=BENCHMARK,
         exchange_kwargs={"limit_threshold": 0.095, "deal_price": "open",
                          "open_cost": COST_SCENARIOS["stress"]["open_cost"],
@@ -58,9 +71,13 @@ def main() -> int:
     calendar = pd.DatetimeIndex(pd.to_datetime(
         pd.read_csv(QLIB_DIR / "calendars" / "day.txt", header=None)[0]))
 
-    snap = pd.read_pickle(OUT / "snapshots_500k_10day.pkl")
+    snap, cache_desc = _load_snapshot_cache()
     P = price_panel()
     toxic = build_toxic_rank(calendar)
+    cache_end = max(snap)
+    end = max(pd.Timestamp(BT_END), cache_end)
+    print(f"[cache] {cache_desc}", flush=True)
+    print(f"[window] 回测末端 = {end.date()}", flush=True)
 
     snap_B = snap
     snap_E = apply_veto(snap, toxic, TOP_K, CAP)
@@ -69,7 +86,7 @@ def main() -> int:
     ser = {}
     for tag, s in (("B_base", snap_B), ("E_veto", snap_E), ("F_final", snap_F)):
         sig = signal_from_snapshots(s, calendar, TOP_K, CAP)
-        ser[tag] = run(sig, tag)
+        ser[tag] = run(sig, tag, end)
         log(f"  {tag}: full={((1+ser[tag]).prod()**(244/len(ser[tag]))-1):+.4f}")
 
     df = pd.DataFrame(ser).dropna()

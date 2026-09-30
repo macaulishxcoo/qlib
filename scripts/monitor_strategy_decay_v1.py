@@ -70,19 +70,43 @@ def main() -> int:
         v3.ACCOUNT = capital
         calendar = pd.DatetimeIndex(pd.to_datetime(
             pd.read_csv(QLIB_DIR / "calendars" / "day.txt", header=None)[0]))
-        snap = pd.read_pickle(AOUT / "snapshots_500k_10day.pkl")
+        # 快照缓存选择: 优先用【延伸版】(由 rebuild_snapshots_to_date_v1.py 生成,
+        # 会随新数据推进), 否则退回冻结的研究快照。
+        # 注意: 冻结版止于 2026-06-23 —— 用它时"当前滚动12个月"不会变化,
+        # 每月跑都是同一组数字。故必须打印实际用的是哪一份 + 覆盖区间。
+        ext = AOUT / "snapshots_500k_10day_extended.pkl"
+        frozen = AOUT / "snapshots_500k_10day.pkl"
+        src = ext if ext.exists() else frozen
+        snap = pd.read_pickle(src)
+        _ks = sorted(snap)
+        print(f"[cache] {src.name}  {len(snap)} 期  "
+              f"{_ks[0].date()} .. {_ks[-1].date()}"
+              f"{'  (延伸版, 随新数据推进)' if src is ext else '  (冻结研究快照, 不会推进)'}",
+              flush=True)
         toxic = build_toxic_rank(calendar)
         snaps = apply_veto(snap, toxic, TOP_K, CAP)
         snaps, _ = apply_price_filter(snaps, price_panel(), TOP_K, capital, shift=0)
         sig = signal_from_snapshots(snaps, calendar, TOP_K, CAP)
         strat = TopkDropoutStrategy(signal=sig, topk=TOP_K, n_drop=TOP_K)
-        report, _ = backtest_daily(
-            start_time=BT_START, end_time=BT_END, strategy=strat, account=capital,
-            benchmark=BENCHMARK,
-            exchange_kwargs={"limit_threshold": 0.095, "deal_price": "open",
-                             "open_cost": COST_SCENARIOS["stress"]["open_cost"],
-                             "close_cost": COST_SCENARIOS["stress"]["close_cost"],
-                             "min_cost": 5})
+        # 回测窗口也须延伸到快照末端, 否则新增的期数不会被回测覆盖。
+        import backtest_a_share_five_factor_daily_execution_v1 as _ex
+        cache_end = max(_ks)
+        bt_end = max(pd.Timestamp(BT_END), cache_end)
+        _prev_end = _ex.BT_END
+        _ex.BT_END = bt_end
+        if bt_end > pd.Timestamp(BT_END):
+            print(f"[window] 回测末端由 {pd.Timestamp(BT_END).date()} 延伸到 {bt_end.date()}",
+                  flush=True)
+        try:
+            report, _ = backtest_daily(
+                start_time=BT_START, end_time=bt_end, strategy=strat, account=capital,
+                benchmark=BENCHMARK,
+                exchange_kwargs={"limit_threshold": 0.095, "deal_price": "open",
+                                 "open_cost": COST_SCENARIOS["stress"]["open_cost"],
+                                 "close_cost": COST_SCENARIOS["stress"]["close_cost"],
+                                 "min_cost": 5})
+        finally:
+            _ex.BT_END = _prev_end
         df = report.reset_index().rename(columns={"index": "datetime"})
         df.to_csv(out_dir / "backtest_daily.csv", index=False)
     elif args.returns:
