@@ -56,6 +56,8 @@ def log(m):
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--capital", type=float, default=CAPITAL)
+    ap.add_argument("--force", action="store_true",
+                    help="即使距上次信号不足 10 个交易日也强制生成(用于补做已错过的调仓)")
     ap.add_argument("--prev", type=Path, default=None, help="上一期 holdings CSV, 用于生成 orders")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
@@ -73,6 +75,32 @@ def main() -> int:
     asof = calendar[calendar <= asof].max()
     log(f"asof_date = {asof.date()}   (daily_basic 最新 {db_dates.max().date()}, "
         f"qlib 日历最新 {calendar.max().date()})")
+
+    # ---- 调仓网格守卫 ----
+    # 本脚本原先只认"最新数据日", 与回测的 10 交易日网格无关 ——
+    # 若每天跑一次, 就会每天产出一个新信号, 模拟盘将每日调仓 (严重偏离策略)。
+    # 故: 若 ledgers 里最近一次信号距今不足 STEP 个交易日, 默认拒绝生成。
+    STEP = 10
+    ledger_dir = OUT.parents[1] / "live_ledger"
+    prior = sorted(ledger_dir.glob("signal_*_ffveto.csv")) if ledger_dir.is_dir() else []
+    if prior:
+        last_sig = pd.Timestamp(prior[-1].name.split("_")[1])
+        pos_last, pos_now = calendar.get_loc(last_sig), calendar.get_loc(asof)
+        elapsed = pos_now - pos_last
+        if elapsed < STEP and not args.force:
+            log(f"[skip] 距上次信号 {last_sig.date()} 仅 {elapsed} 个交易日 "
+                f"(网格步长 {STEP}) -> 调仓未到期, 不生成新信号。")
+            log(f"       如需强制生成(例如补做已错过的调仓), 加 --force。")
+            return 0
+        if elapsed < STEP:
+            log(f"       [force] 距上次信号仅 {elapsed} 个交易日, 网格未到期, "
+                f"但 --force 已指定 -> 仍生成。")
+        else:
+            log(f"       距上次信号 {last_sig.date()} 已 {elapsed} 个交易日 "
+                f"(网格步长 {STEP}) -> 调仓到期。")
+            if elapsed > STEP:
+                log(f"       ⚠ 超出网格 {elapsed - STEP} 天 —— 这是一次【延迟调仓】, "
+                    f"网格日应为 {calendar[pos_last + STEP].date()}。")
 
     log("[1/4] loading shared data ...")
     fin = load_financials_extended()
